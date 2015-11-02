@@ -9,15 +9,10 @@
 #    Updated: 2015/09/15 17:18:54 by jwalle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-	
-ifeq ($(HOSTTYPE),)
-	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
-endif
 
-NAME = libft_malloc_$(HOSTTYPE).so
-LS = libft_malloc.so
+NAME = libftprintf.a
 
-CC = gcc -fPIC
+CC = clang
 CFLAGS = -Wall -Werror -Wextra
 SRCDIR = ./srcs/
 SRCO = $(SRC:.c=.o)
@@ -30,26 +25,23 @@ GRN = tput setaf 2
 WHT = tput setaf 7
 RESET = tput sgr 0
 
-SRC =	ft_malloc.c \
-		ft_atoi_hex.c \
-		ft_show_alloc.c \
-		show_alloc_mem_ex.c \
-		tiny.c \
-		misc.c \
-		pages.c \
-		ft_realloc.c \
-		free.c \
+SRC =	ft_printf.c \
 
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))
+SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 all: $(LIB) $(NAME)
 
-$(NAME) : $(OBJS)
+#$(NAME) : $(OBJS)
+$(NAME) :
 	@$(BLU)
 	@echo "Making $(NAME)..."
-	$(CC) -shared -o $(NAME) $^ $(LINK) 
-	ln -s $(NAME) $(LS)
+	$(CC) -c $(CFLAGS) $(SRCS) $(INC)
+	mv $(OBJ) $(ODIR)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
+#	$(CC) -o $(NAME) $^ $(LINK) 
 	@$(GRN)
 	@echo "Done !"
 	@$(RESET)
@@ -84,21 +76,9 @@ fclean: clean
 re: fclean all
 
 test: re
-	gcc  -fPIC $(CFLAGS) -o test ./tests/test.c $(LINK) $(NAME) $(INC) -g
+	clang $(CFLAGS) -o test ./tests/test.c $(LINK) $(NAME) $(INC) -g
 	#./test X 10
 
-lemin: re
-	cp $(NAME) ../lemin2/
-	make -C ../lemin2/ re
-	
-gnl	: re
-	cp $(NAME) ../gnl/
-	make -C ../gnl/ re
-
-fdf: re
-	cp $(NAME) ../fdf/
-	make -C ../fdf/ re
-	
 valtest: re
 	gcc -fPIC $(CFLAGS) -o test test.c $(LINK) $(NAME) $(INC) -g
 	valgrind ./test X 420

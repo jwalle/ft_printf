@@ -142,7 +142,7 @@ SRC2 =	ft_putchar.o\
 all : $(NAME)
 
 $(NAME) :
-	@gcc -fPIC -c -Wall -Wextra -Werror $(SRC1) -I ./
+	@clang -c -Wall -Wextra -Werror $(SRC1) -I ./
 	@ar rc $(NAME) $(SRC2)
 	@ranlib $(NAME)
 
