@@ -20,6 +20,7 @@ ODIR = ./objs/
 LIB = ./libft/libft.a
 INC = -I./includes -I./libft/includes
 LINK = -Llibft -lft
+LINK_P = -L. -lftprintf
 BLU = tput setaf 4
 GRN = tput setaf 2
 WHT = tput setaf 7
@@ -55,7 +56,7 @@ $(ODIR)%.o : $(SRCDIR)%.c
 	@echo "Done !"
 	@$(RESET)
 
-$(LIB):
+$(LIB):$(INC) 
 	@$(BLU)
 	@echo "Compiling libft..."
 	@make -C libft
@@ -68,7 +69,6 @@ clean:
 	make -C ./libft clean
 
 fclean: clean
-	/bin/rm -rf $(LS)
 	make -C ./libft fclean
 	/bin/rm -rf $(NAME)
 	/bin/rm -rf test
@@ -76,7 +76,7 @@ fclean: clean
 re: fclean all
 
 test: re
-	clang $(CFLAGS) -o test ./tests/test.c $(LINK) $(NAME) $(INC) -g
+	clang $(CFLAGS) $(INC) $(LINK) $(LINK_P) $(LIB) -L$(NAME) ./tests/test.c -o test 
 	#./test X 10
 
 valtest: re
