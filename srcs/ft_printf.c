@@ -31,6 +31,8 @@ void	parse_specifier(char *str, t_spe *spe, va_list list)
 {
 	if (str[0] == 's')
 		spe->str = ft_strdup(va_arg(list, char*));
+	else if (str[0] == 'd')
+		spe->integer = ft_atoi(va_arg(list, char*));
 }
 
 void	parse_args(t_arg *arg, va_list list, t_spe *spe)
@@ -40,7 +42,10 @@ void	parse_args(t_arg *arg, va_list list, t_spe *spe)
 	parse_specifier(arg->specifier, spe, list);
 	if (arg->flags)
 		append_flag(arg, spe);
-	ft_putstr(spe->str);
+	if (spe->str)
+		ft_putstr(spe->str);
+	else if (spe->integer)
+		ft_putnbr(spe->integer);
 }
 
 void	init_arg(t_arg *arg)
