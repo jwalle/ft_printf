@@ -56,7 +56,7 @@ $(ODIR)%.o : $(SRCDIR)%.c
 	@echo "Done !"
 	@$(RESET)
 
-$(LIB):$(INC) 
+$(LIB): 
 	@$(BLU)
 	@echo "Compiling libft..."
 	@make -C libft
@@ -76,7 +76,7 @@ fclean: clean
 re: fclean all
 
 test: re
-	clang $(CFLAGS) $(INC) $(LINK) $(LINK_P) $(LIB) -L$(NAME) ./tests/test.c -o test 
+	clang $(CFLAGS) ./tests/test.c -o test $(LINK_P) $(LINK) 
 	#./test X 10
 
 valtest: re

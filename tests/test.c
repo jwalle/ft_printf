@@ -1,11 +1,11 @@
 /* == HEADER == */
 
-#include "ft_printf.h"
-#include "libft.h"
+#include "../includes/ft_printf.h"
+#include "../libft/libft.h"
 
 int main(int ac, char **av)
 {
 	if (ac == 2)
-		ft_printf(av[1]);
+		ft_printf("%s\n", av[1]);
 	return (0);
 }
