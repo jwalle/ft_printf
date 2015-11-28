@@ -27,6 +27,7 @@ WHT = tput setaf 7
 RESET = tput sgr 0
 
 SRC =	ft_printf.c \
+		ft_parse.c \
 
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))

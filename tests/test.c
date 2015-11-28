@@ -6,6 +6,6 @@
 int main(int ac, char **av)
 {
 	if (ac == 2)
-		ft_printf("%s\n", av[1]);
+		ft_printf("%-+12.42llhs\n", av[1]);
 	return (0);
 }
