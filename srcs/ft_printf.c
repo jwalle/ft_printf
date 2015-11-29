@@ -114,7 +114,7 @@ void	parse_specifier(char specifier, t_arg *arg, t_spe *spe, va_list list)
 void	ft_putnbr_base(long long int number, char spe)
 {
 	char				*base;
-	char				hex[12];
+	char				*hex;
 	int					i;
 
 	if (spe == 'u')
@@ -129,6 +129,7 @@ void	ft_putnbr_base(long long int number, char spe)
 	if (spe == 'X')
 		base = HEXA_MAJ;
 	i = ft_intlen(number);
+	hex = malloc(sizeof(int) * i);
 	ft_bzero(hex, i + 1);
 	while (number)
 	{
