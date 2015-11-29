@@ -64,7 +64,16 @@ int		ft_intlen(int n)
 	return (i);
 }
 
-int		check_len(t_spe *spe)
+int		ft_parse_len(int n, char spe)
+{
+	if (spe == 'o')
+		return (ft_int_octal_len(n));
+	if (spe == 'x' || spe == 'X')
+		return (ft_int_hex_len(n));
+	return (ft_intlen(n));
+}
+
+int		check_len(t_spe *spe, char specifier)
 {
 	int i;
 
@@ -72,33 +81,33 @@ int		check_len(t_spe *spe)
 	if (spe->string)
 		i = ft_strlen(spe->string);
 	else if (spe->integer)
-		i = ft_intlen(spe->integer);
+		i = ft_parse_len(spe->integer, specifier);
 	else if (spe->s_char)
-		i = ft_intlen(spe->s_char);
+		i = ft_parse_len(spe->s_char, specifier);
 	else if (spe->s_integer)
-		i = ft_intlen(spe->s_integer);
+		i = ft_parse_len(spe->s_integer, specifier);
 	else if (spe->l_integer)
-		i = ft_intlen(spe->l_integer);
+		i = ft_parse_len(spe->l_integer, specifier);
 	else if (spe->ll_integer)
-		i = ft_intlen(spe->ll_integer);
+		i = ft_parse_len(spe->ll_integer, specifier);
 	else if (spe->max_integer)
-		i = ft_intlen(spe->max_integer);
+		i = ft_parse_len(spe->max_integer, specifier);
 	else if (spe->size_t_integer)
-		i = ft_intlen(spe->size_t_integer);
+		i = ft_parse_len(spe->size_t_integer, specifier);
 	else if (spe->u_integer)
-		i = ft_intlen(spe->u_integer);
+		i = ft_parse_len(spe->u_integer, specifier);
 	else if (spe->us_char)
-		i = ft_intlen(spe->us_char);
+		i = ft_parse_len(spe->us_char, specifier);
 	else if (spe->us_integer)
-		i = ft_intlen(spe->us_integer);
+		i = ft_parse_len(spe->us_integer, specifier);
 	else if (spe->ul_integer)
-		i = ft_intlen(spe->ul_integer);
+		i = ft_parse_len(spe->ul_integer, specifier);
 	else if (spe->ull_integer)
-		i = ft_intlen(spe->ull_integer);
+		i = ft_parse_len(spe->ull_integer, specifier);
 	else if (spe->umax_integer)
-		i = ft_intlen(spe->umax_integer);
+		i = ft_parse_len(spe->umax_integer, specifier);
 	else if (spe->character)
-		i = ft_intlen(spe->character);
+		i = ft_parse_len(spe->character, specifier);
 	else if (spe->pointer)
 		i = 14;
 	return (i);
@@ -108,7 +117,7 @@ void	append_flag(t_arg *arg, t_spe *spe, int start)
 {
 	int	i;
 
-	i = check_len(spe);
+	i = check_len(spe, arg->specifier);
 	if (!strchr(arg->flags, '-') && arg->width && start)
 	{
 		while (i++ < arg->width)
@@ -123,7 +132,6 @@ void	append_flag(t_arg *arg, t_spe *spe, int start)
 
 void	parse_specifier(char specifier, t_arg *arg, t_spe *spe, va_list list)
 {
-	//printf("spe = %c\n", specifier);
 	if (specifier == 'd' || specifier == 'i' || specifier == 'D')
 		arg_is_int(arg, spe, list);
 	else if (specifier == 'u' || specifier == 'U' || specifier == 'o'
@@ -158,16 +166,7 @@ void	ft_putnbr_hexa(long long int number, char spe)
 	char				*hex;
 	int					i;
 
-	if (spe == 'u')
-	{
-		ft_putnbr(number);
-		return ;
-	}
-	if (spe == 'o')
-	{
-		ft_putnbr_octal(number);
-		return ;
-	}
+
 	if (spe == 'x')
 		base = HEXA;
 	if (spe == 'X')
@@ -178,11 +177,28 @@ void	ft_putnbr_hexa(long long int number, char spe)
 	while (number)
 	{
 		hex[--i] = base[number % 16];
-		//printf("%c\n", hex[i]);
 		number = number / 16;
-		//i--;
 	}
 	ft_putstr(hex);
+}
+
+void		parse_number(int number, char spe)
+{
+	if (spe == 'u')
+	{
+		ft_putnbr(number);
+		return ;
+	}
+	else if (spe == 'o')
+	{
+		ft_putnbr_octal(number);
+		return ;
+	}
+	else if (spe == 'x' || spe == 'X')
+	{
+		ft_putnbr_hexa(number, spe);
+		return ;
+	}
 }
 
 void	parse_args(t_arg *arg, va_list list, t_spe *spe)
@@ -207,10 +223,10 @@ void	parse_args(t_arg *arg, va_list list, t_spe *spe)
 		ft_putnbr(spe->max_integer);
 	else if (spe->u_integer)
 	{
-		ft_putnbr_hexa(spe->u_integer, arg->specifier);
+		parse_number(spe->u_integer, arg->specifier);
 	}
 	else if (spe->us_char)
-		ft_putnbr(spe->us_char);
+		parse_number(spe->us_char, arg->specifier);
 	else if (spe->us_integer)
 		ft_putnbr(spe->us_integer);
 	else if (spe->ul_integer)
