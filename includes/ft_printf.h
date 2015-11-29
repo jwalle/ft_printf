@@ -1,11 +1,21 @@
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 #include <stdarg.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <limits.h>
+#include <wchar.h>
 #include "../libft/libft.h"
 
+#define HEXA "0123456789abcdef"
+#define HEXA_MAJ "0123456789ABCDEF"
+#define OCTAL "0x000000000000"
 #define FLAGS "-+ #"
 #define LENGTH "hljz"
-#define SPECIFIER "dsS"
+// #define LENGTH "hh h l ll j z"
+#define SPECIFIER "sSpdDioOuUxXcC"
+
+// D = ld, O = lo, U = lu.
 
 typedef	struct		s_arg
 {
@@ -13,23 +23,39 @@ typedef	struct		s_arg
 	int				width;		// number
 	int				precision;  // number
 	char			*length;		// hh, l, ...
-	char			*specifier; // sS...
+	char			specifier; // sS...
 }					t_arg;
 
-typedef struct		s_spe
+typedef struct				s_spe
 {
-	char			*str;
-	int				integer;
-	unsigned int	u_integer;
-	double			dble;
-	char			character;
-	void			*pointer;
-	
-}					t_spe;
+	int						integer;
+	signed char				s_char;
+	short int				s_integer;
+	long int				l_integer;
+	long long int			ll_integer;
+	intmax_t				max_integer;
+	size_t					size_t_integer;
+	unsigned int			u_integer;
+	unsigned char			us_char;
+	unsigned short int		us_integer;
+	unsigned long int		ul_integer;
+	unsigned long long int	ull_integer;
+	uintmax_t				umax_integer;
+	int						character;
+	wint_t					w_integer;
+	char					*string;
+	wchar_t					*w_string;
+	void					*pointer;
+}							t_spe;
 
 int		ft_printf(const char *format, ...);
 char	*ft_strndup(char *str, int i);
 int		parse(const char *format, t_arg *arg);
 int		parse_two(const char *format, t_arg *arg, int n);
-
+void	ft_atoi_hex(void *ptr);
+void	arg_is_int(t_arg *arg, t_spe *spe, va_list list);
+void	arg_is_u(t_arg *arg, t_spe *spe, va_list list);
+void	arg_is_c(t_arg *arg, t_spe *spe, va_list list);
+void	arg_is_string(t_arg *arg, t_spe *spe, va_list list);
+void	arg_is_p(t_arg *arg, t_spe *spe, va_list list);
 #endif

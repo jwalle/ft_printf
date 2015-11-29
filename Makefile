@@ -28,6 +28,12 @@ RESET = tput sgr 0
 
 SRC =	ft_printf.c \
 		ft_parse.c \
+		ft_atoi_hex.c \
+		arg_is_int.c \
+		arg_is_u.c \
+		arg_is_c.c \
+		arg_is_string.c \
+		arg_is_p.c \
 
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))

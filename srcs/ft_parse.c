@@ -20,17 +20,24 @@ int parse_two(const char *format, t_arg *arg, int n)
 	int i;
 
 	i = 0;
-	while (ft_strchr(LENGTH, format[i + n]))
-		i++;
-	arg->length = ft_strndup((char *)format + n, i);
-	n += i;
+	if (ft_strchr(LENGTH, format[i + n]))
+	{
+		while (ft_strchr(LENGTH, format[i + n]))
+			i++;
+		arg->length = ft_strndup((char *)format + n, i);
+		n += i;
+	}
 	i = 0;
-	while (ft_strchr(SPECIFIER, format[i + n]))
-		i++;
-	arg->specifier = ft_strndup((char *)format + n, i);
+	if (ft_strchr(SPECIFIER, format[i + n]))
+		arg->specifier = format[i++ + n];
+	else
+	{
+		ft_putstr("No specifier apecified.\n");
+		exit (1);
+	}
 	n += i;
-	printf("flags = %s, width = %d, precision = %d, length = %s,  specifier = %s\n",
-		arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
+	//printf("flags = %s, width = %d, precision = %d, length = %s,  specifier = %c\n",
+	//	arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
 	return (n);
 }
 
