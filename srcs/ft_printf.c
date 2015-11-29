@@ -129,7 +129,7 @@ void	ft_putnbr_base(long long int number, char spe)
 	if (spe == 'X')
 		base = HEXA_MAJ;
 	i = ft_intlen(number);
-	hex = malloc(sizeof(int) * i);
+	hex = ft_strnew(i);
 	ft_bzero(hex, i + 1);
 	while (number)
 	{
