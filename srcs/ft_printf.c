@@ -25,6 +25,32 @@ void	init_spe(t_spe *spe)
 	spe->pointer = NULL;
 }
 
+int		ft_int_octal_len(int n)
+{
+	int i;
+
+	i = 0;
+	while (n)
+	{
+		n /= 8;
+		i++;
+	}
+	return (i);
+}
+
+int		ft_int_hex_len(int n)
+{
+	int i;
+
+	i = 0;
+	while (n)
+	{
+		n /= 16;
+		i++;
+	}
+	return (i);
+}
+
 int		ft_intlen(int n)
 {
 	int i;
@@ -110,8 +136,23 @@ void	parse_specifier(char specifier, t_arg *arg, t_spe *spe, va_list list)
 	else if (specifier == 'p')
 		arg_is_p(arg, spe, list);
 }
+void	ft_putnbr_octal(long long int number)
+{
+	char				*octal;
+	int					i;
 
-void	ft_putnbr_base(long long int number, char spe)
+	i = ft_int_octal_len(number);
+	octal = ft_strnew(i);
+	ft_bzero(octal, i + 1);
+	while (number)
+	{
+		octal[--i] = number % 8 + '0';
+		number = number / 8;
+	}
+	ft_putstr(octal);
+}
+
+void	ft_putnbr_hexa(long long int number, char spe)
 {
 	char				*base;
 	char				*hex;
@@ -123,19 +164,23 @@ void	ft_putnbr_base(long long int number, char spe)
 		return ;
 	}
 	if (spe == 'o')
-		base = OCTAL;
+	{
+		ft_putnbr_octal(number);
+		return ;
+	}
 	if (spe == 'x')
 		base = HEXA;
 	if (spe == 'X')
 		base = HEXA_MAJ;
-	i = ft_intlen(number);
+	i = ft_int_hex_len(number);
 	hex = ft_strnew(i);
 	ft_bzero(hex, i + 1);
 	while (number)
 	{
-		hex[i] = base[number % 16];
+		hex[--i] = base[number % 16];
+		//printf("%c\n", hex[i]);
 		number = number / 16;
-		i--;
+		//i--;
 	}
 	ft_putstr(hex);
 }
@@ -162,7 +207,7 @@ void	parse_args(t_arg *arg, va_list list, t_spe *spe)
 		ft_putnbr(spe->max_integer);
 	else if (spe->u_integer)
 	{
-		ft_putnbr_base(spe->u_integer, arg->specifier);
+		ft_putnbr_hexa(spe->u_integer, arg->specifier);
 	}
 	else if (spe->us_char)
 		ft_putnbr(spe->us_char);
