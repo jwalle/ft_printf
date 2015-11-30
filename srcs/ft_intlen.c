@@ -41,6 +41,20 @@ int		ft_intlen(int n)
 	return (i);
 }
 
+
+int		ft_ll_intlen(long long int n)
+{
+	int i;
+
+	i = 0;
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
 int		ft_parse_len(int n, char spe)
 {
 	if (spe == 'o')

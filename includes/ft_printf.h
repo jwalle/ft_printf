@@ -84,6 +84,8 @@ void	init_spe(t_spe *spe);
 int		ft_int_octal_len(int n);
 int		ft_int_hex_len(int n);
 int		ft_intlen(int n);
+int		ft_ll_intlen(long long int n);
 int		ft_parse_len(int n, char spe);
+void	ft_putllnbr(long long int n);
 
 #endif
