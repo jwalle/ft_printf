@@ -5,10 +5,10 @@
 
 char *ft_strndup(char *str, int i)
 {
-	int		n;
+	//int		n;
 	char	*ret;
 
-	n = 0;
+	//n = 0;
 	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
 		return NULL;
 	ret = ft_strncpy(ret, str, i);
@@ -49,8 +49,19 @@ int	parse(const char *format, t_arg *arg)
 	i = 0;
 	n = 0;
 	while (ft_strchr(FLAGS, format[i + n]))
+	{
+		if (format[i + n] == '-')
+			arg->flags->minus = 1;
+		if (format[i + n] == '+')
+			arg->flags->plus = 1;
+		if (format[i + n] == '0')
+			arg->flags->zero = 1;
+		if (format[i + n] == '#')
+			arg->flags->htag = 1;
+		if (format[i + n] == ' ')
+			arg->flags->space = 1;
 		i++;
-	arg->flags = ft_strndup((char *)format, i);
+	}
 	n += i;
 	i = 0;
 	while (ft_isdigit(format[i + n]))

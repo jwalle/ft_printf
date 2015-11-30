@@ -17,9 +17,18 @@
 
 // D = ld, O = lo, U = lu.
 
+typedef	struct		s_flags
+{
+	int				minus;
+	int				plus;
+	int				zero;
+	int				htag;
+	int				space;
+}					t_flags;
+
 typedef	struct		s_arg
 {
-	char			*flags;		// -+ #0
+	t_flags			*flags;		// -+ #0
 	int				width;		// number
 	int				precision;  // number
 	char			*length;		// hh, l, ...

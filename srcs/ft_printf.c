@@ -118,12 +118,12 @@ void	append_flag(t_arg *arg, t_spe *spe, int start)
 	int	i;
 
 	i = check_len(spe, arg->specifier);
-	if (!strchr(arg->flags, '-') && arg->width && start)
+	if (!arg->flags->minus && arg->width && start)
 	{
 		while (i++ < arg->width)
 			ft_putchar(' ');
 	}
-	else if (strchr(arg->flags, '-') && arg->width && !start)
+	else if (arg->flags->minus && arg->width && !start)
 	{
 		while (i++ < arg->width)
 			ft_putchar(' ');
@@ -249,7 +249,11 @@ void	parse_args(t_arg *arg, va_list list, t_spe *spe)
 
 void	init_arg(t_arg *arg)
 {
-	arg->flags = NULL;
+	arg->flags->minus = 0;
+	arg->flags->plus = 0;
+	arg->flags->zero = 0;
+	arg->flags->htag = 0;
+	arg->flags->space = 0;
 	arg->width = 0;
 	arg->precision = 0;
 	arg->length = NULL;
@@ -261,15 +265,15 @@ int	ft_printf(const char *format, ...)
 	va_list	list;
 	t_arg	*arg;
 	t_spe	*spe;
-	int		buffer;
 	int 	i;
 
+    if (!format)
+        return (-1);
 	i = 0;
-	buffer = 0;
 	arg = (t_arg*)malloc(sizeof(t_arg));
+	arg->flags = (t_flags*)malloc(sizeof(t_flags));
 	spe = (t_spe*)malloc(sizeof(t_spe));
 	va_start(list, format);
-	buffer = ft_strlen(format);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -282,5 +286,5 @@ int	ft_printf(const char *format, ...)
 			ft_putchar(format[i++]);
 	}
 	va_end(list);
-	return (buffer);
+	return (ft_strlen(format));
 }

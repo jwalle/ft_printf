@@ -39,9 +39,14 @@ OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
+# all: $(NAME)
+
+# $(NAME):
+# 	gcc -Wall -Wextra -Werror -c $(SRCS) $(INC)
+# 	ar rc $(NAME) $(OBJ)
+
 all: $(LIB) $(NAME)
 
-#$(NAME) : $(OBJS)
 $(NAME) :
 	@$(BLU)
 	@echo "Making $(NAME)..."
@@ -49,7 +54,6 @@ $(NAME) :
 	mv $(OBJ) $(ODIR)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
-#	$(CC) -o $(NAME) $^ $(LINK) 
 	@$(GRN)
 	@echo "Done !"
 	@$(RESET)
@@ -83,9 +87,9 @@ fclean: clean
 re: fclean all
 
 test: re
-	clang $(CFLAGS) ./tests/test.c -o test $(LINK_P) $(LINK) 
+	clang ./tests/test3.c -o test $(LINK_P) $(LINK) 
 	#./test X 10
 
 valtest: re
-	gcc -fPIC $(CFLAGS) -o test test.c $(LINK) $(NAME) $(INC) -g
+	gcc -fPIC $(CFLAGS) -o test test3.c $(LINK) $(NAME) $(INC) -g
 	valgrind ./test X 420
