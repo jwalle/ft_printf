@@ -14,9 +14,13 @@ char *ft_strndup(char *str, int i)
 
 void	parse_length(t_arg *arg, char *len_parse)
 {
-	if (len_parse == NULL)
+	if (!len_parse)
+	{
 		arg->length->no = 1;
-	else if (!ft_strcmp(len_parse, "hh"))
+		return ;
+	}
+	arg->length->no = 0;
+	if (!ft_strcmp(len_parse, "hh"))
 		arg->length->hh = 1;
 	else if (!ft_strcmp(len_parse, "h"))
 		arg->length->h = 1;
@@ -28,8 +32,9 @@ void	parse_length(t_arg *arg, char *len_parse)
 		arg->length->j = 1;
 	else if (!ft_strcmp(len_parse, "z"))
 		arg->length->z = 1;
-	//else
-	//	error_length(arg->length);
+	else
+		//error_length(arg->length);
+		printf("ERROR PARSE LENGTH\n");
 }
 
 int parse_two(const char *format, t_arg *arg, int n)
@@ -37,14 +42,14 @@ int parse_two(const char *format, t_arg *arg, int n)
 	int 	i;
 	char	*len_parse;
 
-	i = 0;
+	i = 0;	
+	init_length(arg->length);
 	if (ft_strchr(LENGTH, format[i + n]))
 	{
 		while (ft_strchr(LENGTH, format[i + n]))
 			i++;
 		len_parse = ft_strndup((char *)format + n, i);
 		n += i;
-		init_length(arg);
 		parse_length(arg, len_parse);
 		free(len_parse);
 	}

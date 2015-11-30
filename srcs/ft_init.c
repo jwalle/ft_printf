@@ -24,15 +24,15 @@ void	init_spe(t_spe *spe)
 	spe->pointer = NULL;
 }
 
-void	init_length(t_arg *arg)
+void	init_length(t_length *length)
 {
-	arg->length->no = 0;
-	arg->length->h = 0;
-	arg->length->hh = 0;
-	arg->length->l = 0;
-	arg->length->ll = 0;
-	arg->length->z = 0;
-	arg->length->j = 0;
+	length->no = 1;
+	length->h = 0;
+	length->hh = 0;
+	length->l = 0;
+	length->ll = 0;
+	length->z = 0;
+	length->j = 0;
 }
 
 void	init_arg(t_arg *arg)
@@ -44,6 +44,5 @@ void	init_arg(t_arg *arg)
 	arg->flags->space = 0;
 	arg->width = 0;
 	arg->precision = 0;
-	arg->length = NULL;
 	arg->specifier = 0;
 }
