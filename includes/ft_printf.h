@@ -26,12 +26,23 @@ typedef	struct		s_flags
 	int				space;
 }					t_flags;
 
+typedef	struct		s_length
+{
+	int				no;
+	int				l;
+	int				ll;
+	int				h;
+	int				hh;
+	int				j;
+	int				z;
+}					t_length;
+
 typedef	struct		s_arg
 {
 	t_flags			*flags;		// -+ #0
+	t_length		*length;		// hh, l, ...
 	int				width;		// number
 	int				precision;  // number
-	char			*length;		// hh, l, ...
 	char			specifier; // sS...
 }					t_arg;
 
@@ -67,4 +78,12 @@ void	arg_is_u(t_arg *arg, t_spe *spe, va_list list);
 void	arg_is_c(t_arg *arg, t_spe *spe, va_list list);
 void	arg_is_string(t_arg *arg, t_spe *spe, va_list list);
 void	arg_is_p(t_arg *arg, t_spe *spe, va_list list);
+void	init_length(t_arg *arg);
+void	init_arg(t_arg *arg);
+void	init_spe(t_spe *spe);
+int		ft_int_octal_len(int n);
+int		ft_int_hex_len(int n);
+int		ft_intlen(int n);
+int		ft_parse_len(int n, char spe);
+
 #endif

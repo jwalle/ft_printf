@@ -4,10 +4,10 @@
 
 void	arg_is_p(t_arg *arg, t_spe *spe, va_list list)
 {
-	if (arg->length == NULL)
+	if (arg->length->no)
 	{
 		spe->pointer = va_arg(list, void*);
 	}
-	else if (!ft_strcmp(arg->length, "hh"))
+	else if (arg->length->hh)
 		spe->s_char = va_arg(list, int);
 }

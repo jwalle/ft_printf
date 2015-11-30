@@ -1,31 +1,52 @@
 /* == HEADER == */
 
 #include "ft_printf.h"
-#include <stdio.h> // PRINTF PLOPLPOPLPO
 
 char *ft_strndup(char *str, int i)
 {
-	//int		n;
 	char	*ret;
 
-	//n = 0;
 	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
 		return NULL;
 	ret = ft_strncpy(ret, str, i);
 	return (ret);
 }
 
+void	parse_length(t_arg *arg, char *len_parse)
+{
+	if (len_parse == NULL)
+		arg->length->no = 1;
+	else if (!ft_strcmp(len_parse, "hh"))
+		arg->length->hh = 1;
+	else if (!ft_strcmp(len_parse, "h"))
+		arg->length->h = 1;
+	else if (!ft_strcmp(len_parse, "l"))
+		arg->length->l = 1;
+	else if (!ft_strcmp(len_parse, "ll"))
+		arg->length->ll = 1;
+	else if (!ft_strcmp(len_parse, "j"))
+		arg->length->j = 1;
+	else if (!ft_strcmp(len_parse, "z"))
+		arg->length->z = 1;
+	//else
+	//	error_length(arg->length);
+}
+
 int parse_two(const char *format, t_arg *arg, int n)
 {
-	int i;
+	int 	i;
+	char	*len_parse;
 
 	i = 0;
 	if (ft_strchr(LENGTH, format[i + n]))
 	{
 		while (ft_strchr(LENGTH, format[i + n]))
 			i++;
-		arg->length = ft_strndup((char *)format + n, i);
+		len_parse = ft_strndup((char *)format + n, i);
 		n += i;
+		init_length(arg);
+		parse_length(arg, len_parse);
+		free(len_parse);
 	}
 	i = 0;
 	if (ft_strchr(SPECIFIER, format[i + n]))
@@ -37,7 +58,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 	}
 	n += i;
 	//printf("flags = %s, width = %d, precision = %d, length = %s,  specifier = %c\n",
-	//	arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
+	//arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
 	return (n);
 }
 

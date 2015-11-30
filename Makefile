@@ -34,6 +34,8 @@ SRC =	ft_printf.c \
 		arg_is_c.c \
 		arg_is_string.c \
 		arg_is_p.c \
+		ft_init.c \
+		ft_intlen.c \
 
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))
@@ -87,9 +89,9 @@ fclean: clean
 re: fclean all
 
 test: re
-	clang ./tests/test3.c -o test $(LINK_P) $(LINK) 
+	clang ./tests/test.c -o test $(LINK_P) $(LINK) 
 	#./test X 10
 
 valtest: re
-	gcc -fPIC $(CFLAGS) -o test test3.c $(LINK) $(NAME) $(INC) -g
+	gcc -fPIC $(CFLAGS) -o test test.c $(LINK) $(NAME) $(INC) -g
 	valgrind ./test X 420

@@ -3,76 +3,6 @@
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
-void	init_spe(t_spe *spe)
-{
-	spe->integer = 0;
-	spe->s_char = 0;
-	spe->s_integer = 0;
-	spe->l_integer = 0;
-	spe->ll_integer = 0;
-	spe->max_integer = 0;
-	spe->size_t_integer = 0;
-	spe->u_integer = 0;
-	spe->us_char = 0;
-	spe->us_integer = 0;
-	spe->ul_integer = 0;
-	spe->ull_integer = 0;
-	spe->umax_integer = 0;
-	spe->character = 0;
-	spe->w_integer = 0;
-	spe->string = NULL;
-	spe->w_string = NULL;
-	spe->pointer = NULL;
-}
-
-int		ft_int_octal_len(int n)
-{
-	int i;
-
-	i = 0;
-	while (n)
-	{
-		n /= 8;
-		i++;
-	}
-	return (i);
-}
-
-int		ft_int_hex_len(int n)
-{
-	int i;
-
-	i = 0;
-	while (n)
-	{
-		n /= 16;
-		i++;
-	}
-	return (i);
-}
-
-int		ft_intlen(int n)
-{
-	int i;
-
-	i = 0;
-	while (n)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-int		ft_parse_len(int n, char spe)
-{
-	if (spe == 'o')
-		return (ft_int_octal_len(n));
-	if (spe == 'x' || spe == 'X')
-		return (ft_int_hex_len(n));
-	return (ft_intlen(n));
-}
-
 int		check_len(t_spe *spe, char specifier)
 {
 	int i;
@@ -247,19 +177,6 @@ void	parse_args(t_arg *arg, va_list list, t_spe *spe)
 		append_flag(arg, spe, 0);
 }
 
-void	init_arg(t_arg *arg)
-{
-	arg->flags->minus = 0;
-	arg->flags->plus = 0;
-	arg->flags->zero = 0;
-	arg->flags->htag = 0;
-	arg->flags->space = 0;
-	arg->width = 0;
-	arg->precision = 0;
-	arg->length = NULL;
-	arg->specifier = 0;
-}
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	list;
@@ -272,6 +189,7 @@ int	ft_printf(const char *format, ...)
 	i = 0;
 	arg = (t_arg*)malloc(sizeof(t_arg));
 	arg->flags = (t_flags*)malloc(sizeof(t_flags));
+	arg->length = (t_length*)malloc(sizeof(t_length));
 	spe = (t_spe*)malloc(sizeof(t_spe));
 	va_start(list, format);
 	while (format[i])
