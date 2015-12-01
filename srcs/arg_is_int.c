@@ -56,7 +56,7 @@ void	print_llint(t_arg *arg, va_list list)
 		ft_putchar(' ');
 }
 
-void	print_int(t_arg *arg, va_list list)
+void	print_int(t_arg *arg, va_list list, char spe)
 {
 	int		len;
 	int		n;
@@ -64,7 +64,8 @@ void	print_int(t_arg *arg, va_list list)
 
 	temp = 0;
 	n = va_arg(list, int);
-	len = ft_intlen(n);
+	//len = ft_intlen(n);
+	len = ft_parse_len(n, spe);
 	while (arg->precision > (len + temp++))
 		ft_putchar('0');
 	if (arg->flags->plus && n > 0)
@@ -87,7 +88,7 @@ void	print_int(t_arg *arg, va_list list)
 void	arg_is_int(t_arg *arg, va_list list)
 {
 	if (arg->length->no || arg->length->h || arg->length->hh)
-		print_int(arg, list);
+		print_int(arg, list, arg->specifier);
 	else if ( arg->length->l || arg->length->ll ||
 		arg->length->z || arg->length->j)
 		print_llint(arg, list);
