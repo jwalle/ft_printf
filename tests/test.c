@@ -17,11 +17,11 @@ int main(int ac, char **av)
 		printf("|%9s|%13s|%22s|%10s|%15s|%20s|\n", "length", "d i", "u o x X", "c", "s", "p");
 		printf(" ----------------------------------------------------------------------------------------------\n");
 		printf("|lg %6s|%13.d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "plopiplop", av);
-		ft_printf("|ft %6s|%13d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "plopiplop", av);
+		ft_printf("|ft %6s|%13d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "", av);
 		//ft_printf("|ft %6s|%13d|%22u|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, 111, "plopiplop", av);
 		printf(" -------------------------------------------------------------------------------------------\n");
-		printf("|lg %6s|%13hhd|%hhu %hho %hhx %-12hhX|%10s|%15s|%20s|\n", "hh", (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', "", "", "");
-		ft_printf("|ft %6s|%13hhd|%hhu %hho %hhx %-12hhX|%10s|%15s|%20s|\n", "hh", (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', "", "", "");
+		printf("|lg %6s|%13hhd|%hhu %hho %hhx %-12hhX|%10s|%15s|%20s|\n", "hh", (signed char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', "", "", "");
+		ft_printf("|ft %6s|%13hhd|%hhu %hho %hhx %-12hhX|%10s|%15s|%20s|\n", "hh", (signed char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', (unsigned char)'a', "", "", "");
 		printf(" -------------------------------------------------------------------------------------------\n");
 		printf("|lg %6s|%13hd|%22hu|%10s|%15s|%20s|\n", "h", (short int)12, (unsigned short int)89, "", "", "");
 		ft_printf("|ft %6s|%13hd|%22hu|%10s|%15s|%20s|\n", "h", (short int)12, (unsigned short int)89, "", "", "");
