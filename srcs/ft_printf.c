@@ -3,7 +3,7 @@
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
-int		check_len(t_spe *spe, char specifier)
+/*int		check_len(t_spe *spe, char specifier)
 {
 	int i;
 
@@ -41,9 +41,9 @@ int		check_len(t_spe *spe, char specifier)
 	else if (spe->pointer)
 		i = 14;
 	return (i);
-}
+}*/
 
-void	append_flag(t_arg *arg, t_spe *spe, int start)
+/*void	append_flag(t_arg *arg, t_spe *spe, int start)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ void	append_flag(t_arg *arg, t_spe *spe, int start)
 		while (i++ < arg->width)
 			ft_putchar(' ');
 	}
-}
+}*/
 
 void	parse_specifier(char specifier, t_arg *arg, va_list list)
 {
@@ -114,12 +114,7 @@ void	ft_putnbr_hexa(long long int number, char spe)
 
 void		parse_number(int number, char spe)
 {
-	if (spe == 'u')
-	{
-		ft_putnbr(number);
-		return ;
-	}
-	else if (spe == 'o')
+	if (spe == 'o')
 	{
 		ft_putnbr_octal(number);
 		return ;
@@ -129,52 +124,13 @@ void		parse_number(int number, char spe)
 		ft_putnbr_hexa(number, spe);
 		return ;
 	}
+	ft_putnbr(number);
 }
 
 void	parse_args(t_arg *arg, va_list list)
 {
 //	init_spe(spe);
 	parse_specifier(arg->specifier, arg, list);
-	// if (arg->width || arg->flags)
-	// 	append_flag(arg, spe, 1);
-	// if (spe->integer)
-	// 	ft_putnbr(spe->integer);
-	// else if (spe->s_char)
-	// 	ft_putnbr(spe->s_char);
-	// else if (spe->s_integer)
-	// 	ft_putnbr(spe->s_integer);
-	// else if (spe->l_integer)
-	// 	ft_putnbr(spe->l_integer);
-	// else if (spe->ll_integer)
-	// 	ft_putnbr(spe->ll_integer);
-	// else if (spe->max_integer)
-	// 	ft_putnbr(spe->max_integer);
-	// else if (spe->max_integer)
-	// 	ft_putnbr(spe->max_integer);
-	// else if (spe->u_integer)
-	// {
-	// 	parse_number(spe->u_integer, arg->specifier);
-	// }
-	// else if (spe->us_char)
-	// 	parse_number(spe->us_char, arg->specifier);
-	// else if (spe->us_integer)
-	// 	ft_putnbr(spe->us_integer);
-	// else if (spe->ul_integer)
-	// 	ft_putnbr(spe->ul_integer);
-	// else if (spe->ull_integer)
-	// 	ft_putnbr(spe->ull_integer);
-	// else if (spe->umax_integer)
-	// 	ft_putnbr(spe->umax_integer);
-	// else if (spe->character)
-	// 	ft_putchar(spe->character);
-	// else if (spe->string)
-	// 	ft_putstr(spe->string);
-	// else if (spe->pointer)
-	// 	ft_atoi_hex(spe->pointer);
-	// else if (spe->size_t_integer)
-	// 	ft_putnbr(spe->size_t_integer);
-	// if (arg->flags)
-	// 	append_flag(arg, spe, 0);
 }
 
 int	ft_printf(const char *format, ...)

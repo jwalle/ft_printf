@@ -87,5 +87,6 @@ int		ft_intlen(int n);
 int		ft_ll_intlen(long long int n);
 int		ft_parse_len(int n, char spe);
 void	ft_putllnbr(long long int n);
+void	parse_number(int number, char spe);
 
 #endif

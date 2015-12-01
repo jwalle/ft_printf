@@ -36,6 +36,7 @@ SRC =	ft_printf.c \
 		arg_is_p.c \
 		ft_init.c \
 		ft_intlen.c \
+		print_number.c \
 
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(ODIR), $(OBJ))

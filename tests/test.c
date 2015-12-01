@@ -16,7 +16,7 @@ int main(int ac, char **av)
 		printf(" ----------------------------------------------------------------------------------------------\n");
 		printf("|%9s|%13s|%22s|%10s|%15s|%20s|\n", "length", "d i", "u o x X", "c", "s", "p");
 		printf(" ----------------------------------------------------------------------------------------------\n");
-		printf("|lg %6s|%13.d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "plopiplop", av);
+		printf("|lg %6s|%13d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "plopiplop", av);
 		ft_printf("|ft %6s|%13d|%u %o %x %-11X|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, (unsigned int)234, (unsigned int)234, (unsigned int)234, 111, "", av);
 		//ft_printf("|ft %6s|%13d|%22u|%10d|%15s|%20p|\n", "", (int)744, (unsigned int)234, 111, "plopiplop", av);
 		printf(" -------------------------------------------------------------------------------------------\n");
@@ -39,5 +39,47 @@ int main(int ac, char **av)
 		ft_printf("|ft %6s|%13zd|%22zu|%10s|%15s|%20s|\n", "z", (size_t)65, (size_t)65, "", "", "");
 		printf(" -------------------------------------------------------------------------------------------\n");
 	}
+
+	printf("%%u | %% u | %%+u | %%.10u | %%.10u :\n");
+	unsigned int a = 212672;
+	printf("%u | % u | %+u | %.10u\n", a, a, a, a);
+	ft_printf("%u | % u | %+u | %.10u\n", a, a, a, a);
+	printf("\n");
+
+	printf("%%d | %% d | %%+d | %%.10d | %%-d | %%0d | %% .10d | %%+.10d :\n");
+	int b = -987824;
+	printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, b, b, b, b, b, b, b, b);
+	ft_printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, b, b, b, b, b, b, b, b);
+	printf("\n");
+
+	printf("%%llu :\n");
+	long long unsigned int c = 2855454212672;
+	printf("%llu\n", c);
+	ft_printf("%llu\n", c);
+	printf("\n");
+
+	printf("%%lld :\n");
+	long long int d = 2855454212672;
+	printf("%lld\n", d);
+	ft_printf("%lld\n", d);
+	printf("\n");
+
+	printf("%%c :\n");
+	char e = '*';
+	printf("%c\n", e);
+	ft_printf("%c\n", e);
+	printf("\n");
+	
+	printf("%%s :\n");
+	char *f = "oui-oui";
+	printf("%s\n", f);
+	ft_printf("%s\n", f);
+	printf("\n");
+
+	printf("%%p :\n");
+	printf("%p\n", &f);
+	ft_printf("%p\n", &f);
+	printf("\n");
+
 	return (0);
 }
