@@ -10,7 +10,7 @@
 #define HEXA "0123456789abcdef"
 #define HEXA_MAJ "0123456789ABCDEF"
 #define OCTAL "0x000000000000"
-#define FLAGS "-+ #"
+#define FLAGS "-+ #0"
 #define LENGTH "hljz"
 // #define LENGTH "hh h l ll j z"
 #define SPECIFIER "sSpdDioOuUxXcC"
@@ -44,6 +44,7 @@ typedef	struct		s_arg
 	int				width;		// number
 	int				precision;  // number
 	char			specifier; // sS...
+	int				hex;
 }					t_arg;
 
 typedef struct				s_spe
@@ -88,5 +89,11 @@ int		ft_ll_intlen(long long int n);
 int		ft_parse_len(int n, char spe);
 void	ft_putllnbr(long long int n);
 void	parse_number(int number, char spe);
+int		format_output(int len, int signe, t_arg *arg);
+void	print_hex(char spe);
+void	ft_putnbr_octal(long long int number);
+void	ft_putnbr_hexa(long long int number, char spe);
+void	ft_putllunbr(unsigned long long int n);
+void	ft_putllnbr(long long int n);
 
 #endif

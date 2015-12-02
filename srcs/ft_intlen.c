@@ -12,6 +12,7 @@ int		ft_int_octal_len(int n)
 		n /= 8;
 		i++;
 	}
+	//printf("n = %d, i = %d\n", n , i);
 	return (i);
 }
 

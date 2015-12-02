@@ -3,9 +3,136 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+#define DEC -123
+#define INT 255
+#define UNS (~0)
+
+void test(void)
+{
+	int i, j, k, l;
+	char buf[7];
+	char *prefix = buf;
+	char tp[20];
+	i = 0;
+
+	puts("\nFormatted output test printf");
+	printf("prefix	   6d      6o      6x      6X      6u\n");
+	strcpy(prefix, "%");
+	while (i < 2)
+	{
+	  	j = 0;
+	    while (j < 2)
+	    {
+	    	k = 0;
+	    	while (k < 2)
+			{
+				l = 0;
+				while (l < 2)
+				{
+		  			strcpy(prefix, "%");
+		  			//if (i == 0) strcat(prefix, "-");
+		  			if (j == 0)
+		  				strcat(prefix, "+");
+					if (k == 0)
+						strcat(prefix, "#");
+					if (l == 0)
+						strcat(prefix, "0");
+					printf("%5s |", prefix);
+					strcpy(tp, prefix);
+					strcat(tp, "6d |");
+					printf(tp, DEC);
+					strcpy(tp, prefix);
+					strcat(tp, "6o |");
+					printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6x |");
+					printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6X |");
+					printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6u |");
+					printf(tp, UNS);
+					printf("\n");
+					l++;
+				}
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+  printf("%10s\n", (char *) NULL);
+  printf("%-10s\n", (char *) NULL);
+}
+
+void ft_test(void)
+{
+	int i, j, k, l;
+	char buf[7];
+	char *prefix = buf;
+	char tp[20];
+	i = 0;
+
+	puts("\nFormatted output test FT_PRINTF");
+	ft_printf("prefix	   6d      6o      6x      6X      6u\n");
+	strcpy(prefix, "%");
+	while (i < 2)
+	{
+	  	j = 0;
+	    while (j < 2)
+	    {
+	    	k = 0;
+	    	while (k < 2)
+			{
+				l = 0;
+				while (l < 2)
+				{
+		  			strcpy(prefix, "%");
+		  			//if (i == 0) strcat(prefix, "-");
+		  			if (j == 0)
+		  				strcat(prefix, "+");
+					if (k == 0)
+						strcat(prefix, "#");
+					if (l == 0)
+						strcat(prefix, "0");
+					ft_printf("%5s |", prefix);
+					strcpy(tp, prefix);
+					strcat(tp, "6d |");
+					//printf("PLOP = {%s}\n", tp);
+
+					ft_printf(tp, DEC);
+					strcpy(tp, prefix);
+					strcat(tp, "6o |");
+					ft_printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6x |");
+					ft_printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6X |");
+					ft_printf(tp, INT);
+					strcpy(tp, prefix);
+					strcat(tp, "6u |");
+					ft_printf(tp, UNS);
+					ft_printf("\n");
+					l++;
+				}
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+  printf("%10s\n", (char *) NULL);
+  printf("%-10s\n", (char *) NULL);
+}
+
 
 int main(int ac, char **av)
 {
+	ft_test();
+
+	test();
 	if (ac >= 2)
 	{
 		//ft_printf("%-+12.42llhd\n", av[1]);
@@ -38,7 +165,7 @@ int main(int ac, char **av)
 		printf("|lg %6s|%13zd|%22zu|%10s|%15s|%20s|\n", "z", (size_t)65, (size_t)65, "", "", "");
 		ft_printf("|ft %6s|%13zd|%22zu|%10s|%15s|%20s|\n", "z", (size_t)65, (size_t)65, "", "", "");
 		printf(" -------------------------------------------------------------------------------------------\n");
-	}
+	
 
 	printf("%%u | %% u | %%+u | %%.10u | %%.10u :\n");
 	unsigned int a = 212672;
@@ -80,6 +207,7 @@ int main(int ac, char **av)
 	printf("%p\n", &f);
 	ft_printf("%p\n", &f);
 	printf("\n");
+	}
 
 	return (0);
 }

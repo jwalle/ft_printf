@@ -37,6 +37,13 @@ void	parse_length(t_arg *arg, char *len_parse)
 		printf("ERROR PARSE LENGTH\n");
 }
 
+int	is_hex(char spe)
+{
+	if (spe == 'x' || spe == 'X' || spe == 'o')
+		return (1);
+	return (0);
+}
+
 int parse_two(const char *format, t_arg *arg, int n)
 {
 	int 	i;
@@ -62,6 +69,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 		exit (1);
 	}
 	n += i;
+	arg->hex = is_hex(arg->specifier);
 	//printf("flags = %s, width = %d, precision = %d, length = %s,  specifier = %c\n",
 	//arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
 	return (n);
