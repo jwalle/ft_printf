@@ -3,63 +3,6 @@
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
-/*int		check_len(t_spe *spe, char specifier)
-{
-	int i;
-
-	i  = 0;
-	if (spe->string)
-		i = ft_strlen(spe->string);
-	else if (spe->integer)
-		i = ft_parse_len(spe->integer, specifier);
-	else if (spe->s_char)
-		i = ft_parse_len(spe->s_char, specifier);
-	else if (spe->s_integer)
-		i = ft_parse_len(spe->s_integer, specifier);
-	else if (spe->l_integer)
-		i = ft_parse_len(spe->l_integer, specifier);
-	else if (spe->ll_integer)
-		i = ft_parse_len(spe->ll_integer, specifier);
-	else if (spe->max_integer)
-		i = ft_parse_len(spe->max_integer, specifier);
-	else if (spe->size_t_integer)
-		i = ft_parse_len(spe->size_t_integer, specifier);
-	else if (spe->u_integer)
-		i = ft_parse_len(spe->u_integer, specifier);
-	else if (spe->us_char)
-		i = ft_parse_len(spe->us_char, specifier);
-	else if (spe->us_integer)
-		i = ft_parse_len(spe->us_integer, specifier);
-	else if (spe->ul_integer)
-		i = ft_parse_len(spe->ul_integer, specifier);
-	else if (spe->ull_integer)
-		i = ft_parse_len(spe->ull_integer, specifier);
-	else if (spe->umax_integer)
-		i = ft_parse_len(spe->umax_integer, specifier);
-	else if (spe->character)
-		i = ft_parse_len(spe->character, specifier);
-	else if (spe->pointer)
-		i = 14;
-	return (i);
-}*/
-
-/*void	append_flag(t_arg *arg, t_spe *spe, int start)
-{
-	int	i;
-
-	i = check_len(spe, arg->specifier);
-	if (!arg->flags->minus && arg->width && start)
-	{
-		while (i++ < arg->width)
-			ft_putchar(' ');
-	}
-	else if (arg->flags->minus && arg->width && !start)
-	{
-		while (i++ < arg->width)
-			ft_putchar(' ');
-	}
-}*/
-
 void	parse_specifier(char specifier, t_arg *arg, va_list list)
 {
 	if (specifier == 'd' || specifier == 'i' || specifier == 'D')
@@ -73,53 +16,8 @@ void	parse_specifier(char specifier, t_arg *arg, va_list list)
 		arg_is_string(arg, list);
 	else if (specifier == 'p')
 		arg_is_p(arg, list);
-}
-void	ft_putnbr_octal(unsigned long long number)
-{
-	char				*octal;
-	int					i;
-
-	if (number == 0)
-	{
-		ft_putchar('0');
-		return ;
-	}
-	i = ft_int_octal_len(number);
-	octal = ft_strnew(i);
-	ft_bzero(octal, i + 1);
-	while (number)
-	{
-		octal[--i] = number % 8 + '0';
-		number = number / 8;
-	}
-	ft_putstr(octal);
-}
-
-void	ft_putnbr_hexa(unsigned long long number, char spe)
-{
-	char				*base;
-	char				*hex;
-	int					i;
-
-
-	if (number == 0)
-	{
-		ft_putchar('0');
-		return ;
-	}
-	if (spe == 'x')
-		base = HEXA;
-	if (spe == 'X')
-		base = HEXA_MAJ;
-	i = ft_int_hex_len(number);
-	hex = ft_strnew(i);
-	ft_bzero(hex, i + 1);
-	while (number)
-	{
-		hex[--i] = base[number % 16];
-		number = number / 16;
-	}
-	ft_putstr(hex);
+	else if (specifier == '%')
+		ft_putchar('%');
 }
 
 void		parse_number(long long number, char spe)
@@ -135,12 +33,10 @@ void		parse_number(long long number, char spe)
 		return ;
 	}
 	ft_putllunbr(number);
-	// ft_putnbr(number);
 }
 
 void	parse_args(t_arg *arg, va_list list)
 {
-//	init_spe(spe);
 	parse_specifier(arg->specifier, arg, list);
 }
 
@@ -148,7 +44,6 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	list;
 	t_arg	*arg;
-	t_spe	*spe;
 	int 	i;
 
     if (!format)
@@ -157,7 +52,6 @@ int	ft_printf(const char *format, ...)
 	arg = (t_arg*)malloc(sizeof(t_arg));
 	arg->flags = (t_flags*)malloc(sizeof(t_flags));
 	arg->length = (t_length*)malloc(sizeof(t_length));
-	spe = (t_spe*)malloc(sizeof(t_spe));
 	va_start(list, format);
 	while (format[i])
 	{

@@ -29,5 +29,4 @@ void	print_str(t_arg *arg, va_list list)
 void	arg_is_string(t_arg *arg, va_list list)
 {
 	print_str(arg, list);
-	//if (arg->length->no)
 }

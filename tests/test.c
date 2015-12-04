@@ -155,6 +155,8 @@ void test(void)
 	printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
 	ft_printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
 
+	printf("%#0.12lc\n", (wchar_t)150);
+
 
  // printf("%10s\n", (char *) NULL);
  // printf("%-10s\n", (char *) NULL);

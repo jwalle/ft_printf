@@ -28,12 +28,6 @@ int		format_output(int len, int signe, t_arg *arg)
 {
 	int temp;
 
-	//temp = 0;
-	/*while (!arg->flags->zero && !arg->flags->minus && ((arg->width - temp++) > len))
-	{
-		temp++;
-		ft_putchar(' ');
-	}*/
 	temp = format_left_width(arg, len, signe);
 	if (!arg->flags->plus && arg->flags->plus && signe > 0)
 	{

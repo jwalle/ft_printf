@@ -13,7 +13,7 @@
 #define FLAGS "-+ #0"
 #define LENGTH "hljz"
 // #define LENGTH "hh h l ll j z"
-#define SPECIFIER "sSpdDioOuUxXcC"
+#define SPECIFIER "sSpdDioOuUxXcC%"
 
 // D = ld, O = lo, U = lu.
 
@@ -47,28 +47,6 @@ typedef	struct		s_arg
 	int				hex;
 }					t_arg;
 
-typedef struct				s_spe
-{
-	int						integer;
-	signed char				s_char;
-	short int				s_integer;
-	long int				l_integer;
-	long long int			ll_integer;
-	intmax_t				max_integer;
-	size_t					size_t_integer;
-	unsigned int			u_integer;
-	unsigned char			us_char;
-	unsigned short int		us_integer;
-	unsigned long int		ul_integer;
-	unsigned long long int	ull_integer;
-	uintmax_t				umax_integer;
-	int						character;
-	wint_t					w_integer;
-	char					*string;
-	wchar_t					*w_string;
-	void					*pointer;
-}							t_spe;
-
 int		ft_printf(const char *format, ...);
 char	*ft_strndup(char *str, int i);
 int		parse(const char *format, t_arg *arg);
@@ -81,7 +59,6 @@ void	arg_is_string(t_arg *arg, va_list list);
 void	arg_is_p(t_arg *arg, va_list list);
 void	init_length(t_length *length);
 void	init_arg(t_arg *arg);
-void	init_spe(t_spe *spe);
 int		ft_int_octal_len(unsigned long long n);
 int		ft_int_hex_len(unsigned long long n);
 int		ft_intlen(int n);
