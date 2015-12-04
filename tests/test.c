@@ -145,6 +145,11 @@ void test(void)
 	printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
 	ft_printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
 
+	printf("\nintmax_t #jX :\n");
+
+	printf("%#jX , %#jX , %#jX\n", 0, -42, ULLONG_MAX);
+	ft_printf("%#jX , %#jX , %#jX\n", 0, -42, ULLONG_MAX);
+
 	printf("\nsize_t :\n");
 
 	printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
