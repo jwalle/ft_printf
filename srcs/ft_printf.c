@@ -79,6 +79,11 @@ void	ft_putnbr_octal(unsigned long long number)
 	char				*octal;
 	int					i;
 
+	if (number == 0)
+	{
+		ft_putchar('0');
+		return ;
+	}
 	i = ft_int_octal_len(number);
 	octal = ft_strnew(i);
 	ft_bzero(octal, i + 1);
@@ -97,6 +102,11 @@ void	ft_putnbr_hexa(unsigned long long number, char spe)
 	int					i;
 
 
+	if (number == 0)
+	{
+		ft_putchar('0');
+		return ;
+	}
 	if (spe == 'x')
 		base = HEXA;
 	if (spe == 'X')

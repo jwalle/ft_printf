@@ -63,13 +63,6 @@ void test(void)
 		i++;
 	}
 
-	printf("\nlong long max :\n");
-
-	printf("%llu, %llu\n", 0, ULLONG_MAX);
-	ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
-
-	printf("\n%lld , %lld\n", 0, 42);
-	ft_printf("%lld , %lld\n", 0, 42);
 
 	printf("\nlong long max :\n");
 
@@ -107,7 +100,7 @@ void test(void)
 
 	printf(" --------------------------------- unsigned :\n");
 
-	printf("\nlong long max :\n");
+	printf("\nunsigned long long max :\n");
 
 	printf("%llu, %llu\n", 0, ULLONG_MAX);
 	ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
@@ -115,7 +108,7 @@ void test(void)
 	printf("\n%llu , %llu\n", 0, 42);
 	ft_printf("%llu , %llu\n", 0, 42);
 
-	printf("\nlong max :\n");
+	printf("\nunsigned long max :\n");
 	
 	printf("%lu\n", ULONG_MAX);
 	ft_printf("%lu\n", ULONG_MAX);
@@ -129,23 +122,33 @@ void test(void)
 	printf("%llu\n", -100);
 	ft_printf("%llu\n", -100);
 
-	printf("\nshort int = %hu\n", 300000);
-	ft_printf("short int = %hu\n", 300000);
+	printf("\nunsigned short int = %hu\n", 300000);
+	ft_printf("unsigned short int = %hu\n", 300000);
 	
 	printf("\nunsigned char = %hhu\n", 42);
 	ft_printf("unsigned char = %hhu\n", 42);
 
-	printf("signed char bites = %d\n", CHAR_MAX);
+	printf("unsigned char bites = %u\n", UCHAR_MAX);
 
-	printf("\nintmax_t :\n");
+	printf("\nintmax_t ju :\n");
 
-	printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
-	ft_printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+	printf("%ju , %ju , %ju\n", 0, -42, ULLONG_MAX);
+	ft_printf("%ju , %ju , %ju\n", 0, -42, ULLONG_MAX);
+
+	printf("\nintmax_t ju :\n");
+
+	printf("%jo , %jo , %jo\n", 0, -42, ULLONG_MAX);
+	ft_printf("%jo , %jo , %jo\n", 0, -42, ULLONG_MAX);
+
+	printf("\nintmax_t jx :\n");
+
+	printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
+	ft_printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
 
 	printf("\nsize_t :\n");
 
-	printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
-	ft_printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
+	printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
+	ft_printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
 
 
  // printf("%10s\n", (char *) NULL);
