@@ -30,7 +30,7 @@ void test(void)
 				while (l < 2)
 				{
 		  			strcpy(prefix, "%");
-		  			//if (i == 0) strcat(prefix, "-");
+		  			if (i == 0) strcat(prefix, "-");
 		  			if (j == 0)
 		  				strcat(prefix, "+");
 					if (k == 0)
