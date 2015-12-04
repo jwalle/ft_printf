@@ -88,7 +88,7 @@ int		ft_intlen(int n);
 int		ft_ll_intlen(unsigned long long n);
 int		ft_parse_len(unsigned long long n, char spe);
 void	ft_putllnbr(long long int n);
-void	parse_number(int number, char spe);
+void	parse_number(long long number, char spe);
 int		format_output(int len, int signe, t_arg *arg);
 void	print_hex(char spe);
 void	ft_putnbr_octal(unsigned long long number);

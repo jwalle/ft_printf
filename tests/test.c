@@ -63,18 +63,24 @@ void test(void)
 		i++;
 	}
 
-	printf("\n%llu, %llu\n", 0, ULLONG_MAX);
-	ft_printf("\n%llu, %llu\n", 0, ULLONG_MAX);
+	printf("\nlong long max :\n");
 
-	printf("\n%lld%lld\n", 0, 42);
-	ft_printf("\n%lld%lld\n", 0, 42);
+	printf("%llu, %llu\n", 0, ULLONG_MAX);
+	ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
 
-	printf("\n%lld\n", LLONG_MAX);
-	ft_printf("\n%lld\n", LLONG_MAX);
+	printf("\n%lld , %lld\n", 0, 42);
+	ft_printf("%lld , %lld\n", 0, 42);
 
-	printf("long max\n");
-	printf("\n%ld\n", LONG_MAX);
-	ft_printf("\n%ld\n", LONG_MAX);
+	printf("\nlong long max :\n");
+
+
+	printf("%lld\n", LLONG_MAX);
+	ft_printf("%lld\n", LLONG_MAX);
+
+	printf("\nlong max :\n");
+	
+	printf("%ld\n", LONG_MAX);
+	ft_printf("%ld\n", LONG_MAX);
 
 
 	printf("\n%hhd\n", 150);
@@ -89,7 +95,57 @@ void test(void)
 
 	printf("signed char bites = %d\n", CHAR_MAX);
 
+	printf("\nintmax_t :\n");
 
+	printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+	ft_printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+
+	printf("\nsize_t :\n");
+
+	printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
+	ft_printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
+
+	printf(" --------------------------------- unsigned :\n");
+
+	printf("\nlong long max :\n");
+
+	printf("%llu, %llu\n", 0, ULLONG_MAX);
+	ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
+
+	printf("\n%llu , %llu\n", 0, 42);
+	ft_printf("%llu , %llu\n", 0, 42);
+
+	printf("\nlong max :\n");
+	
+	printf("%lu\n", ULONG_MAX);
+	ft_printf("%lu\n", ULONG_MAX);
+
+
+	printf("\n%hhu\n", 350);
+	ft_printf("%hhu\n", 350);
+
+	printf("\nULLONG -100 : \n");
+
+	printf("%llu\n", -100);
+	ft_printf("%llu\n", -100);
+
+	printf("\nshort int = %hu\n", 300000);
+	ft_printf("short int = %hu\n", 300000);
+	
+	printf("\nunsigned char = %hhu\n", 42);
+	ft_printf("unsigned char = %hhu\n", 42);
+
+	printf("signed char bites = %d\n", CHAR_MAX);
+
+	printf("\nintmax_t :\n");
+
+	printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+	ft_printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+
+	printf("\nsize_t :\n");
+
+	printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
+	ft_printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
 
 
  // printf("%10s\n", (char *) NULL);

@@ -58,6 +58,8 @@ int		ft_ll_intlen(unsigned long long n)
 
 int		ft_parse_len(unsigned long long n, char spe)
 {
+	if (n == 0)
+		return (1);
 	if (spe == 'o')
 		return (ft_int_octal_len(n));
 	if (spe == 'x' || spe == 'X')

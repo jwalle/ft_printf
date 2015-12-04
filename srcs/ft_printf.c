@@ -112,7 +112,7 @@ void	ft_putnbr_hexa(unsigned long long number, char spe)
 	ft_putstr(hex);
 }
 
-void		parse_number(int number, char spe)
+void		parse_number(long long number, char spe)
 {
 	if (spe == 'o')
 	{

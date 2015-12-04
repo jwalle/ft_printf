@@ -13,7 +13,7 @@ void	print_hex(char spe)
 		ft_putstr("0X");
 }
 
-void		parse_uns(unsigned int number, char spe)
+void		parse_uns(unsigned long long number, char spe)
 {
 	if (spe == 'o')
 	{
@@ -28,7 +28,18 @@ void		parse_uns(unsigned int number, char spe)
 	ft_putllunbr(number);
 }
 
-
+unsigned long long check_unsigned(unsigned long long n, t_length *length)
+{
+	if (length->hh)
+		return ((unsigned char)n);
+	else if (length->h)
+		return ((unsigned short int)n);
+	else if (length->l)
+		return ((unsigned long)n);
+	else if (length->no)
+		return ((unsigned int)n);
+	return (n);
+}
 
 
 void	print_lluint(t_arg *arg, va_list list)
@@ -37,18 +48,16 @@ void	print_lluint(t_arg *arg, va_list list)
 	unsigned long long int	n;
 	int						temp;
 
-	temp = 0;
-	n = va_arg(list, unsigned long long int);
+	//n = va_arg(list, unsigned long long int);
+	n = check_unsigned(va_arg(list, unsigned long long int), arg->length);
 	len = ft_parse_len(n, arg->specifier);
-	while (arg->precision > (len + temp++))
-		ft_putchar('0');
-	while ((arg->width - temp++) >= len)
-		ft_putchar(' ');
+	temp = format_output(len, 1, arg);
 	parse_number(n, arg->specifier);
-	while (arg->width >= (len + temp++))
+	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar(' ');
 }
 
+/*
 void	print_uint(t_arg *arg, va_list list)
 {
 	int				len;
@@ -62,13 +71,13 @@ void	print_uint(t_arg *arg, va_list list)
 	parse_uns(n, arg->specifier);
 	while (arg->flags->minus && (arg->width > (len - temp++)))
 		ft_putchar(' ');
-}
+}*/
 
 void	arg_is_u(t_arg *arg, va_list list)
 {
-	if (arg->length->no || arg->length->h || arg->length->hh)
-		print_uint(arg, list);
-	else if ( arg->length->l || arg->length->ll ||
-		arg->length->z || arg->length->j)
+	//if (arg->length->no || arg->length->h || arg->length->hh)
+	//	print_uint(arg, list);
+	//else if ( arg->length->l || arg->length->ll ||
+	//	arg->length->z || arg->length->j)
 		print_lluint(arg, list);
 }
