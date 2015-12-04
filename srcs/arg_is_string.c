@@ -22,7 +22,7 @@ void	print_str(t_arg *arg, va_list list)
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
 		ft_putchar(' ');
 	str ? ft_putstr(str) : ft_putstr("(null)");
-	while (arg->flags->minus && (arg->width > (len - temp++)))
+	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar(' ');
 }
 

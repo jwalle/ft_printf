@@ -185,7 +185,7 @@ void ft_test(void)
 				while (l < 2)
 				{
 		  			strcpy(prefix, "%");
-		  			//if (i == 0) strcat(prefix, "-");
+		  			if (i == 0) strcat(prefix, "-");
 		  			if (j == 0)
 		  				strcat(prefix, "+");
 					if (k == 0)
@@ -269,10 +269,10 @@ int main(int ac, char **av)
 	ft_printf("%u | % u | %+u | %.10u\n", a, a, a, a);
 	printf("\n");
 
-	printf("%%d | %% d | %%+d | %%.10d | %%-d | %%0d | %% .10d | %%+.10d :\n");
+	printf("%%d      |     %% d | %%+d | %%.10d | %%-d | %%0d | %% .10d | %%+.10d :\n");
 	int b = -987824;
-	printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, b, b, b, b, b, b, b, b);
-	ft_printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, b, b, b, b, b, b, b, b);
+	printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, -b, b, b, b, b, b, b, b);
+	ft_printf("%d | % d | %+d | %.10d | %-d | %0d | % .10d | %+.10d\n", b, -b, b, b, b, b, b, b, b);
 	printf("\n");
 
 	printf("%%llu :\n");

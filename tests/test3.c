@@ -148,8 +148,8 @@ void ft_test(void)
       }
     }
   }
-  printf("%10s\n", (char *) NULL);
-  printf("%-10s\n", (char *) NULL);
+  ft_printf("%10s\n", (char *) NULL);
+  ft_printf("%-10s\n", (char *) NULL);
 }
 
 
@@ -267,7 +267,7 @@ I am ready for my first lesson today.";
   printf("limited string:\t\"%.22s\"\n", longstr);
 #endif
 
-  printf("e-style >= 1:\t\"%e\"\n", 12.34);
+  /*printf("e-style >= 1:\t\"%e\"\n", 12.34);
   printf("e-style >= .1:\t\"%e\"\n", 0.1234);
   printf("e-style < .1:\t\"%e\"\n", 0.001234);
   printf("e-style big:\t\"%.60e\"\n", 1e20);
@@ -279,7 +279,7 @@ I am ready for my first lesson today.";
   printf("g-style >= .1:\t\"%g\"\n", 0.1234);
   printf("g-style < .1:\t\"%g\"\n", 0.001234);
   printf("g-style big:\t\"%.60g\"\n", 1e20);
-
+*
   {
     char buf[128];
     sprintf(buf, "new test: %.15g", 99.85);
@@ -289,8 +289,10 @@ I am ready for my first lesson today.";
   printf (" %6.5lf\n", .099999999860301614);
   printf (" %6.5lf\n", .1);
   printf ("x%5.4lfx\n", .5);
+*/
 
   printf ("%#03x\n", 1);
+  ft_printf ("%#03x\n", 1);
 
 #if 0				/* XXX printf_fp still broken */
   {
@@ -304,7 +306,7 @@ I am ready for my first lesson today.";
 
   printf ("%15.5e\n", 4.9406564584124654e-324);
 #endif
-
+/*
 #define FORMAT "|%12.4f|%12.4e|%12.4g|\n"
   printf (FORMAT, 0.0, 0.0, 0.0);
   printf (FORMAT, 1.0, 1.0, 1.0);
@@ -316,7 +318,7 @@ I am ready for my first lesson today.";
   printf (FORMAT, 100000.0, 100000.0, 100000.0);
   printf (FORMAT, 123456.0, 123456.0, 123456.0);
 #undef	FORMAT
-
+*/
 #if 0
   {
     char buf[20];

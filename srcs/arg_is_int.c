@@ -30,7 +30,7 @@ void	print_llint(t_arg *arg, va_list list)
 	len = ft_parse_len(n, arg->specifier);
 	temp = format_output(len, signe, arg);
 	parse_number(n, arg->specifier);
-	while (arg->flags->minus && (arg->width > (len - temp++)))
+	while (arg->flags->minus && (arg->width - temp++) > len)
 		ft_putchar(' ');
 }
 

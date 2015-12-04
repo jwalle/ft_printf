@@ -24,11 +24,11 @@ int		format_left_width(t_arg *arg, int len, int signe)
 	return (temp);
 }
 
-int		format_output(int len, int signe, t_arg *arg)
+int		format_center(t_arg *arg, int signe)
 {
-	int temp;
+	int		temp;
 
-	temp = format_left_width(arg, len, signe);
+	temp = 0;
 	if (!arg->flags->plus && arg->flags->plus && signe > 0)
 	{
 		ft_putchar('+');
@@ -39,17 +39,29 @@ int		format_output(int len, int signe, t_arg *arg)
 		ft_putchar('-');
 		temp++;
 	}
-	else if (arg->flags->space)
+	else if (arg->flags->space && (arg->specifier == 'd' || arg->specifier == 'i'))
 	{
 		ft_putchar(' ');
 		temp++;
 	}
+	return (temp);
+}
+
+int		format_output(int len, int signe, t_arg *arg)
+{
+	int temp;
+
+	temp = format_left_width(arg, len, signe);
+	temp += format_center(arg, signe);
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);
 	if (signe && arg->hex && arg->flags->htag)
 		print_hex(arg->specifier);
-	while (arg->flags->zero && ((arg->width - len) > temp++))
-		ft_putchar('0');
-	while (arg->precision >= (len + temp++))
-		ft_putchar('0');
+	if (!arg->flags->minus)
+	{
+		while (arg->flags->zero && ((arg->width - len) > temp++))
+			ft_putchar('0');
+		while (arg->precision > (len + temp++))
+			ft_putchar('0');
+	}
 	return (temp);
 }

@@ -91,7 +91,7 @@ fclean: clean
 re: fclean all
 
 test: re
-	clang ./tests/test.c -o test $(LINK_P) $(LINK) 
+	clang ./tests/test4.c -o test $(LINK_P) $(LINK) 
 	#./test X 10
 
 valtest: re
