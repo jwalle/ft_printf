@@ -2,7 +2,7 @@
 
 #include "ft_printf.h"
 
-int		ft_int_octal_len(int n)
+int		ft_int_octal_len(unsigned long long n)
 {
 	int i;
 
@@ -16,7 +16,7 @@ int		ft_int_octal_len(int n)
 	return (i);
 }
 
-int		ft_int_hex_len(int n)
+int		ft_int_hex_len(unsigned long long n)
 {
 	int i;
 
@@ -43,7 +43,7 @@ int		ft_intlen(int n)
 }
 
 
-int		ft_ll_intlen(long long int n)
+int		ft_ll_intlen(unsigned long long n)
 {
 	int i;
 
@@ -56,11 +56,11 @@ int		ft_ll_intlen(long long int n)
 	return (i);
 }
 
-int		ft_parse_len(int n, char spe)
+int		ft_parse_len(unsigned long long n, char spe)
 {
 	if (spe == 'o')
 		return (ft_int_octal_len(n));
 	if (spe == 'x' || spe == 'X')
 		return (ft_int_hex_len(n));
-	return (ft_intlen(n));
+	return (ft_ll_intlen(n));
 }

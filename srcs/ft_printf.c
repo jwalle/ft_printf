@@ -74,7 +74,7 @@ void	parse_specifier(char specifier, t_arg *arg, va_list list)
 	else if (specifier == 'p')
 		arg_is_p(arg, list);
 }
-void	ft_putnbr_octal(long long int number)
+void	ft_putnbr_octal(unsigned long long number)
 {
 	char				*octal;
 	int					i;
@@ -90,7 +90,7 @@ void	ft_putnbr_octal(long long int number)
 	ft_putstr(octal);
 }
 
-void	ft_putnbr_hexa(long long int number, char spe)
+void	ft_putnbr_hexa(unsigned long long number, char spe)
 {
 	char				*base;
 	char				*hex;
@@ -124,7 +124,8 @@ void		parse_number(int number, char spe)
 		ft_putnbr_hexa(number, spe);
 		return ;
 	}
-	ft_putnbr(number);
+	ft_putllunbr(number);
+	// ft_putnbr(number);
 }
 
 void	parse_args(t_arg *arg, va_list list)

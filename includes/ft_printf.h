@@ -82,18 +82,17 @@ void	arg_is_p(t_arg *arg, va_list list);
 void	init_length(t_length *length);
 void	init_arg(t_arg *arg);
 void	init_spe(t_spe *spe);
-int		ft_int_octal_len(int n);
-int		ft_int_hex_len(int n);
+int		ft_int_octal_len(unsigned long long n);
+int		ft_int_hex_len(unsigned long long n);
 int		ft_intlen(int n);
-int		ft_ll_intlen(long long int n);
-int		ft_parse_len(int n, char spe);
+int		ft_ll_intlen(unsigned long long n);
+int		ft_parse_len(unsigned long long n, char spe);
 void	ft_putllnbr(long long int n);
 void	parse_number(int number, char spe);
 int		format_output(int len, int signe, t_arg *arg);
 void	print_hex(char spe);
-void	ft_putnbr_octal(long long int number);
-void	ft_putnbr_hexa(long long int number, char spe);
+void	ft_putnbr_octal(unsigned long long number);
+void	ft_putnbr_hexa(unsigned long long number, char spe);
 void	ft_putllunbr(unsigned long long int n);
-void	ft_putllnbr(long long int n);
 
 #endif

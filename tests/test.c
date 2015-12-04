@@ -62,8 +62,38 @@ void test(void)
 		}
 		i++;
 	}
-  printf("%10s\n", (char *) NULL);
-  printf("%-10s\n", (char *) NULL);
+
+	printf("\n%llu, %llu\n", 0, ULLONG_MAX);
+	ft_printf("\n%llu, %llu\n", 0, ULLONG_MAX);
+
+	printf("\n%lld%lld\n", 0, 42);
+	ft_printf("\n%lld%lld\n", 0, 42);
+
+	printf("\n%lld\n", LLONG_MAX);
+	ft_printf("\n%lld\n", LLONG_MAX);
+
+	printf("long max\n");
+	printf("\n%ld\n", LONG_MAX);
+	ft_printf("\n%ld\n", LONG_MAX);
+
+
+	printf("\n%hhd\n", 150);
+	ft_printf("%hhd\n", 150);
+
+	printf("\n%lld\n", LLONG_MIN);
+	ft_printf("\n%lld\n", LLONG_MIN);
+
+	printf("short int = %hi\n", 300000);
+	ft_printf("short int = %hi\n", 300000);
+	printf("signed char = %hhi\n", 42);
+
+	printf("signed char bites = %d\n", CHAR_MAX);
+
+
+
+
+ // printf("%10s\n", (char *) NULL);
+ // printf("%-10s\n", (char *) NULL);
 }
 
 void ft_test(void)
