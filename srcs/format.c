@@ -51,7 +51,7 @@ int		format_output(int len, int signe, t_arg *arg)
 		temp++;
 	}
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);
-	if (arg->hex && arg->flags->htag)
+	if (signe && arg->hex && arg->flags->htag)
 		print_hex(arg->specifier);
 	while (arg->flags->zero && ((arg->width - len) > temp++))
 		ft_putchar('0');

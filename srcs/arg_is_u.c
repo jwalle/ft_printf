@@ -47,37 +47,18 @@ void	print_lluint(t_arg *arg, va_list list)
 	int						len;
 	unsigned long long int	n;
 	int						temp;
+	int						signe;
 
-	//n = va_arg(list, unsigned long long int);
 	n = check_unsigned(va_arg(list, unsigned long long int), arg->length);
+	(n == 0) ? (signe = 0) : (signe = 1);
 	len = ft_parse_len(n, arg->specifier);
-	temp = format_output(len, 1, arg);
+	temp = format_output(len, signe, arg);
 	parse_number(n, arg->specifier);
 	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar(' ');
 }
 
-/*
-void	print_uint(t_arg *arg, va_list list)
-{
-	int				len;
-	unsigned int	n;
-	int				temp;
-
-	n = va_arg(list, unsigned int);
-	len = ft_parse_len(n, arg->specifier);
-	//printf("spe = %c, n = %d , len = %d\n", arg->specifier ,n , len);
-	temp = format_output(len, 1, arg);
-	parse_uns(n, arg->specifier);
-	while (arg->flags->minus && (arg->width > (len - temp++)))
-		ft_putchar(' ');
-}*/
-
 void	arg_is_u(t_arg *arg, va_list list)
 {
-	//if (arg->length->no || arg->length->h || arg->length->hh)
-	//	print_uint(arg, list);
-	//else if ( arg->length->l || arg->length->ll ||
-	//	arg->length->z || arg->length->j)
 		print_lluint(arg, list);
 }

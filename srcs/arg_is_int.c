@@ -24,6 +24,8 @@ void	print_llint(t_arg *arg, va_list list)
 
 	n = check_signed(va_arg(list, long long int), arg->length);
 	(n < 0) ? (signe = -1) : (signe = 1);
+	if (n == 0)
+		signe = 0;
 	(n < 0) ? (n *= -1) : (n *= 1);
 	len = ft_parse_len(n, arg->specifier);
 	temp = format_output(len, signe, arg);
