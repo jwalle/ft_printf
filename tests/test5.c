@@ -5,11 +5,11 @@
 #include <string.h>
 #include <sys/shm.h>
 
-#define assert_printf(msg, ...) \
-	printf(msg, ##__VA_ARGS__); \
-	ft_printf(msg, ##__VA_ARGS__); \
-	ft_printf("\n"); \
-	printf("\n")
+// #define assert_printf(msg, ...) \
+// 	printf(msg, ##__VA_ARGS__); \
+// 	ft_printf(msg, ##__VA_ARGS__); \
+// 	ft_printf("\n"); \
+// 	printf("\n")
 
 static char *mytee(int size) {
    int shmid = shmget(IPC_PRIVATE, size + 1, 0660 | IPC_CREAT);
@@ -56,17 +56,63 @@ int main()
 	// printf("Hello World");           // sample test string
 	// fprintf(stderr, "\nCaptured 1 : %s\nCaptured 2 : %s\n", mycapture, mycapture2);
 
-	fclose(stdout);
-	stdout = fmemopen(buf1, sizeof(buf1), "w");
-	setbuf(stdout, NULL);
-	ft_printf("PLOP\n");
+
+	// fclose(stdout);
+	// stdout = fmemopen(buf1, sizeof(buf1), "w");
+	// setbuf(stdout, NULL);
+	// printf("PLOP\n");
+	// fflush(stdout);
+	// stdout = fmemopen(buf2, sizeof(buf2), "w");
+	// setbuf(stdout, NULL);
+	// ft_printf("PLOP2\n");
+
+	// int		out;
+	// int		p[2];
+	// char	buf[100];
+
+	// out = dup(1);
+	// pipe(p);
+	// dup2(p[1], 1);
+	// printf("plop\n");
+	// dup2(out, 1);
+	// buf[read(p[0], buf, 100)] = 0;
+	// close(p[0]);
+	// close(p[1]);
+	// close(out);
+	
+	// int old;
+	// char *bp;
+	// size_t size;
+	// FILE *stream;
+
+	// old = dup(1);
+
+	// stream = open_memstream (&bp, &size);
+	
+	// dup2(fileno(stream), 1);
+	// printf ("hello");
+	// fflush (stdout);
+	// //printf ("buf = `%s', size = %d\n", bp, size);
+	// //fprintf (stream, ", world");
+	// fclose (stream);
+	// dup2(old, 1);
+	// printf ("buf = `%s', size = %d\n", bp, size);
+
+#define SIZE 100
+
+	ft_printf("PLOP BORDEL\n");
+	
+	char string1[SIZE];
+	char string2[SIZE];
+	freopen("/dev/null", "a", stdout);
+	setbuf(stdout, string1);
+	printf("plop1");
 	fflush(stdout);
-	stdout = fmemopen(buf2, sizeof(buf2), "w");
-	setbuf(stdout, NULL);
-	printf("PLOP2\n");
-
-
-	fprintf(stderr, "printf = %s, ft_printf = %s", buf1, buf2);
-
+	setbuf(stdout, string2);
+	ft_printf("plop2");
+	//write(1, "plop2", 5);
+	fflush(stdout);
+	
+	fprintf(stderr, "string1 = %s, string2 = %s\n", string1, string2);
 	return (0);
 }
