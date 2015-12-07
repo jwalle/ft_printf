@@ -154,11 +154,14 @@ int main()
 	int debug = 0;
 	
 	//name = "test1";
+
 	printf("test 1 :\n");
 	test_1();
-	printf("test 2 :\n");
+	printf("\ntest 2 :\n");
 	test_2();
 	printf("\ntest 3 :\n");
 	test_3();
+	wprintf("wprintf = %c, %lc", L'暖', L'ح');
+	
 	return (0);
 }
