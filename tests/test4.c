@@ -136,16 +136,29 @@ void test_1()
 	assert_printf("%s%p%d%d%p%s%p%p%s", "a", &free, 1, 2, &malloc, "b", &free, &malloc, "c");
 }
 
+/*
+void	ft_assert(char *printf_out, char *ft_printf_out, int printf_ret, int ft_printf_ret)
+{
+	//fprintf(stderr, "print1 = %s\nprint2 = %s\n\n", printf_out, ft_printf_out); \
+	if (!memcmp(printf_out, ft_printf_out, strlen(printf_out) + 1))
+		fprintf(stderr, "OK\n");
+	else
+		fprintf(stderr, "PAS OK\n");
+}*/
+//mt_assert_msg(memcmp(printf_out, ft_printf_out, strlen(printf_out) + 1) == 0, PRINTF_CASE_MSG(#__VA_ARGS__)); \
+//mt_assert_msg(printf_ret == ft_printf_ret, PRINTF_CASE_MSG(#__VA_ARGS__)); \
+
+
 int main()
 {
 	int debug = 0;
 	
-	name = "test1";
+	//name = "test1";
 	printf("test 1 :\n");
 	test_1();
 	printf("test 2 :\n");
 	test_2();
-	printf("test 3 :\n");
+	printf("\ntest 3 :\n");
 	test_3();
 	return (0);
 }

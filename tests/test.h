@@ -14,6 +14,9 @@
 #include <errno.h>
 #include <assert.h>
 
+#define RED     "\x1b[35m"
+#define GREEN   "\x1b[34m"
+#define RESET   "\x1b[0m"
 #define MAX_LEN 42000
 #define BUF_SIZE MAX_LEN + 1
 #define NO_FD_OPENED -1
@@ -39,27 +42,29 @@ int				printf_ret;
 char			*ft_printf_out;
 int				ft_printf_ret;
 
+void		ft_assert(char *printf_out, char *ft_printf_out, int printf_ret, int ft_printf_ret);
+
 #define assert_printf(...) \
 	capture_stdout(); \
   	printf_ret = printf(__VA_ARGS__); \
 	printf_out = strdup(capture_stdout_get_buffer()); \
-	if (debug) \
-	{ \
-		fprintf(stderr, "\nTEST: %s\n", name); \
-		fprintf(stderr, "=====   printf_out  =====\nret: %d\n%s\n", printf_ret, printf_out); \
-		fprintf(stderr,   "=========================\n"); \
-	} \
   	ft_printf_ret = ft_printf(__VA_ARGS__); \
 	ft_printf_out = strdup(capture_stdout_get_buffer()); \
 	capture_stdout_destroy(); \
-	if (debug) \
+	name = PRINTF_CASE_MSG(#__VA_ARGS__); \
+	if (!memcmp(printf_out, ft_printf_out, strlen(printf_out) + 1)) \
 	{ \
-		fprintf(stderr,   "\n===== ft_printf_out =====\nret: %d\n%s\n", ft_printf_ret, ft_printf_out); \
-		fprintf(stderr,   "=========================\n"); \
+		fprintf(stderr, "%sOK --> %s", GREEN, RESET); \
 	} \
-	fprintf(stderr, "print1 = %s, print2 = %s\n", printf_out, ft_printf_out);
-	//mt_assert_msg(memcmp(printf_out, ft_printf_out, strlen(printf_out) + 1) == 0, PRINTF_CASE_MSG(#__VA_ARGS__)); \
-	//mt_assert_msg(printf_ret == ft_printf_ret, PRINTF_CASE_MSG(#__VA_ARGS__)); \
+	else \
+	{ \
+		fprintf(stderr, "\n\nTEST: %s%s;%s\n", RED, name, RESET); \
+		fprintf(stderr, "\n=====   printf_out  =====\nret: %d\n%s\n", printf_ret, printf_out); \
+		fprintf(stderr,   "=========================\n"); \
+		fprintf(stderr,   "\n===== ft_printf_out =====\nret: %d\n%s\n", ft_printf_ret, ft_printf_out); \
+		fprintf(stderr,   "=========================\n\n\n\n"); \
+	} \
+	//ft_assert(printf_out, ft_printf_out, printf_ret, ft_printf_ret); \
 	free(printf_out); \
 	free(ft_printf_out)
 

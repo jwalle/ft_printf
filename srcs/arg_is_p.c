@@ -6,9 +6,14 @@ void	print_ptr(t_arg *arg, va_list list)
 {
 	int		len;
 	int		temp;
+	void	*ptr;
 
 	temp = 0;
-	len = 14;
+	ptr = va_arg(list, void*);
+	if (ptr)
+		len = ft_int_hex_len((unsigned long long)ptr);
+	else
+		len = 5;
 	while (arg->precision > (len + temp++))
 		ft_putchar('0');
 	if (arg->flags->space)
@@ -18,7 +23,13 @@ void	print_ptr(t_arg *arg, va_list list)
 	}
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
 		ft_putchar(' ');
-	ft_atoi_hex(va_arg(list, void*));
+	if (ptr)
+	{
+		ft_putstr("0x");
+		ft_putnbr_hexa((unsigned long long)ptr, 'x');
+	}
+	else
+		ft_putstr("(nil)");
 	while (arg->flags->minus && (arg->width >= (len - temp++)))
 		ft_putchar(' ');
 }
