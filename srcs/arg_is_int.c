@@ -12,6 +12,10 @@ long long check_signed(long long n, t_length *length)
 		return ((long)n);
 	else if (length->no)
 		return ((int)n);
+	else if (length->j)
+		return ((intmax_t)n);
+	else if (length->z)
+		return ((size_t)n);
 	return (n);
 }
 

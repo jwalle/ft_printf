@@ -60,6 +60,7 @@ int	ft_printf(const char *format, ...)
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
 			parse_args(arg, list);
+		va_arg(list, int);
 		}
 		else
 			ft_putchar(format[i++]);

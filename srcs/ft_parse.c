@@ -65,7 +65,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 		arg->specifier = format[i++ + n];
 	else
 	{
-		ft_putstr("No specifier apecified.\n");
+		ft_putstr("No specifier specified.\n");
 		exit (1);
 	}
 	n += i;

@@ -5,8 +5,8 @@
 #include <string.h>
 #include "test.h"
 
-/*
-#define assert_printf(msg, ...) \
+
+/*#define assert_printf(...) \
 	printf(msg, ##__VA_ARGS__); \
 	ft_printf(msg, ##__VA_ARGS__); \
 	ft_printf("\n"); \
@@ -98,6 +98,7 @@ void test_1()
 	assert_printf("{%s}", "");
 
 	printf("\nmulti conv :\n");
+	
 	assert_printf("111%s333%s555", "222", "444");
 	assert_printf("111%s333%s555%saaa%sccc", "222", "444", "666", "bbb");
 	assert_printf("%s%s%s%s%s", "1", "2", "3", "4", "5");
@@ -151,17 +152,23 @@ void	ft_assert(char *printf_out, char *ft_printf_out, int printf_ret, int ft_pri
 
 int main()
 {
+
 	int debug = 0;
 	
 	//name = "test1";
 
 	printf("test 1 :\n");
+	
+	printf("->111 %s 333 |%s| 555\n", "222", "444");
+	ft_printf("->111 %s 333 |%s| 555\n", "222", "444");
+
+
 	test_1();
 	printf("\ntest 2 :\n");
 	test_2();
 	printf("\ntest 3 :\n");
 	test_3();
-	wprintf("wprintf = %c, %lc", L'暖', L'ح');
+	//wprintf("wprintf = %c, %lc", L'暖', L'ح');
 	
 	return (0);
 }

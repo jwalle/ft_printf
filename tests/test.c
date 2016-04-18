@@ -2,10 +2,90 @@
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
+#include "test.h"
 
 #define DEC -123
 #define INT 255
 #define UNS (~0)
+
+int test_max(void)
+{
+
+	//printf("\nlong long max :\n");
+
+
+	assert_printf("%lld\n", LLONG_MAX);
+
+	//printf("\nlong max :\n");
+	
+	assert_printf("%ld\n", LONG_MAX);
+
+
+	assert_printf("\n%hhd\n", 150);
+
+	assert_printf("\n%lld\n", LLONG_MIN);
+
+	assert_printf("short int = %hi\n", 300000);
+
+	assert_printf("signed char = %hhi\n", 42);
+
+	assert_printf("signed char bites = %d\n", CHAR_MAX);
+
+	assert_printf("\nintmax_t :\n");
+
+	assert_printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
+
+	assert_printf("\nsize_t :\n");
+
+	assert_printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
+
+	assert_printf(" --------------------------------- unsigned :\n");
+
+	assert_printf("\nunsigned long long max :\n");
+
+	assert_printf("%llu, %llu\n", 0, ULLONG_MAX);
+
+	assert_printf("\n%llu , %llu\n", 0, 42);
+
+	assert_printf("\nunsigned long max :\n");
+	
+	assert_printf("%lu\n", ULONG_MAX);
+
+	assert_printf("\n%hhu\n", 350);
+
+	assert_printf("\nULLONG -100 : \n");
+
+	assert_printf("%llu\n", -100);
+
+	assert_printf("\nunsigned short int = %hu\n", 300000);
+	
+	assert_printf("\nunsigned char = %hhu\n", 42);
+
+	assert_printf("unsigned char bites = %u\n", UCHAR_MAX);
+
+	assert_printf("\nintmax_t ju :\n");
+
+	assert_printf("%ju , %ju , %ju\n", 0, -42, ULLONG_MAX);
+
+	assert_printf("\nintmax_t ju :\n");
+
+	assert_printf("%jo , %jo , %jo\n", 0, -42, ULLONG_MAX);
+
+	assert_printf("\nintmax_t jx :\n");
+
+	assert_printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
+
+	assert_printf("\nintmax_t #jX :\n");
+
+	assert_printf("%#jX , %#jX , %#jX\n", 0, -42, ULLONG_MAX);
+
+	assert_printf("\nsize_t :\n");
+
+	assert_printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
+
+	assert_printf("%#0.12lc\n", (wchar_t)150);
+
+}
 
 void test(void)
 {
@@ -64,99 +144,6 @@ void test(void)
 	}
 
 
-	printf("\nlong long max :\n");
-
-
-	printf("%lld\n", LLONG_MAX);
-	ft_printf("%lld\n", LLONG_MAX);
-
-	printf("\nlong max :\n");
-	
-	printf("%ld\n", LONG_MAX);
-	ft_printf("%ld\n", LONG_MAX);
-
-
-	printf("\n%hhd\n", 150);
-	ft_printf("%hhd\n", 150);
-
-	printf("\n%lld\n", LLONG_MIN);
-	ft_printf("\n%lld\n", LLONG_MIN);
-
-	printf("short int = %hi\n", 300000);
-	ft_printf("short int = %hi\n", 300000);
-	printf("signed char = %hhi\n", 42);
-
-	printf("signed char bites = %d\n", CHAR_MAX);
-
-	printf("\nintmax_t :\n");
-
-	printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
-	ft_printf("%jd , %jd , %jd\n", 0, -42, LLONG_MAX);
-
-	printf("\nsize_t :\n");
-
-	printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
-	ft_printf("%zd , %zd , %zd\n", 0, -42, LLONG_MAX);
-
-	printf(" --------------------------------- unsigned :\n");
-
-	printf("\nunsigned long long max :\n");
-
-	printf("%llu, %llu\n", 0, ULLONG_MAX);
-	ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
-
-	printf("\n%llu , %llu\n", 0, 42);
-	ft_printf("%llu , %llu\n", 0, 42);
-
-	printf("\nunsigned long max :\n");
-	
-	printf("%lu\n", ULONG_MAX);
-	ft_printf("%lu\n", ULONG_MAX);
-
-
-	printf("\n%hhu\n", 350);
-	ft_printf("%hhu\n", 350);
-
-	printf("\nULLONG -100 : \n");
-
-	printf("%llu\n", -100);
-	ft_printf("%llu\n", -100);
-
-	printf("\nunsigned short int = %hu\n", 300000);
-	ft_printf("unsigned short int = %hu\n", 300000);
-	
-	printf("\nunsigned char = %hhu\n", 42);
-	ft_printf("unsigned char = %hhu\n", 42);
-
-	printf("unsigned char bites = %u\n", UCHAR_MAX);
-
-	printf("\nintmax_t ju :\n");
-
-	printf("%ju , %ju , %ju\n", 0, -42, ULLONG_MAX);
-	ft_printf("%ju , %ju , %ju\n", 0, -42, ULLONG_MAX);
-
-	printf("\nintmax_t ju :\n");
-
-	printf("%jo , %jo , %jo\n", 0, -42, ULLONG_MAX);
-	ft_printf("%jo , %jo , %jo\n", 0, -42, ULLONG_MAX);
-
-	printf("\nintmax_t jx :\n");
-
-	printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
-	ft_printf("%jx , %jx , %jx\n", 0, -42, ULLONG_MAX);
-
-	printf("\nintmax_t #jX :\n");
-
-	printf("%#jX , %#jX , %#jX\n", 0, -42, ULLONG_MAX);
-	ft_printf("%#jX , %#jX , %#jX\n", 0, -42, ULLONG_MAX);
-
-	printf("\nsize_t :\n");
-
-	printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
-	ft_printf("%zu , %zu , %zu\n", 0, -42, ULLONG_MAX);
-
-	printf("%#0.12lc\n", (wchar_t)150);
-
 
  // printf("%10s\n", (char *) NULL);
  // printf("%-10s\n", (char *) NULL);
@@ -197,19 +184,19 @@ void ft_test(void)
 					strcat(tp, "6d |");
 					//printf("PLOP = {%s}\n", tp);
 
-					ft_printf(tp, DEC);
+					assert_printf(tp, DEC);
 					strcpy(tp, prefix);
 					strcat(tp, "6o |");
-					ft_printf(tp, INT);
+					assert_printf(tp, INT);
 					strcpy(tp, prefix);
 					strcat(tp, "6x |");
-					ft_printf(tp, INT);
+					assert_printf(tp, INT);
 					strcpy(tp, prefix);
 					strcat(tp, "6X |");
-					ft_printf(tp, INT);
+					assert_printf(tp, INT);
 					strcpy(tp, prefix);
 					strcat(tp, "6u |");
-					ft_printf(tp, UNS);
+					assert_printf(tp, UNS);
 					ft_printf("\n");
 					l++;
 				}
@@ -219,16 +206,21 @@ void ft_test(void)
 		}
 		i++;
 	}
-  printf("%10s\n", (char *) NULL);
-  printf("%-10s\n", (char *) NULL);
+
+
+  assert_printf("%10s\n", (char *) NULL);
+  assert_printf("%-10s\n", (char *) NULL);
 }
+
 
 
 int main(int ac, char **av)
 {
 	ft_test();
 
-	test();
+	test_max();
+
+	//test();
 	if (ac >= 2)
 	{
 		//ft_printf("%-+12.42llhd\n", av[1]);
@@ -304,6 +296,10 @@ int main(int ac, char **av)
 	ft_printf("%p\n", &f);
 	printf("\n");
 	}
+
+	// printf("->111 %s 333 %d 555\n", "222", 444);
+	// ft_printf("->111 %d 333 %d 555\n", 222, 444);
+
 
 	return (0);
 }
