@@ -14,6 +14,8 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 	i = 0;
 	str = va_arg(list, char*);
 	str ? (len = ft_strlen(str)) : (len = 6);
+	if (arg->precision && (arg->precision < len))
+		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
 	if (arg->flags->space)
@@ -25,9 +27,9 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 		ft_putchar_ret(e, ' ');
 	if (str)
 	{
-		if (arg->precision && (arg->precision < len))
+		if (arg->precision && (arg->precision < (int)ft_strlen(str)))
 		{
-			len = arg->precision;
+			//len = arg->precision;
 			while (arg->precision > i)
 				ft_putchar_ret(e, str[i++]);
 		}

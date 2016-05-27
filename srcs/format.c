@@ -29,7 +29,7 @@ int		format_center(t_env *e, t_arg *arg, int signe)
 	int		temp;
 
 	temp = 0;
-	if (!arg->flags->plus && arg->flags->plus && signe > 0)
+	if (!arg->flags->minus && arg->flags->plus && signe > 0)
 	{
 		ft_putchar_ret(e, '+');
 		temp++;
