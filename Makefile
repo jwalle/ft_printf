@@ -101,6 +101,7 @@ SRC_PRINTF =	ft_printf.o \
 				ft_intlen.o \
 				print_number.o \
 				format.o \
+				misc.o \
 
 COMPIL_OBJS = $(SRC_LIB) $(SRC_PRINTF)
 

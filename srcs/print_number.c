@@ -2,25 +2,25 @@
 
 #include "ft_printf.h"
 
-void	ft_putllunbr(unsigned long long int n)
+void	ft_putllunbr(t_env *e, unsigned long long int n)
 {
 	if (n < 10)
-		ft_putchar(n + '0');
+		ft_putchar_ret(e, n + '0');
 	else if (n >= 10)
 	{
-		ft_putllunbr(n / 10);
-		ft_putllunbr(n % 10);
+		ft_putllunbr(e, n / 10);
+		ft_putllunbr(e, n % 10);
 	}
 }
 
-void	ft_putnbr_octal(unsigned long long number)
+void	ft_putnbr_octal(t_env *e, unsigned long long number)
 {
 	char				*octal;
 	int					i;
 
 	if (number == 0)
 	{
-		ft_putchar('0');
+		ft_putchar_ret(e, '0');
 		return ;
 	}
 	i = ft_int_octal_len(number);
@@ -31,10 +31,10 @@ void	ft_putnbr_octal(unsigned long long number)
 		octal[--i] = number % 8 + '0';
 		number = number / 8;
 	}
-	ft_putstr(octal);
+	ft_putstr_ret(e, octal);
 }
 
-void	ft_putnbr_hexa(unsigned long long number, char spe)
+void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe)
 {
 	char				*base;
 	char				*hex;
@@ -43,7 +43,7 @@ void	ft_putnbr_hexa(unsigned long long number, char spe)
 
 	if (number == 0)
 	{
-		ft_putchar('0');
+		ft_putchar_ret(e, '0');
 		return ;
 	}
 	if (spe == 'x')
@@ -58,5 +58,5 @@ void	ft_putnbr_hexa(unsigned long long number, char spe)
 		hex[--i] = base[number % 16];
 		number = number / 16;
 	}
-	ft_putstr(hex);
+	ft_putstr_ret(e, hex);
 }

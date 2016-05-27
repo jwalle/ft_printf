@@ -19,7 +19,7 @@ long long check_signed(long long n, t_length *length)
 	return (n);
 }
 
-void	print_llint(t_arg *arg, va_list list)
+void	print_llint(t_env *e, t_arg *arg, va_list list)
 {
 	int					len;
 	int					signe;
@@ -32,14 +32,14 @@ void	print_llint(t_arg *arg, va_list list)
 		signe = 0;
 	(n < 0) ? (n *= -1) : (n *= 1);
 	len = ft_parse_len(n, arg->specifier);
-	temp = format_output(len, signe, arg);
-	parse_number(n, arg->specifier);
+	temp = format_output(e, len, signe, arg);
+	parse_number(e, n, arg->specifier);
 	while (arg->flags->minus && (arg->width - temp++) > len)
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 }
 
-void	arg_is_int(t_arg *arg, va_list list)
+void	arg_is_int(t_env *e, t_arg *arg, va_list list)
 {
-	print_llint(arg, list);
+	print_llint(e, arg, list);
 }
 

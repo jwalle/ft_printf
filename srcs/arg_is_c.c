@@ -32,7 +32,7 @@ unsigned char *convert_wchar(wchar_t c)
 	return (str);
 }
 
-void	arg_is_wchar(t_arg *arg, va_list list)
+void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 {
 	wchar_t			w;
 	unsigned char	*str;
@@ -40,13 +40,13 @@ void	arg_is_wchar(t_arg *arg, va_list list)
 	(void)arg;
 	w = va_arg(list, wchar_t);
 	str = convert_wchar(w);
-	ft_putstr((const char*)str);
+	ft_putstr_ret(e, (const char*)str);
 }
 
-void	arg_is_c(t_arg *arg, va_list list)
+void	arg_is_c(t_env *e, t_arg *arg, va_list list)
 {
 	if (arg->length->l)
-		arg_is_wchar(arg, list);
+		arg_is_wchar(e, arg, list);
 	else
-		ft_putchar(va_arg(list, int));
+		ft_putchar_ret(e, va_arg(list, int));
 }

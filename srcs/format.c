@@ -2,7 +2,7 @@
 
 #include "ft_printf.h"
 
-int		format_left_width(t_arg *arg, int len, int signe)
+int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 {
 	int temp;
 
@@ -19,49 +19,49 @@ int		format_left_width(t_arg *arg, int len, int signe)
 	while (!arg->flags->zero && !arg->flags->minus && ((arg->width - temp) > len))
 	{
 		temp++;
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 	}
 	return (temp);
 }
 
-int		format_center(t_arg *arg, int signe)
+int		format_center(t_env *e, t_arg *arg, int signe)
 {
 	int		temp;
 
 	temp = 0;
 	if (!arg->flags->plus && arg->flags->plus && signe > 0)
 	{
-		ft_putchar('+');
+		ft_putchar_ret(e, '+');
 		temp++;
 	}
 	else if (signe < 0)
 	{
-		ft_putchar('-');
+		ft_putchar_ret(e, '-');
 		temp++;
 	}
 	else if (arg->flags->space && (arg->specifier == 'd' || arg->specifier == 'i'))
 	{
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 		temp++;
 	}
 	return (temp);
 }
 
-int		format_output(int len, int signe, t_arg *arg)
+int		format_output(t_env *e, int len, int signe, t_arg *arg)
 {
 	int temp;
 
-	temp = format_left_width(arg, len, signe);
-	temp += format_center(arg, signe);
+	temp = format_left_width(e, arg, len, signe);
+	temp += format_center(e, arg, signe);
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);
 	if (signe && arg->hex && arg->flags->htag)
-		print_hex(arg->specifier);
+		print_hex(e, arg->specifier);
 	if (!arg->flags->minus)
 	{
 		while (arg->flags->zero && ((arg->width - len) > temp++))
-			ft_putchar('0');
+			ft_putchar_ret(e, '0');
 		while (arg->precision > (len + temp++))
-			ft_putchar('0');
+			ft_putchar_ret(e, '0');
 	}
 	return (temp);
 }

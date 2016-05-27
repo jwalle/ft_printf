@@ -2,7 +2,7 @@
 
 #include "ft_printf.h"
 
-void	print_ptr(t_arg *arg, va_list list)
+void	print_ptr(t_env *e, t_arg *arg, va_list list)
 {
 	int		len;
 	int		temp;
@@ -15,27 +15,27 @@ void	print_ptr(t_arg *arg, va_list list)
 	else
 		len = 5;
 	while (arg->precision > (len + temp++))
-		ft_putchar('0');
+		ft_putchar_ret(e, '0');
 	if (arg->flags->space)
 	{
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 		temp++;
 	}
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 	if (ptr)
 	{
-		ft_putstr("0x");
-		ft_putnbr_hexa((unsigned long long)ptr, 'x');
+		ft_putstr_ret(e, "0x");
+		ft_putnbr_hexa(e, (unsigned long long)ptr, 'x');
 	}
 	else
-		ft_putstr("(nil)");
+		ft_putstr_ret(e, "(nil)");
 	while (arg->flags->minus && (arg->width >= (len - temp++)))
-		ft_putchar(' ');
+		ft_putchar_ret(e, ' ');
 }
 
 
-void	arg_is_p(t_arg *arg, va_list list)
+void	arg_is_p(t_env *e, t_arg *arg, va_list list)
 {
-	print_ptr(arg, list);
+	print_ptr(e, arg, list);
 }
