@@ -6,7 +6,7 @@
 #    By: jwalle <jwalle@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/08/05 11:39:59 by jwalle            #+#    #+#              #
-#    Updated: 2015/09/15 17:18:54 by jwalle           ###   ########.fr        #
+#    Updated: 2016/05/27 22:17:29 by jwalle           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ SRC_PRINTF =	ft_printf.o \
 				misc.o \
 
 COMPIL_OBJS = $(SRC_LIB) $(SRC_PRINTF)
+#COMPIL_OBJS = $(SRC_PRINTF)
 
 # all: $(NAME)
 
