@@ -67,7 +67,7 @@ int	ft_printf(const char *format, ...)
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
 			parse_args(e, arg, list);
-		va_arg(list, int);
+			//va_arg(list, int);
 		}
 		else
 			ft_putchar_ret(e, format[i++]);
