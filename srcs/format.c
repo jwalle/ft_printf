@@ -29,7 +29,7 @@ int		format_center(t_env *e, t_arg *arg, int signe)
 	int		temp;
 
 	temp = 0;
-	if (!arg->flags->minus && arg->flags->plus && signe >= 0)
+	if (arg->flags->plus && signe >= 0)
 	{
 		ft_putchar_ret(e, '+');
 		temp++;
@@ -52,6 +52,9 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	int temp;
 
 	temp = 0;
+
+// Tout ca en une fonction.
+
 	if (arg->precision > len && arg->flags->minus)
 	{
 		while (arg->precision > len + temp)
@@ -70,6 +73,9 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 		len = arg->precision;
 		arg->width = 0;
 	}
+
+// Jusqu'a ici.
+
 	temp += format_left_width(e, arg, len, signe);
 	temp += format_center(e, arg, signe);
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);
