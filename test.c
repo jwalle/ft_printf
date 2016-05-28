@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/05/28 15:48:17 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/05/28 16:45:04 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 int main()
 {
 
-	printf("TEST : %#.x", %#.0x, 0, 0);
 
-	ft_printf("test_ft = |%s %s %s|\n", "this", "is", "a");
-	printf("test_un = |%s %s %s|\n", "this", "is", "a");
+	ft_printf("test_ft = |%.13X|\n", 423242);
+	printf("test_un = |%.13X|\n", 423242);
 	return (0);
 }
