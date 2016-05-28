@@ -2,6 +2,26 @@
 
 #include "ft_printf.h"
 
+void print_char(t_env *e, t_arg *arg, char c)
+{
+	int		len;
+	int		temp;
+	int		i;
+
+	temp = 0;
+	i = 0;
+	len = 1;
+	if (arg->precision)
+		len = arg->precision;
+	while (arg->precision > (len + temp++) && len > temp)
+		ft_putchar_ret(e, '0');
+	while (!arg->flags->minus && (arg->width - temp++) >= len)
+		ft_putchar_ret(e, ' ');
+	ft_putchar_ret(e, c);
+	while (arg->flags->minus && (arg->width >= (len + temp++)))
+		ft_putchar_ret(e, ' ');
+}
+
 unsigned char *convert_wchar(wchar_t c)
 {
 	static unsigned char w_static[5];
@@ -47,6 +67,5 @@ void	arg_is_c(t_env *e, t_arg *arg, va_list list)
 {
 	if (arg->length->l)
 		arg_is_wchar(e, arg, list);
-	else
-		ft_putchar_ret(e, va_arg(list, int));
+	print_char(e, arg, va_arg(list, int));
 }

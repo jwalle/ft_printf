@@ -51,6 +51,13 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 {
 	int temp;
 
+	temp = 0;
+	if (arg->precision > len && arg->flags->minus)
+	{
+		while (arg->precision > len + temp++)
+			ft_putchar_ret(e, '0');
+	}
+
 	temp = format_left_width(e, arg, len, signe);
 	temp += format_center(e, arg, signe);
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);

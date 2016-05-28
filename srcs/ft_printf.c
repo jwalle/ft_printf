@@ -17,10 +17,7 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 	else if (specifier == 'p')
 		arg_is_p(e, arg, list);
 	else if (specifier == '%')
-	{
-		//arg_is_string(e, arg, list);
-		ft_putchar_ret(e, '%');
-	}
+		print_char(e, arg, '%');
 }
 
 void		parse_number(t_env *e, long long number, char spe)

@@ -90,5 +90,6 @@ void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe);
 void	ft_putllunbr(t_env *e, unsigned long long int n);
 void	ft_putchar_ret(t_env *e, char c);
 void	ft_putstr_ret( t_env *e, const char *s);
+void print_char(t_env *e, t_arg *arg, char c);
 
 #endif
