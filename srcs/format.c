@@ -16,6 +16,8 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
  	}
  	if (signe < 0)
  		len++;
+ 	if (arg->precision > len)
+ 		len = arg->precision;
 	while (!arg->flags->zero && !arg->flags->minus && ((arg->width - temp) > len))
 	{
 		temp++;
@@ -47,6 +49,33 @@ int		format_center(t_env *e, t_arg *arg, int signe)
 	return (temp);
 }
 
+int		format_precision(t_env *e, t_arg *arg, int len, int temp)
+{
+	int i;
+
+	i = 0;
+	if (arg->precision > len && arg->flags->minus)
+	{
+		while (arg->precision > len + i)
+		{
+			ft_putchar_ret(e, '0');
+			i++;
+		}
+	}
+	else if (arg->precision > len && !arg->flags->minus && arg->width < arg->precision)
+	{
+		while (arg->precision > len + i)
+		{
+			ft_putchar_ret(e, '0');
+			i++;
+		}
+		len = arg->precision;
+		arg->width = 0;
+	}
+	return (temp + i);
+}
+
+
 int		format_output(t_env *e, int len, int signe, t_arg *arg)
 {
 	int temp;
@@ -54,30 +83,13 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	temp = 0;
 
 // Tout ca en une fonction.
-
-	if (arg->precision > len && arg->flags->minus)
-	{
-		while (arg->precision > len + temp)
-		{
-			ft_putchar_ret(e, '0');
-			temp++;
-		}
-	}
-	else if (arg->precision > len && !arg->flags->minus && arg->width < arg->precision)
-	{
-		while (arg->precision > len + temp)
-		{
-			ft_putchar_ret(e, '0');
-			temp++;
-		}
-		len = arg->precision;
-		arg->width = 0;
-	}
-
-// Jusqu'a ici.
-
 	temp += format_left_width(e, arg, len, signe);
 	temp += format_center(e, arg, signe);
+	if (arg->precision)
+		temp += format_precision(e, arg, len, temp);
+	
+// Jusqu'a ici.
+
 	//printf("width = %d, len = %d, temp = %d\n", arg->width, len, temp);
 	if (signe && arg->hex && arg->flags->htag)
 		print_hex(e, arg->specifier);
