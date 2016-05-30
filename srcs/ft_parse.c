@@ -65,8 +65,9 @@ int parse_two(const char *format, t_arg *arg, int n)
 		arg->specifier = format[i++ + n];
 	else
 	{
-		ft_putstr("No specifier specified.\n");
-		exit (1);
+		//ft_putchar(0);
+		//ft_putstr("No specifier specified.\n");
+		exit (0);
 	}
 	n += i;
 	arg->hex = is_hex(arg->specifier);

@@ -53,7 +53,7 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 	return (temp);
 }
 
-int		format_center(t_env *e, t_arg *arg, int signe)
+int		format_signe(t_env *e, t_arg *arg, int signe)
 {
 	int		temp;
 
@@ -109,7 +109,7 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	temp = 0;
 
 	temp += format_left_width(e, arg, len, signe);
-	temp += format_center(e, arg, signe);
+	temp += format_signe(e, arg, signe);
 	if (arg->precision)
 		temp += format_precision(e, arg, len, temp);	
 	if (signe && arg->hex && arg->flags->htag)

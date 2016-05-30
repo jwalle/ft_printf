@@ -28,9 +28,11 @@ void		parse_uns(t_env *e, unsigned long long number, char spe)
 	ft_putllunbr(e, number);
 }
 
-unsigned long long check_unsigned(unsigned long long n, t_length *length)
+unsigned long long check_unsigned(unsigned long long n, t_length *length, t_arg *arg)
 {
-	if (length->hh)
+	if (arg->specifier == 'U')
+		return ((unsigned long)n);
+	else if (length->hh)
 		return ((unsigned char)n);
 	else if (length->h)
 		return ((unsigned short int)n);
@@ -49,7 +51,7 @@ void	print_lluint(t_env *e, t_arg *arg, va_list list)
 	int						temp;
 	int						signe;
 
-	n = check_unsigned(va_arg(list, unsigned long long int), arg->length);
+	n = check_unsigned(va_arg(list, unsigned long long int), arg->length, arg);
 	(n == 0) ? (signe = 0) : (signe = 1);
 	len = ft_parse_len(n, arg->specifier);
 	temp = format_output(e, len, signe, arg);
