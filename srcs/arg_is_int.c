@@ -34,7 +34,11 @@ void	print_llint(t_env *e, t_arg *arg, va_list list)
 	len = ft_parse_len(n, arg->specifier);
 	temp = format_output(e, len, signe, arg);
 	parse_number(e, n, arg->specifier);
-	while (arg->flags->minus && (arg->width - temp++) > len)
+	//format_left_width(e, arg, len, signe);
+	//if (arg->precision > len)
+	//	len = arg->precision;
+	// while (arg->flags->minus && (arg->width - temp++) > len)
+	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }
 

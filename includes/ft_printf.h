@@ -84,6 +84,7 @@ int		ft_parse_len(unsigned long long n, char spe);
 void	ft_putllnbr(t_env *e, long long int n);
 void	parse_number(t_env *e, long long number, char spe);
 int		format_output(t_env *e, int len, int signe, t_arg *arg);
+int		format_left_width(t_env *e, t_arg *arg, int len, int signe);
 void	print_hex(t_env *e, char spe);
 void	ft_putnbr_octal(t_env *e, unsigned long long number);
 void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe);
