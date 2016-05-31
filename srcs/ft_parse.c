@@ -8,7 +8,7 @@ char *ft_strndup(char *str, int i)
 
 	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
 		return NULL;
-	ret = ft_strncpy(ret, str, i);
+	ret = ft_strncpy_ptf(ret, str, i);
 	return (ret);
 }
 
@@ -20,17 +20,17 @@ void	parse_length(t_arg *arg, char *len_parse)
 		return ;
 	}
 	arg->length->no = 0;
-	if (!ft_strcmp(len_parse, "hh"))
+	if (!ft_strcmp_ptf(len_parse, "hh"))
 		arg->length->hh = 1;
-	else if (!ft_strcmp(len_parse, "h"))
+	else if (!ft_strcmp_ptf(len_parse, "h"))
 		arg->length->h = 1;
-	else if (!ft_strcmp(len_parse, "l"))
+	else if (!ft_strcmp_ptf(len_parse, "l"))
 		arg->length->l = 1;
-	else if (!ft_strcmp(len_parse, "ll"))
+	else if (!ft_strcmp_ptf(len_parse, "ll"))
 		arg->length->ll = 1;
-	else if (!ft_strcmp(len_parse, "j"))
+	else if (!ft_strcmp_ptf(len_parse, "j"))
 		arg->length->j = 1;
-	else if (!ft_strcmp(len_parse, "z"))
+	else if (!ft_strcmp_ptf(len_parse, "z"))
 		arg->length->z = 1;
 	else
 		//error_length(arg->length);
@@ -51,9 +51,9 @@ int parse_two(const char *format, t_arg *arg, int n)
 
 	i = 0;	
 	init_length(arg->length);
-	if (ft_strchr(LENGTH, format[i + n]))
+	if (ft_strchr_ptf(LENGTH, format[i + n]))
 	{
-		while (ft_strchr(LENGTH, format[i + n]))
+		while (ft_strchr_ptf(LENGTH, format[i + n]))
 			i++;
 		len_parse = ft_strndup((char *)format + n, i);
 		n += i;
@@ -61,7 +61,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 		free(len_parse);
 	}
 	i = 0;
-	if (ft_strchr(SPECIFIER, format[i + n]))
+	if (ft_strchr_ptf(SPECIFIER, format[i + n]))
 		arg->specifier = format[i++ + n];
 	else
 	{
@@ -83,7 +83,7 @@ int	parse(const char *format, t_arg *arg)
 
 	i = 0;
 	n = 0;
-	while (ft_strchr(FLAGS, format[i + n]))
+	while (ft_strchr_ptf(FLAGS, format[i + n]))
 	{
 		if (format[i + n] == '-')
 			arg->flags->minus = 1;
@@ -99,17 +99,17 @@ int	parse(const char *format, t_arg *arg)
 	}
 	n += i;
 	i = 0;
-	while (ft_isdigit(format[i + n]))
+	while (ft_isdigit_ptf(format[i + n]))
 		i++;
-	arg->width = ft_atoi((char *)format + n);
+	arg->width = ft_atoi_ptf((char *)format + n);
 	n += i;
 	i = 0;
 	if (format[i + n] == '.')
 	{
 		i++;
-		while (ft_isdigit(format[i + n]))
+		while (ft_isdigit_ptf(format[i + n]))
 			i++;
-		arg->precision = ft_atoi((char *)format + n + 1);
+		arg->precision = ft_atoi_ptf((char *)format + n + 1);
 		if (arg->precision == 0)
 			arg->precision_null = 1;
 	}

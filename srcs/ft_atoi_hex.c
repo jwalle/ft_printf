@@ -21,7 +21,7 @@ void	ft_atoi_hex(void *ptr)
 
 	base = HEXA;
 	address = (unsigned long long)ptr;
-	ft_bzero(hex, 12);
+	ft_bzero_ptf(hex, 12);
 	i = 11;
 	while (address)
 	{
@@ -29,6 +29,6 @@ void	ft_atoi_hex(void *ptr)
 		address = address / 16;
 		i--;
 	}
-	ft_putstr("0x");
-	ft_putstr(hex);
+	ft_putstr_ptf("0x");	// RET !!
+	ft_putstr_ptf(hex);
 }

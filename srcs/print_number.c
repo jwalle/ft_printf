@@ -24,8 +24,8 @@ void	ft_putnbr_octal(t_env *e, unsigned long long number)
 		return ;
 	}
 	i = ft_int_octal_len(number);
-	octal = ft_strnew(i);
-	ft_bzero(octal, i + 1);
+	octal = ft_strnew_ptf(i);
+	ft_bzero_ptf(octal, i + 1);
 	while (number)
 	{
 		octal[--i] = number % 8 + '0';
@@ -51,8 +51,8 @@ void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe)
 	if (spe == 'X')
 		base = HEXA_MAJ;
 	i = ft_int_hex_len(number);
-	hex = ft_strnew(i);
-	ft_bzero(hex, i + 1);
+	hex = ft_strnew_ptf(i);
+	ft_bzero_ptf(hex, i + 1);
 	while (number)
 	{
 		hex[--i] = base[number % 16];

@@ -17,7 +17,8 @@
 #include <stdio.h>
 #include <limits.h>
 #include <wchar.h>
-#include "../libft/libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 #define HEXA "0123456789abcdef"
 #define HEXA_MAJ "0123456789ABCDEF"
@@ -92,6 +93,16 @@ void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe);
 void	ft_putllunbr(t_env *e, unsigned long long int n);
 void	ft_putchar_ret(t_env *e, char c);
 void	ft_putstr_ret( t_env *e, const char *s);
-void print_char(t_env *e, t_arg *arg, char c);
+void	print_char(t_env *e, t_arg *arg, char c);
+
+size_t	ft_strlen_ptf(const char *s);
+int		ft_atoi_ptf(const char *str);
+void	ft_bzero_ptf(void *s, size_t n);
+int		ft_isdigit_ptf(int c);
+void	ft_putstr_ptf(const char *s);
+char	*ft_strchr_ptf(const char *s, int c);
+int		ft_strcmp_ptf(const char *s1, const char *s2);
+char	*ft_strncpy_ptf(char *dest, const char *src, size_t n);
+char	*ft_strnew_ptf(size_t size);
 
 #endif

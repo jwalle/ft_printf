@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   lib_two.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 15:26:26 by jwalle            #+#    #+#             */
-/*   Updated: 2015/06/05 18:57:45 by jwalle           ###   ########.fr       */
+/*   Created: 2016/05/31 18:37:17 by jwalle            #+#    #+#             */
+/*   Updated: 2016/05/31 18:37:28 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int		ft_strcmp_ptf(const char *s1, const char *s2)
 {
 	int				i;
 	unsigned char	c1;
@@ -28,4 +28,46 @@ int		ft_strcmp(const char *s1, const char *s2)
 	if (c1 == c2)
 		return (0);
 	return (c1 - c2);
+}
+
+char	*ft_strncpy_ptf(char *dest, const char *src, size_t n)
+{
+	char	*ctr;
+
+	ctr = dest;
+	while (n > 0 && *src != '\0')
+	{
+		*ctr++ = *src++;
+		--n;
+	}
+	while (n > 0)
+	{
+		*ctr++ = '\0';
+		--n;
+	}
+	return (dest);
+}
+
+char	*ft_strnew_ptf(size_t size)
+{
+	size_t	i;
+	char	*new;
+
+	i = -1;
+	new = (char*)malloc(size + 1);
+	if (!new)
+		return (NULL);
+	while (++i < size + 1)
+		new[i] = '\0';
+	return (new);
+}
+
+size_t	ft_strlen_ptf(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

@@ -13,7 +13,7 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 	str = NULL;
 	i = 0;
 	str = va_arg(list, char*);
-	str ? (len = ft_strlen(str)) : (len = 6);
+	str ? (len = ft_strlen_ptf(str)) : (len = 6);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
@@ -27,7 +27,7 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 		ft_putchar_ret(e, ' ');
 	if (str)
 	{
-		if (arg->precision && (arg->precision < (int)ft_strlen(str)))
+		if (arg->precision && (arg->precision < (int)ft_strlen_ptf(str)))
 		{
 			//len = arg->precision;
 			while (arg->precision > i)
@@ -37,7 +37,7 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 			ft_putstr_ret(e, str);
 	}
 	else
-		ft_putstr("(null)");		// valeur retour quand null ?
+		ft_putstr_ptf("(null)");		// valeur retour quand null ?
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }
