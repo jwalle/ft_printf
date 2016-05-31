@@ -31,9 +31,16 @@ void	print_llint(t_env *e, t_arg *arg, va_list list)
 	if (n == 0)
 		signe = 0;
 	(n < 0) ? (n *= -1) : (n *= 1);
-	len = ft_parse_len(n, arg->specifier);
+	if (n == 0 && arg->precision_null)
+		len = 0;
+	else
+		len = ft_parse_len(n, arg->specifier);
 	temp = format_output(e, len, signe, arg);
-	parse_number(e, n, arg->specifier);
+	//printf("precision = %d\n", arg->precision);
+	if (!n && arg->precision_null)
+		;
+	else
+		parse_number(e, n, arg->specifier);
 	//format_left_width(e, arg, len, signe);
 	//if (arg->precision > len)
 	//	len = arg->precision;

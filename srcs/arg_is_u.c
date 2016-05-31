@@ -53,9 +53,15 @@ void	print_lluint(t_env *e, t_arg *arg, va_list list)
 
 	n = check_unsigned(va_arg(list, unsigned long long int), arg->length, arg);
 	(n == 0) ? (signe = 0) : (signe = 1);
-	len = ft_parse_len(n, arg->specifier);
+	if (n == 0 && arg->precision_null)
+		len = 0;
+	else
+		len = ft_parse_len(n, arg->specifier);
 	temp = format_output(e, len, signe, arg);
-	parse_number(e, n, arg->specifier);
+	if (!n && arg->precision_null)
+		;
+	else
+		parse_number(e, n, arg->specifier);
 	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }

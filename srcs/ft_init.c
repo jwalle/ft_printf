@@ -22,6 +22,7 @@ void	init_arg(t_arg *arg)
 	arg->flags->space = 0;
 	arg->width = 0;
 	arg->precision = 0;
+	arg->precision_null = 0;
 	arg->specifier = 0;
 	arg->hex = 0;
 }

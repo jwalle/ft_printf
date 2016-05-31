@@ -110,6 +110,8 @@ int	parse(const char *format, t_arg *arg)
 		while (ft_isdigit(format[i + n]))
 			i++;
 		arg->precision = ft_atoi((char *)format + n + 1);
+		if (arg->precision == 0)
+			arg->precision_null = 1;
 	}
 	return (parse_two(format, arg, n + i));
 }

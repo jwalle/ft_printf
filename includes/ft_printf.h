@@ -55,6 +55,7 @@ typedef	struct		s_arg
 	t_length		*length;		// hh, l, ...
 	int				width;		// number
 	int				precision;  // number
+	int				precision_null;  // number
 	char			specifier; // sS...
 	int				hex;
 }					t_arg;
