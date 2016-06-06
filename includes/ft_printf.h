@@ -25,7 +25,6 @@
 #define OCTAL "0x000000000000"
 #define FLAGS "-+ #0"
 #define LENGTH "hljz"
-// #define LENGTH "hh h l ll j z"
 #define SPECIFIER "sSpdDioOuUxXcC%"
 
 // D = ld, O = lo, U = lu.

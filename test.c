@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/06 16:52:20 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/06 19:02:14 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int main()
 {
 	//printf("test 1 : -->%5c<-- , -->%5d<--\n", 42, 42);
 
-	printf("TEST =%%.o, -42\n");
+//	printf("TEST =%%.o, -42\n");
 
-	ft_printf("test_ft = |%.3d|\n", -42);
-	printf("test_un = |%.3d|\n", -42);
+//	ft_printf("-->% hZ<--\n");
+//	printf("-->% hZ<--\n");
+	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.
 	return (0);

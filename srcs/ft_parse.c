@@ -2,16 +2,6 @@
 
 #include "ft_printf.h"
 
-char *ft_strndup(char *str, int i)
-{
-	char	*ret;
-
-	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
-		return NULL;
-	ret = ft_strncpy_ptf(ret, str, i);
-	return (ret);
-}
-
 void	parse_length(t_arg *arg, char *len_parse)
 {
 	if (!len_parse)
@@ -32,9 +22,6 @@ void	parse_length(t_arg *arg, char *len_parse)
 		arg->length->j = 1;
 	else if (!ft_strcmp_ptf(len_parse, "z"))
 		arg->length->z = 1;
-	else
-		//error_length(arg->length);
-		printf("ERROR PARSE LENGTH\n");
 }
 
 int	is_hex(char spe)
@@ -65,14 +52,11 @@ int parse_two(const char *format, t_arg *arg, int n)
 		arg->specifier = format[i++ + n];
 	else
 	{
-		//ft_putchar(0);
-		//ft_putstr("No specifier specified.\n");
-		exit (0);
+		write(1, "\0", 1);
+		return (0);
 	}
 	n += i;
 	arg->hex = is_hex(arg->specifier);
-	//printf("flags = %s, width = %d, precision = %d, length = %s,  specifier = %c\n",
-	//arg->flags, arg->width, arg->precision, arg->length, arg->specifier);
 	return (n);
 }
 

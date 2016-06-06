@@ -3,6 +3,8 @@
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
+int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
+
 void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 {
 	if (specifier == 'd' || specifier == 'i' || specifier == 'D')
@@ -12,7 +14,7 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 		arg_is_u(e, arg, list);
 	else if (specifier == 'c')
 		arg_is_c(e, arg, list);
-	else if (specifier == 's' || specifier == 'S') // wchar_t ?
+	else if (specifier == 's' || specifier == 'S')
 		arg_is_string(e, arg, list);
 	else if (specifier == 'p')
 		arg_is_p(e, arg, list);
@@ -63,8 +65,16 @@ int	ft_printf(const char *format, ...)
 		{
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
+				printf("flags = {minus : %d, plus : %d, zero : %d, htag : %d, space : %d}, width = %d, precision = %d, specifier = %c\n",
+			arg->flags->minus,
+			arg->flags->plus,
+			arg->flags->zero,
+			arg->flags->htag,
+			arg->flags->space,
+			arg->width,
+			arg->precision,
+			arg->specifier);
 			parse_args(e, arg, list);
-			//va_arg(list, int);
 		}
 		else
 			ft_putchar_ret(e, format[i++]);

@@ -28,8 +28,6 @@ void	print_ptr(t_env *e, t_arg *arg, va_list list)
 		ft_putstr_ret(e, "0x");
 		ft_putnbr_hexa(e, (unsigned long long)ptr, 'x');
 	}
-	else
-		ft_putstr_ret(e, "(nil)");
 	while (arg->flags->minus && (arg->width >= (len - temp++)))
 		ft_putchar_ret(e, ' ');
 }

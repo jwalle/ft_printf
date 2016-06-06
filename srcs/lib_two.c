@@ -71,3 +71,13 @@ size_t	ft_strlen_ptf(const char *s)
 		i++;
 	return (i);
 }
+
+char *ft_strndup(char *str, int i)
+{
+	char	*ret;
+
+	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
+		return NULL;
+	ret = ft_strncpy_ptf(ret, str, i);
+	return (ret);
+}

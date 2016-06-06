@@ -29,7 +29,6 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 	{
 		if (arg->precision && (arg->precision < (int)ft_strlen_ptf(str)))
 		{
-			//len = arg->precision;
 			while (arg->precision > i)
 				ft_putchar_ret(e, str[i++]);
 		}
@@ -37,7 +36,7 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 			ft_putstr_ret(e, str);
 	}
 	else
-		ft_putstr_ptf("(null)");		// valeur retour quand null ?
+		ft_putstr_ptf("(null)");
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }

@@ -2,33 +2,6 @@
 
 #include "ft_printf.h"
 
-
-/*
-int		format_right_width(t_env *e, t_arg *arg, int len, int signe)
-{
-	int temp;
-
-	temp = 0;
- 	if (arg->flags->htag)
- 	{
- 		if (arg->specifier == 'x' || arg->specifier == 'X')
- 			temp = 2;
- 		else if (arg->specifier == 'o')
- 			temp = 1;
- 	}
- 	if (arg->precision > len)
- 		len = arg->precision;
- 	if (arg->flags->space || (arg->flags->plus && signe >= 0) || signe < 0)
- 		len++;
-	while (!arg->flags->zero && arg->flags->minus && ((arg->width - temp) > len))
-	{
-		temp++;
-		ft_putchar_ret(e, ' ');
-	}
-	return (temp);
-}
-*/
-
 int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 {
 	int temp;
@@ -83,7 +56,7 @@ int		format_signe(t_env *e, t_arg *arg, int signe)
 		ft_putchar_ret(e, '-');
 		temp++;
 	}
-	else if (arg->flags->space && (arg->specifier == 'd' || arg->specifier == 'i'))
+	else if (arg->flags->space && !arg->is_unsigned && arg->specifier/* && (arg->specifier == 'd' || arg->specifier == 'i')*/)
 	{
 		ft_putchar_ret(e, ' ');
 		temp++;
@@ -113,11 +86,6 @@ int		format_precision(t_env *e, t_arg *arg, int len, int signe)
 			ft_putchar_ret(e, '0');
 			i++;
 		}
-		/*if (signe < 0)
-		{
-			ft_putchar_ret(e, 'x');
-			i++;
-		}*/
 		arg->width = 0;
 	}
 	return (i);

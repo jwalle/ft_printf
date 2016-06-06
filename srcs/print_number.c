@@ -40,7 +40,6 @@ void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe)
 	char				*hex;
 	int					i;
 
-
 	if (number == 0)
 	{
 		ft_putchar_ret(e, '0');

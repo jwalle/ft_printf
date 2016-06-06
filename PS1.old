@@ -1,0 +1,2 @@
+%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%{$reset_color%}%{$fg[yellow]%}%m%{$reset_color%}%{$fg[red]%}:%{$reset_color%}%{$fg[cyan]%}%0~%{$reset_color%}%{$fg[red]%}|%{$reset_color%}%{[00m%}%{[32m%}master%{[33m%}⚡%{[00m%}%{[00m%}
+%{%}%{$fg[cyan]%}⇒%{$reset_color%}  
