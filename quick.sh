@@ -1,1 +1,1 @@
-git add -A ; git commit -m "1 error" ; git push origin master
+git add -A ; git commit -m "All test passed" ; git push origin master

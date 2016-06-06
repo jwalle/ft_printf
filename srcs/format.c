@@ -39,7 +39,11 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
  		if (arg->specifier == 'x' || arg->specifier == 'X')
  			temp = 2;
  		else if (arg->specifier == 'o')
- 			temp = 1;
+ 		{
+ 			if (!signe)
+ 				ft_putchar_ret(e, '0');
+ 			temp++;
+ 		}
  	}
  	if (arg->precision > len)
  		len = arg->precision;
