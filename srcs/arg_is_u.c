@@ -52,6 +52,7 @@ void	print_lluint(t_env *e, t_arg *arg, va_list list)
 	int						signe;
 
 	n = check_unsigned(va_arg(list, unsigned long long int), arg->length, arg);
+	arg->is_unsigned = 1;
 	(n == 0) ? (signe = 0) : (signe = 1);
 	if (n == 0 && arg->precision_null)
 		len = 0;

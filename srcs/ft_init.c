@@ -25,4 +25,5 @@ void	init_arg(t_arg *arg)
 	arg->precision_null = 0;
 	arg->specifier = 0;
 	arg->hex = 0;
+	arg->is_unsigned = 0;
 }

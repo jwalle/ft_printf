@@ -59,6 +59,7 @@ typedef	struct		s_arg
 	int				precision_null;  // number
 	char			specifier; // sS...
 	int				hex;
+	int				is_unsigned;
 }					t_arg;
 
 typedef	struct		s_env
