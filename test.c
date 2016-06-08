@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/08 17:29:09 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/08 19:12:41 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int main()
 {
 	//printf("test 1 : -->%5c<-- , -->%5d<--\n", 42, 42);
 
-//	printf("TEST =%%.o, -42\n");
+	//	printf("TEST =%%.o, -42\n");
 
-	ft_printf("ft-->%10R<--\n");
-	printf("un-->%10R<--\n");
-	
+	ft_printf("ft-->%S<--\n", L"米");
+	printf("un-->%S<--\n", L"米");
 	//	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.

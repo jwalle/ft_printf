@@ -50,7 +50,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 	i = 0;
 	if (ft_strchr_ptf(SPECIFIER, format[i + n]))
 		arg->specifier = format[i++ + n];
-	else
+	else // special spe.
 	{
 		write(1, "\0", 1);
 		return (0);
