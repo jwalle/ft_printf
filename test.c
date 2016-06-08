@@ -6,12 +6,19 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/06 19:02:14 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/08 17:29:09 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
+
+int	ft_strlen(char *s)
+{
+	(void)s;
+	return (10);
+}	
 
 int main()
 {
@@ -19,9 +26,10 @@ int main()
 
 //	printf("TEST =%%.o, -42\n");
 
-//	ft_printf("-->% hZ<--\n");
-//	printf("-->% hZ<--\n");
-	printf("%s", 42);
+	ft_printf("ft-->%10R<--\n");
+	printf("un-->%10R<--\n");
+	
+	//	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.
 	return (0);

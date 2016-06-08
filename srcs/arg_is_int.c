@@ -2,13 +2,13 @@
 
 #include "ft_printf.h"
 
-long long check_signed(long long n, t_length *length)
+long long check_signed(long long n, t_length *length, t_arg *arg)
 {
 	if (length->hh)
 		return ((signed char)n);
 	else if (length->h)
 		return ((short int)n);
-	else if (length->l)
+	else if (length->l || arg->specifier == 'D')
 		return ((long)n);
 	else if (length->no)
 		return ((int)n);
@@ -26,7 +26,7 @@ void	print_llint(t_env *e, t_arg *arg, va_list list)
 	long long int		n;
 	int					temp;
 
-	n = check_signed(va_arg(list, long long int), arg->length);
+	n = check_signed(va_arg(list, long long int), arg->length, arg);
 	(n < 0) ? (signe = -1) : (signe = 1);
 	if (n == 0)
 		signe = 0;

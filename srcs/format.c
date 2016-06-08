@@ -11,7 +11,7 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
  	{
  		if (arg->specifier == 'x' || arg->specifier == 'X')
  			temp = 2;
- 		else if (arg->specifier == 'o')
+ 		else if (arg->specifier == 'o' || arg->specifier == 'O')
  		{
  			if (!signe)
  				ft_putchar_ret(e, '0');
@@ -30,14 +30,22 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 			ft_putchar_ret(e, ' ');
 		}
 	}
-	if (arg->flags->zero && arg->precision && signe >= 0)
+	else if (arg->flags->zero && arg->precision && signe >= 0)
 	{
 		while (((arg->precision + temp) < arg->width))
 		{
 			temp++;
 			ft_putchar_ret(e, ' ');
 		}
-	}
+	}/*
+	else if (arg->flags->zero && signe >= 0)
+	{
+		while (((arg->width - temp) > len))
+		{
+			temp++;
+			ft_putchar_ret(e, '0');
+		}
+	}*/
 	return (temp);
 }
 
@@ -56,7 +64,7 @@ int		format_signe(t_env *e, t_arg *arg, int signe)
 		ft_putchar_ret(e, '-');
 		temp++;
 	}
-	else if (arg->flags->space && !arg->is_unsigned && arg->specifier/* && (arg->specifier == 'd' || arg->specifier == 'i')*/)
+	else if (arg->flags->space && !arg->is_unsigned && arg->specifier)
 	{
 		ft_putchar_ret(e, ' ');
 		temp++;

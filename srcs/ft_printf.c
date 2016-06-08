@@ -24,7 +24,7 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 
 void		parse_number(t_env *e, long long number, char spe)
 {
-	if (spe == 'o')
+	if (spe == 'o' || spe == 'O')
 	{
 		ft_putnbr_octal(e, number);
 		return ;
@@ -65,7 +65,7 @@ int	ft_printf(const char *format, ...)
 		{
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
-				printf("flags = {minus : %d, plus : %d, zero : %d, htag : %d, space : %d}, width = %d, precision = %d, specifier = %c\n",
+				/*printf("flags = {minus : %d, plus : %d, zero : %d, htag : %d, space : %d}, width = %d, precision = %d, specifier = %c\n",
 			arg->flags->minus,
 			arg->flags->plus,
 			arg->flags->zero,
@@ -73,7 +73,7 @@ int	ft_printf(const char *format, ...)
 			arg->flags->space,
 			arg->width,
 			arg->precision,
-			arg->specifier);
+			arg->specifier);*/
 			parse_args(e, arg, list);
 		}
 		else

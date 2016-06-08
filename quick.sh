@@ -1,1 +1,1 @@
-git add -A ; git commit -m "All test passed" ; git push origin master
+git add -A ; git commit -m "invalidConvSpec_withMinWidth" ; git push origin master

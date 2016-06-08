@@ -5,7 +5,7 @@
 
 void	print_hex(t_env *e, char spe)
 {
-	if (spe == 'o')
+	if (spe == 'o' || spe == 'O')
 		ft_putchar_ret(e, '0');
 	else if (spe == 'x')
 		ft_putstr_ret(e, "0x");
@@ -15,7 +15,7 @@ void	print_hex(t_env *e, char spe)
 
 void		parse_uns(t_env *e, unsigned long long number, char spe)
 {
-	if (spe == 'o')
+	if (spe == 'o' || spe == 'O')
 	{
 		ft_putnbr_octal(e, number);
 		return ;
@@ -30,7 +30,9 @@ void		parse_uns(t_env *e, unsigned long long number, char spe)
 
 unsigned long long check_unsigned(unsigned long long n, t_length *length, t_arg *arg)
 {
-	if (arg->specifier == 'U')
+	if (arg->specifier == 'O')
+		return ((unsigned long long)n);
+	else if (arg->specifier == 'U')
 		return ((unsigned long)n);
 	else if (length->hh)
 		return ((unsigned char)n);

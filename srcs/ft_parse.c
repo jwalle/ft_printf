@@ -26,7 +26,7 @@ void	parse_length(t_arg *arg, char *len_parse)
 
 int	is_hex(char spe)
 {
-	if (spe == 'x' || spe == 'X' || spe == 'o')
+	if (spe == 'x' || spe == 'X' || spe == 'o' || spe == 'O')
 		return (1);
 	return (0);
 }
