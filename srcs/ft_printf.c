@@ -63,6 +63,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			if (!format[i + 1])
+				return (0);
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
 				/*printf("flags = {minus : %d, plus : %d, zero : %d, htag : %d, space : %d}, width = %d, precision = %d, specifier = %c\n",

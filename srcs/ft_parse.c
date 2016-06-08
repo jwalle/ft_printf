@@ -52,8 +52,8 @@ int parse_two(const char *format, t_arg *arg, int n)
 		arg->specifier = format[i++ + n];
 	else // special spe.
 	{
-		write(1, "\0", 1);
-		return (0);
+		//write(1, "\0", 1);
+		return (n);
 	}
 	n += i;
 	arg->hex = is_hex(arg->specifier);

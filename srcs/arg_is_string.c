@@ -36,7 +36,7 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 			ft_putstr_ret(e, str);
 	}
 	else
-		ft_putstr_ptf("(null)");
+		ft_putstr_ret(e, "(null)");
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }
