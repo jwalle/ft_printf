@@ -26,8 +26,10 @@ int main()
 
 	//	printf("TEST =%%.o, -42\n");
 
-	ft_printf("ft-->%S<--\n", L"米");
-	printf("un-->%S<--\n", L"米");
+	ft_printf("ft-->%C<--\n", L"米");
+	printf("un-->%C<--\n", L"米");
+	//ft_printf("ft-->%C<--\n", 'c');
+	//printf("un-->%C<--\n", 'c');
 	//	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.

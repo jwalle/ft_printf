@@ -14,6 +14,8 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 		arg_is_u(e, arg, list);
 	else if (specifier == 'c')
 		arg_is_c(e, arg, list);
+	else if (specifier == 'C')
+		arg_is_wchar(e, arg, list);
 	else if (specifier == 's' || specifier == 'S')
 		arg_is_string(e, arg, list);
 	else if (specifier == 'p')

@@ -52,6 +52,14 @@ unsigned char *convert_wchar(wchar_t c)
 	return (str);
 }
 
+void ft_putwchar(t_env *e, unsigned char *str)
+{
+	//write(1, L'str', 1);
+	printf("%s", str);
+	e->ret++;
+}
+
+
 void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 {
 	wchar_t			w;
@@ -59,8 +67,10 @@ void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 
 	(void)arg;
 	w = va_arg(list, wchar_t);
+	printf("%d\n", w);
 	str = convert_wchar(w);
-	ft_putstr_ret(e, (const char*)str);
+	ft_putwchar(e, str);
+	// ft_putstr_ret(e, (const char*)str);
 }
 
 void	arg_is_c(t_env *e, t_arg *arg, va_list list)
