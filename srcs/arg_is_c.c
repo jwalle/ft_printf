@@ -27,11 +27,16 @@ unsigned char *convert_wchar(wchar_t c)
 	static unsigned char w_static[5];
 	unsigned char *str;
 
+
 	str = w_static;
 	if (c<(1<<7))
+	{
 		*str++ = (unsigned char)(c);
+		puts("convert");
+	}
 	else if (c<(1<<11))
 	{
+
 		*str++ = (unsigned char)((c>>6)|0xC0);
 		*str++ = (unsigned char)((c&0x3F)|0x80);
 	}
@@ -54,8 +59,15 @@ unsigned char *convert_wchar(wchar_t c)
 
 void ft_putwchar(t_env *e, unsigned char *str)
 {
-	//write(1, L'str', 1);
-	printf("%s", str);
+	int i;
+
+	i = 0;
+	// puts("plop");
+	while (i < 4)
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 	e->ret++;
 }
 
@@ -65,11 +77,10 @@ void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 	wchar_t			w;
 	unsigned char	*str;
 
-	(void)arg;
 	w = va_arg(list, wchar_t);
-	printf("%d\n", w);
 	str = convert_wchar(w);
 	ft_putwchar(e, str);
+	(void)arg;
 	// ft_putstr_ret(e, (const char*)str);
 }
 

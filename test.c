@@ -13,23 +13,30 @@
 #include "includes/ft_printf.h"
 #include <stdio.h>
 #include <limits.h>
+#include <wchar.h>
+#include <locale.h>
 
 int	ft_strlen(char *s)
 {
 	(void)s;
 	return (10);
-}	
+}
 
 int main()
 {
+	char *l = setlocale(LC_ALL, "");
+	if (l == NULL)
+		printf("local not set\n");
+	else
+		printf("--> local set to = %s\n\n\n", l);
 	//printf("test 1 : -->%5c<-- , -->%5d<--\n", 42, 42);
 
 	//	printf("TEST =%%.o, -42\n");
 
 	ft_printf("ft-->%C<--\n", L"米");
-	printf("un-->%C<--\n", L"米");
-	//ft_printf("ft-->%C<--\n", 'c');
-	//printf("un-->%C<--\n", 'c');
+	 wprintf(L"un-->%C<--\n", L"米");
+//	ft_printf("ft-->%C<--\n", 130);
+	//printf("un-->%C<--\n", 130);
 	//	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.
