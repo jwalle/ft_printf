@@ -48,4 +48,3 @@ void	arg_is_int(t_env *e, t_arg *arg, va_list list)
 {
 	print_llint(e, arg, list);
 }
-

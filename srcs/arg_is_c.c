@@ -27,7 +27,6 @@ unsigned char *convert_wchar(wchar_t c)
 	static unsigned char w_static[5];
 	unsigned char *str;
 
-
 	str = w_static;
 	if (c<(1<<7))
 	{
@@ -60,12 +59,17 @@ unsigned char *convert_wchar(wchar_t c)
 void ft_putwchar(t_env *e, unsigned char *str)
 {
 	int i;
+	unsigned int n;
 
 	i = 0;
+
 	// puts("plop");
 	while (i < 4)
 	{
-		write(1, &str[i], 1);
+		write (1, "_", 1);
+		n = str[i];
+		write(1, &n, 1);
+		write (1, "\n", 1);
 		i++;
 	}
 	e->ret++;

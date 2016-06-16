@@ -29,15 +29,13 @@ int main()
 		printf("local not set\n");
 	else
 		printf("--> local set to = %s\n\n\n", l);
-	//printf("test 1 : -->%5c<-- , -->%5d<--\n", 42, 42);
-
-	//	printf("TEST =%%.o, -42\n");
 
 	ft_printf("ft-->%C<--\n", L"米");
-	 wprintf(L"un-->%C<--\n", L"米");
-//	ft_printf("ft-->%C<--\n", 130);
+	printf("un-->%C<--\n", L'米');
+	printf("%C\n", 63743);
+
+	//ft_printf("ft-->%C<--\n", 130);
 	//printf("un-->%C<--\n", 130);
-	//	printf("%s", 42);
 
 	// precision of 0 >> nothing printed if value == 0.
 	return (0);
