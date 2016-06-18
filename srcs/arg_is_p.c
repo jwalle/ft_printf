@@ -13,16 +13,16 @@ void	print_ptr(t_env *e, t_arg *arg, va_list list)
 	ptr = va_arg(list, void*);
 	if (ptr)
 		len = ft_int_hex_len((unsigned long long)ptr);
-	while (arg->precision > (len + temp++))
-		ft_putchar_ret(e, '0');
 	if (arg->flags->space)
 	{
 		ft_putchar_ret(e, ' ');
 		temp++;
 	}
-	while (!arg->flags->minus && ((arg->width - temp++) >= len))
+	while (!arg->flags->minus && ((arg->width - temp++) > len))
 		ft_putchar_ret(e, ' ');
 	ft_putstr_ret(e, "0x");
+	while (arg->precision + 3 > (len + temp++))
+		ft_putchar_ret(e, '0');
 	if (!ptr && arg->precision_null)
 		;
 	else

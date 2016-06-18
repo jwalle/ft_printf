@@ -66,7 +66,7 @@ typedef	struct		s_env
 	int				ret;
 }					t_env;
 
-int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
+//int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
 
 
 int		ft_printf(const char *format, ...);

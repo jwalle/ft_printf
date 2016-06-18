@@ -35,9 +35,11 @@ int main()
 		//ft_printf("ft-->%S<--\n", NULL);
 		//ft_printf("{%30S}\n", L"我是一只猫。");
 		//printf("{%30S}\n", L"我是一只猫。");
-	ft_printf("ft-->%.5p<--\n", 0);
+		printf("un-->%5p<--\n", 0);
+		ft_printf("ft-->%5p<--\n", 0);
+		printf("un-->%.5p<--\n", 0);
+		ft_printf("ft-->%.5p<--\n", 0);
 	//ft_printf("ft-->%s<--\n", 43);
-	//printf("un-->%.5p<--\n", 0);
 	//printf("un-->%C<--\n", 13040);
 
 	//printf("%C\n", 63743);

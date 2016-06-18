@@ -24,10 +24,6 @@ void print_char(t_env *e, t_arg *arg, char c)
 
 unsigned char *convert_wchar(unsigned char *str, wchar_t c, int len)
 {
-	// static unsigned char w_static[5];
-	// unsigned char *str;
-
-	// str = w_static;
 	if (len == 2)
 	{
 		str[0] = ((c >> 6) | 0xC0);

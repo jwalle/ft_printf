@@ -1,1 +1,1 @@
-git add -A ; git commit -m "H_wideS_format_done" ; git push origin master
+git add -A ; git commit -m "Precision_for_p" ; git push origin master
