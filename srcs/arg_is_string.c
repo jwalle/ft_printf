@@ -55,14 +55,21 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 
 	temp = 0;
 	i = 0;
-	str ? (len = ft_strlen_ptf(str)) : (len = 6);
+	(str) ? (len = ft_strlen_ptf(str)) : (len = 6);
+	if (!str && arg->precision_null)
+		len = 0;
 	//printf("len = %d\n", len);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
-		ft_putchar_ret(e, ' ');
+	{
+		if (arg->flags->zero)
+			ft_putchar_ret(e, '0');
+		else
+			ft_putchar_ret(e, ' ');
+	}
 	if (str)
 	{
 		if (arg->precision && (arg->precision < (int)ft_strlen_ptf(str)))
@@ -73,7 +80,7 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 		else
 			ft_putstr_ret(e, str);
 	}
-	else
+	else if (!arg->precision_null)
 		ft_putstr_ret(e, "(null)");
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');

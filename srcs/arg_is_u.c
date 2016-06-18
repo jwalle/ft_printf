@@ -3,29 +3,18 @@
 #include "ft_printf.h"
 
 
-void	print_hex(t_env *e, char spe)
+int		print_hex(t_env *e, char spe)
 {
 	if (spe == 'o' || spe == 'O')
+	{
 		ft_putchar_ret(e, '0');
+		return (1);
+	}
 	else if (spe == 'x')
 		ft_putstr_ret(e, "0x");
 	else if (spe == 'X')
 		ft_putstr_ret(e, "0X");
-}
-
-void		parse_uns(t_env *e, unsigned long long number, char spe)
-{
-	if (spe == 'o' || spe == 'O')
-	{
-		ft_putnbr_octal(e, number);
-		return ;
-	}
-	else if (spe == 'x' || spe == 'X')
-	{
-		ft_putnbr_hexa(e, number, spe);
-		return ;
-	}
-	ft_putllunbr(e, number);
+	return(2);
 }
 
 unsigned long long check_unsigned(unsigned long long n, t_length *length, t_arg *arg)
@@ -44,7 +33,6 @@ unsigned long long check_unsigned(unsigned long long n, t_length *length, t_arg 
 		return ((unsigned int)n);
 	return (n);
 }
-
 
 void	print_lluint(t_env *e, t_arg *arg, va_list list)
 {

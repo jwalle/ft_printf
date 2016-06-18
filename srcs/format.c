@@ -94,7 +94,6 @@ int		format_precision(t_env *e, t_arg *arg, int len, int signe)
 			ft_putchar_ret(e, '0');
 			i++;
 		}
-		arg->width = 0;
 	}
 	return (i);
 }
@@ -105,17 +104,19 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 
 	temp = 0;
 
+	//if (arg->precision && arg->flags->htag)
+	//	temp -= arg->hex;
 	temp += format_left_width(e, arg, len, signe);
 	temp += format_signe(e, arg, signe);
 	if (arg->precision)
 		temp += format_precision(e, arg, len, signe);
 	if (signe && arg->hex && arg->flags->htag)
-		print_hex(e, arg->specifier);
+		temp = print_hex(e, arg->specifier);
 	if (!arg->flags->minus)
 	{
 		while (arg->flags->zero && ((arg->width - len) > temp++))
 			ft_putchar_ret(e, '0');
-		while (arg->precision > (len + temp++))
+		while (arg->precision  > (len + temp++))
 			ft_putchar_ret(e, '0');
 	}
 	return (temp);

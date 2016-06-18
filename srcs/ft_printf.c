@@ -20,6 +20,8 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 		arg_is_p(e, arg, list);
 	else if (specifier == '%')
 		print_char(e, arg, '%');
+		else
+		print_char(e, arg, specifier);
 }
 
 void		parse_number(t_env *e, long long number, char spe)

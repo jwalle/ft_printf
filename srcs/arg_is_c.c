@@ -16,7 +16,12 @@ void print_char(t_env *e, t_arg *arg, char c)
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
 	while (!arg->flags->minus && (arg->width - temp++) >= len)
-		ft_putchar_ret(e, ' ');
+	{
+		if (arg->flags->zero)
+	ft_putchar_ret(e, '0');
+		else
+			ft_putchar_ret(e, ' ');
+	}
 	ft_putchar_ret(e, c);
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');

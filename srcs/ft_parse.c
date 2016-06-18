@@ -26,8 +26,10 @@ void	parse_length(t_arg *arg, char *len_parse)
 
 int	is_hex(char spe)
 {
-	if (spe == 'x' || spe == 'X' || spe == 'o' || spe == 'O')
+	if (spe == 'o' || spe == 'O')
 		return (1);
+	else if (spe == 'x' || spe == 'X')
+		return (2);
 	return (0);
 }
 
@@ -36,7 +38,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 	int 	i;
 	char	*len_parse;
 
-	i = 0;	
+	i = 0;
 	init_length(arg->length);
 	if (ft_strchr_ptf(LENGTH, format[i + n]))
 	{
@@ -47,15 +49,7 @@ int parse_two(const char *format, t_arg *arg, int n)
 		parse_length(arg, len_parse);
 		free(len_parse);
 	}
-	i = 0;
-	if (ft_strchr_ptf(SPECIFIER, format[i + n]))
-		arg->specifier = format[i++ + n];
-	else // special spe.
-	{
-		//write(1, "\0", 1);
-		return (n);
-	}
-	n += i;
+	arg->specifier = format[n++];
 	arg->hex = is_hex(arg->specifier);
 	return (n);
 }
