@@ -104,14 +104,16 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 
 	temp = 0;
 
-	//if (arg->precision && arg->flags->htag)
-	//	temp -= arg->hex;
 	temp += format_left_width(e, arg, len, signe);
 	temp += format_signe(e, arg, signe);
 	if (arg->precision)
 		temp += format_precision(e, arg, len, signe);
+		//printf("len %d\n", temp);
+
 	if (signe && arg->hex && arg->flags->htag)
-		temp = print_hex(e, arg->specifier);
+		print_hex(e, arg->specifier);
+	if (arg->hex == 2 && arg->flags->htag)
+	temp = 0;
 	if (!arg->flags->minus)
 	{
 		while (arg->flags->zero && ((arg->width - len) > temp++))

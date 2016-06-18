@@ -25,13 +25,18 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 	i = 0;
 	w_str ? (len = ft_wstrlen_ptf(w_str)) : (len = 6);
 //	printf("len = %d\n", len);
-	if (arg->precision && (arg->precision < len))
+	if ((arg->precision && (arg->precision < len)) || arg->precision_null)
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
-		ft_putchar_ret(e, ' ');
-	if (w_str)
+	{
+		if (arg->flags->zero)
+			ft_putchar_ret(e, '0');
+		else
+			ft_putchar_ret(e, ' ');
+	}
+	if (w_str && !arg->precision_null)
 	{
 		if (arg->precision && (arg->precision < (int)ft_wstrlen_ptf(w_str)))
 		{
@@ -41,7 +46,7 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 		else
 			arg_is_wstr(e, w_str);
 	}
-	else
+	else if (!w_str && !arg->precision_null)
 		ft_putstr_ret(e, "(null)");
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');

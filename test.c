@@ -37,6 +37,8 @@ int main()
 		//printf("{%30S}\n", L"我是一只猫。");
 		printf("un-->%#.3o<--\n", 1);
 		ft_printf("ft-->%#.3o<--\n", 1);
+		printf("un-->%#.5x<--\n", 1);
+		ft_printf("ft-->%#.5x<--\n", 1);
 	//ft_printf("ft-->%s<--\n", 43);
 	//printf("un-->%C<--\n", 13040);
 
