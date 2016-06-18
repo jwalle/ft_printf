@@ -22,68 +22,76 @@ void print_char(t_env *e, t_arg *arg, char c)
 		ft_putchar_ret(e, ' ');
 }
 
-unsigned char *convert_wchar(wchar_t c)
+unsigned char *convert_wchar(unsigned char *str, wchar_t c, int len)
 {
-	static unsigned char w_static[5];
-	unsigned char *str;
+	// static unsigned char w_static[5];
+	// unsigned char *str;
 
-	str = w_static;
-	if (c<(1<<7))
+	// str = w_static;
+	if (len == 2)
 	{
-		*str++ = (unsigned char)(c);
-		puts("convert");
+		str[0] = ((c >> 6) | 0xC0);
+		str[1] = ((c & 0x3F) | 0x80);
 	}
-	else if (c<(1<<11))
+	else if (len == 3)
 	{
-
-		*str++ = (unsigned char)((c>>6)|0xC0);
-		*str++ = (unsigned char)((c&0x3F)|0x80);
+		str[0] = ((c >> 12) | 0xE0);
+		str[1] = (((c >> 6) & 0x3F) | 0x80);
+		str[2] = ((c & 0x3F) | 0x80);
 	}
-	else if (c<(1<<16))
+	else if (len == 4)
 	{
-		*str++ = (unsigned char)((c>>12)|0xE0);
-		*str++ = (unsigned char)(((c>>6)&0x3F)|0xE0);
-		*str++ = (unsigned char)((c&0x3F)|0x80);
+		str[0] = ((c >> 18) | 0xF0);
+		str[1] = (((c >> 12) & 0x3F) | 0x80);
+		str[2] = (((c >> 6) & 0x3F) | 0x80);
+		str[3] = ((c & 0x3F) | 0x80);
 	}
-	else if (c<(1<<21))
-	{
-		*str++ = (unsigned char)((c>>18)|0xE0);
-		*str++ = (unsigned char)(((c>>12)&0x3F)|0xE0);
-		*str++ = (unsigned char)(((c>>6)&0x3F)|0xE0);
-		*str++ = (unsigned char)((c&0x3F)|0x80);
-	}
-	*str = 0;
+	str[4] = 0;
 	return (str);
 }
 
-void ft_putwchar(t_env *e, unsigned char *str)
+void ft_putwchar(t_env *e, unsigned char *str, int len)
 {
 	int i;
-	unsigned int n;
 
 	i = 0;
-
-	// puts("plop");
-	while (i < 4)
+	while (i < len)
 	{
-		write (1, "_", 1);
-		n = str[i];
-		write(1, &n, 1);
-		write (1, "\n", 1);
+		write(1, &str[i], 1);
 		i++;
 	}
 	e->ret++;
 }
 
+int get_wchar_len(wchar_t c)
+{
+	unsigned int e;
+
+	e = (unsigned int)c;
+	if (e < 0x07FF)
+		return (2);
+	else if (e < 0xFFFF)
+		return (3);
+	else
+		return (4);
+}
 
 void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 {
-	wchar_t			w;
-	unsigned char	*str;
+	wchar_t				w;
+	unsigned char	str[5];
+	int						len;
 
 	w = va_arg(list, wchar_t);
-	str = convert_wchar(w);
-	ft_putwchar(e, str);
+	if (w >= 0 && w <= 255)
+	{
+		ft_putchar_ret(e, w);
+		return ;
+	}
+	ft_bzero_ptf(str, 5);
+	len = get_wchar_len(w);
+	convert_wchar(str, w, len);
+	ft_putwchar(e, str, len);
 	(void)arg;
 	// ft_putstr_ret(e, (const char*)str);
 }

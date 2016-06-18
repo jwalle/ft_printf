@@ -30,8 +30,11 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-	ft_printf("ft-->%C<--\n", L"米");
+		ft_printf("ft-->%C<--\n", L'米');
+	ft_printf("ft-->%C<--\n", 13040);
 	printf("un-->%C<--\n", L'米');
+	printf("un-->%C<--\n", 13040);
+
 	printf("%C\n", 63743);
 
 	//ft_printf("ft-->%C<--\n", 130);
