@@ -3,8 +3,6 @@
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
-int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
-
 void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 {
 	if (specifier == 'd' || specifier == 'i' || specifier == 'D')

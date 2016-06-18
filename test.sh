@@ -1,3 +1,3 @@
 make re
-clang  test.c -L. -lftprintf
+clang -Wall -Werror -Wextra  test.c -L. -lftprintf
 ./a.out

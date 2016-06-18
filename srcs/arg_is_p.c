@@ -23,7 +23,10 @@ void	print_ptr(t_env *e, t_arg *arg, va_list list)
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
 		ft_putchar_ret(e, ' ');
 	ft_putstr_ret(e, "0x");
-	ft_putnbr_hexa(e, (unsigned long long)ptr, 'x');
+	if (!ptr && arg->precision_null)
+		;
+	else
+		ft_putnbr_hexa(e, (unsigned long long)ptr, 'x');
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }
