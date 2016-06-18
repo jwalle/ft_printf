@@ -1,1 +1,1 @@
-git add -A ; git commit -m "H_wideC_half_done" ; git push origin master
+git add -A ; git commit -m "H_wideS_format_done" ; git push origin master

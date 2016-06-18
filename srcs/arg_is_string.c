@@ -6,11 +6,13 @@
 int		ft_wstrlen_ptf(wchar_t *w)
 {
 	int	i;
+	int ret;
 
 	i = 0;
+	ret = 0;
 	while (w[i])
-		i++;
-	return (i);
+		ret += get_wchar_len(w[i++]);
+	return (ret);
 }
 
 void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
@@ -22,7 +24,7 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 	temp = 0;
 	i = 0;
 	w_str ? (len = ft_wstrlen_ptf(w_str)) : (len = 6);
-	printf("len = %d\n", len);
+//	printf("len = %d\n", len);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
@@ -105,12 +107,12 @@ void	arg_is_string(t_env *e, t_arg *arg, va_list list)
 	if (arg->length->l || arg->specifier == 'S')
 	{
 		w_str = va_arg(list, wchar_t*);
-		if (w_str == NULL)
+		/*if (w_str == NULL)
 		{
 			ft_putstr_ret(e, "(null)");
 			return ;
-		}
-		arg_is_wstr(e, w_str);
+		}*/
+		print_wstr(e, w_str, arg);
 	}
 	else
 	{
