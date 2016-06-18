@@ -5,7 +5,12 @@
 long long check_signed(long long n, t_length *length, t_arg *arg)
 {
 	if (length->hh)
-		return ((signed char)n);
+	{
+		if (arg->specifier == 'D')
+			return ((signed short)n);
+		else
+			return ((signed char)n);
+	}
 	else if (length->h)
 		return ((short int)n);
 	else if (length->l || arg->specifier == 'D')
