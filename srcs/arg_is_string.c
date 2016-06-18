@@ -29,11 +29,6 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
-	if (arg->flags->space)
-	{
-		ft_putchar_ret(e, ' ');
-		temp++;
-	}
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
 		ft_putchar_ret(e, ' ');
 	if (w_str)
@@ -61,15 +56,11 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 	temp = 0;
 	i = 0;
 	str ? (len = ft_strlen_ptf(str)) : (len = 6);
+	//printf("len = %d\n", len);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
 		ft_putchar_ret(e, '0');
-	if (arg->flags->space)
-	{
-		ft_putchar_ret(e, ' ');
-		temp++;
-	}
 	while (!arg->flags->minus && ((arg->width - temp++) >= len))
 		ft_putchar_ret(e, ' ');
 	if (str)

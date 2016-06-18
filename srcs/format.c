@@ -13,7 +13,7 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
  			temp = 2;
  		else if (arg->specifier == 'o' || arg->specifier == 'O')
  		{
- 			if (!signe)
+ 			if (!signe && arg->precision_null)
  				ft_putchar_ret(e, '0');
  			temp++;
  		}
@@ -108,7 +108,7 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	temp += format_left_width(e, arg, len, signe);
 	temp += format_signe(e, arg, signe);
 	if (arg->precision)
-		temp += format_precision(e, arg, len, signe);	
+		temp += format_precision(e, arg, len, signe);
 	if (signe && arg->hex && arg->flags->htag)
 		print_hex(e, arg->specifier);
 	if (!arg->flags->minus)

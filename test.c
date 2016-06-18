@@ -31,11 +31,12 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
+
 		//ft_printf("ft-->%S<--\n", NULL);
-		ft_printf("{%30S}\n", L"我是一只猫。");
-		printf("{%30S}\n", L"我是一只猫。");
-	//ft_printf("ft-->%C<--\n", 13040);
-	//printf("un-->%S<--\n", NULL);
+		//ft_printf("{%30S}\n", L"我是一只猫。");
+		//printf("{%30S}\n", L"我是一只猫。");
+	ft_printf("ft-->%#o<--\n", 0);
+	printf("un-->%#o<--\n", 0);
 	//printf("un-->%C<--\n", 13040);
 
 	//printf("%C\n", 63743);
