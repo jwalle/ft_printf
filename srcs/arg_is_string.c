@@ -22,6 +22,7 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 	temp = 0;
 	i = 0;
 	w_str ? (len = ft_wstrlen_ptf(w_str)) : (len = 6);
+	printf("len = %d\n", len);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
 	while (arg->precision > (len + temp++) && len > temp)
