@@ -58,9 +58,9 @@ void ft_putwchar(t_env *e, unsigned char *str, int len)
 	while (i < len)
 	{
 		write(1, &str[i], 1);
+		e->ret++;
 		i++;
 	}
-	e->ret++;
 }
 
 int get_wchar_len(wchar_t c)
@@ -76,13 +76,11 @@ int get_wchar_len(wchar_t c)
 		return (4);
 }
 
-void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
+void	arg_is_wchar(t_env *e, wchar_t w)
 {
-	wchar_t				w;
 	unsigned char	str[5];
 	int						len;
 
-	w = va_arg(list, wchar_t);
 	if (w >= 0 && w <= 255)
 	{
 		ft_putchar_ret(e, w);
@@ -92,13 +90,20 @@ void	arg_is_wchar(t_env *e, t_arg *arg, va_list list)
 	len = get_wchar_len(w);
 	convert_wchar(str, w, len);
 	ft_putwchar(e, str, len);
-	(void)arg;
 	// ft_putstr_ret(e, (const char*)str);
 }
 
 void	arg_is_c(t_env *e, t_arg *arg, va_list list)
 {
-	if (arg->length->l)
-		arg_is_wchar(e, arg, list);
-	print_char(e, arg, va_arg(list, int));
+	wchar_t w;
+
+	w = 0;
+	//puts("plop");
+	if (arg->length->l || arg->specifier == 'C')
+	{
+		w = va_arg(list, wchar_t);
+		arg_is_wchar(e, w);
+	}
+	else
+		print_char(e, arg, va_arg(list, int));
 }

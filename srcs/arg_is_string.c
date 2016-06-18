@@ -41,7 +41,31 @@ void	print_str(t_env *e, t_arg *arg, va_list list)
 		ft_putchar_ret(e, ' ');
 }
 
+void arg_is_wstr(t_env *e, wchar_t *w_str)
+{
+	int i;
+
+	i = 0;
+	while (w_str[i])
+	{
+		arg_is_wchar(e, w_str[i++]);
+	}
+}
+
+#include <string.h>
+
 void	arg_is_string(t_env *e, t_arg *arg, va_list list)
 {
-	print_str(e, arg, list);
+	wchar_t *w_str;
+
+
+	if (arg->length->l || arg->specifier == 'S')
+	{
+		w_str = va_arg(list, wchar_t*);
+		if (w_str == NULL)
+			memcpy(w_str, "(null)", 6);
+		arg_is_wstr(e, w_str);
+	}
+	else
+		print_str(e, arg, list);
 }

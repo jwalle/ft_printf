@@ -104,6 +104,6 @@ char	*ft_strchr_ptf(const char *s, int c);
 int		ft_strcmp_ptf(const char *s1, const char *s2);
 char	*ft_strncpy_ptf(char *dest, const char *src, size_t n);
 char	*ft_strnew_ptf(size_t size);
-void	arg_is_wchar(t_env *e, t_arg *arg, va_list list);
+void	arg_is_wchar(t_env *e, wchar_t w);
 
 #endif

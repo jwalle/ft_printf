@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/08 19:12:41 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/18 18:10:44 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-		ft_printf("ft-->%C<--\n", L'米');
-	ft_printf("ft-->%C<--\n", 13040);
-	printf("un-->%C<--\n", L'米');
-	printf("un-->%C<--\n", 13040);
+		ft_printf("ft-->%S<--\n", NULL);
+	//ft_printf("ft-->%C<--\n", 13040);
+	printf("un-->%S<--\n", NULL);
+	//printf("un-->%C<--\n", 13040);
 
 	printf("%C\n", 63743);
 
