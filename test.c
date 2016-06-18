@@ -15,6 +15,7 @@
 #include <limits.h>
 #include <wchar.h>
 #include <locale.h>
+#include <stdlib.h>
 
 int	ft_strlen(char *s)
 {
@@ -30,12 +31,14 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-		ft_printf("ft-->%S<--\n", NULL);
+		//ft_printf("ft-->%S<--\n", NULL);
+		ft_printf("{%30S}\n", L"我是一只猫。");
+		printf("{%30S}\n", L"我是一只猫。");
 	//ft_printf("ft-->%C<--\n", 13040);
-	printf("un-->%S<--\n", NULL);
+	//printf("un-->%S<--\n", NULL);
 	//printf("un-->%C<--\n", 13040);
 
-	printf("%C\n", 63743);
+	//printf("%C\n", 63743);
 
 	//ft_printf("ft-->%C<--\n", 130);
 	//printf("un-->%C<--\n", 130);

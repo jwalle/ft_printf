@@ -2,17 +2,61 @@
 
 #include "ft_printf.h"
 
-void	print_str(t_env *e, t_arg *arg, va_list list)
+
+int		ft_wstrlen_ptf(wchar_t *w)
+{
+	int	i;
+
+	i = 0;
+	while (w[i])
+		i++;
+	return (i);
+}
+
+void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 {
 	int		len;
-	char	*str;
 	int		temp;
 	int		i;
 
 	temp = 0;
-	str = NULL;
 	i = 0;
-	str = va_arg(list, char*);
+	w_str ? (len = ft_wstrlen_ptf(w_str)) : (len = 6);
+	if (arg->precision && (arg->precision < len))
+		len = arg->precision;
+	while (arg->precision > (len + temp++) && len > temp)
+		ft_putchar_ret(e, '0');
+	if (arg->flags->space)
+	{
+		ft_putchar_ret(e, ' ');
+		temp++;
+	}
+	while (!arg->flags->minus && ((arg->width - temp++) >= len))
+		ft_putchar_ret(e, ' ');
+	if (w_str)
+	{
+		if (arg->precision && (arg->precision < (int)ft_wstrlen_ptf(w_str)))
+		{
+			while (arg->precision > i)
+				arg_is_wchar(e, w_str[i++]);
+		}
+		else
+			arg_is_wstr(e, w_str);
+	}
+	else
+		ft_putstr_ret(e, "(null)");
+	while (arg->flags->minus && (arg->width >= (len + temp++)))
+		ft_putchar_ret(e, ' ');
+}
+
+void	print_str(t_env *e, char *str, t_arg *arg)
+{
+	int		len;
+	int		temp;
+	int		i;
+
+	temp = 0;
+	i = 0;
 	str ? (len = ft_strlen_ptf(str)) : (len = 6);
 	if (arg->precision && (arg->precision < len))
 		len = arg->precision;
@@ -52,20 +96,24 @@ void arg_is_wstr(t_env *e, wchar_t *w_str)
 	}
 }
 
-#include <string.h>
-
 void	arg_is_string(t_env *e, t_arg *arg, va_list list)
 {
 	wchar_t *w_str;
-
+	char		*str;
 
 	if (arg->length->l || arg->specifier == 'S')
 	{
 		w_str = va_arg(list, wchar_t*);
 		if (w_str == NULL)
-			memcpy(w_str, "(null)", 6);
+		{
+			ft_putstr_ret(e, "(null)");
+			return ;
+		}
 		arg_is_wstr(e, w_str);
 	}
 	else
-		print_str(e, arg, list);
+	{
+		str = va_arg(list, char*);
+		print_str(e, str, arg);
+	}
 }
