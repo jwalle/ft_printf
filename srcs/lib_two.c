@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 18:37:17 by jwalle            #+#    #+#             */
-/*   Updated: 2016/05/31 18:37:28 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 19:50:31 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ size_t	ft_strlen_ptf(const char *s)
 	return (i);
 }
 
-char *ft_strndup(char *str, int i)
+char	*ft_strndup(char *str, int i)
 {
 	char	*ret;
 
 	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
-		return NULL;
+		return (NULL);
 	ret = ft_strncpy_ptf(ret, str, i);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:34:38 by jwalle            #+#    #+#             */
-/*   Updated: 2016/05/27 17:35:53 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 19:51:36 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_putchar_ret(t_env *e, char c)
 	e->ret++;
 }
 
-void	ft_putstr_ret( t_env *e, const char *s)
+void	ft_putstr_ret(t_env *e, const char *s)
 {
 	int i;
 

@@ -6,12 +6,11 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 18:36:48 by jwalle            #+#    #+#             */
-/*   Updated: 2016/05/31 18:37:06 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 19:49:57 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int		ft_atoi_ptf(const char *str)
 {
@@ -52,7 +51,7 @@ void	ft_bzero_ptf(void *s, size_t n)
 	}
 }
 
-int	ft_isdigit_ptf(int c)
+int		ft_isdigit_ptf(int c)
 {
 	if (c > 47 && c < 58)
 		return (1);

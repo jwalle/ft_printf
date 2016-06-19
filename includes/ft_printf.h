@@ -6,26 +6,26 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 17:01:35 by jwalle            #+#    #+#             */
-/*   Updated: 2016/04/18 17:01:42 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 19:54:55 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
-#include <stdarg.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <limits.h>
-#include <wchar.h>
-#include <stdlib.h>
-#include <unistd.h>
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <limits.h>
+# include <wchar.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#define HEXA "0123456789abcdef"
-#define HEXA_MAJ "0123456789ABCDEF"
-#define OCTAL "0x000000000000"
-#define FLAGS "-+ #0"
-#define LENGTH "hljz"
-#define SPECIFIER "sSpdDioOuUxXcC%"
+# define HEXA "0123456789abcdef"
+# define HEXA_MAJ "0123456789ABCDEF"
+# define OCTAL "0x000000000000"
+# define FLAGS "-+ #0"
+# define LENGTH "hljz"
+# define SPECIFIER "sSpdDioOuUxXcC%"
 
 // D = ld, O = lo, U = lu.
 
@@ -51,12 +51,12 @@ typedef	struct		s_length
 
 typedef	struct		s_arg
 {
-	t_flags			*flags;		// -+ #0
-	t_length		*length;		// hh, l, ...
-	int				width;		// number
-	int				precision;  // number
-	int				precision_null;  // number
-	char			specifier; // sS...
+	t_flags			*flags;
+	t_length		*length;
+	int				width;
+	int				precision;
+	int				precision_null;
+	char			specifier;
 	int				hex;
 	int				is_unsigned;
 }					t_arg;
@@ -67,7 +67,6 @@ typedef	struct		s_env
 }					t_env;
 
 //int	ft_printf(const char *format, ...) __attribute__((format(printf,1,2)));
-
 
 int		ft_printf(const char *format, ...);
 char	*ft_strndup(char *str, int i);
@@ -95,7 +94,7 @@ void	ft_putnbr_octal(t_env *e, unsigned long long number);
 void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe);
 void	ft_putllunbr(t_env *e, unsigned long long int n);
 void	ft_putchar_ret(t_env *e, char c);
-void	ft_putstr_ret( t_env *e, const char *s);
+void	ft_putstr_ret(t_env *e, const char *s);
 void	print_char(t_env *e, t_arg *arg, char c);
 
 size_t	ft_strlen_ptf(const char *s);
@@ -108,8 +107,7 @@ int		ft_strcmp_ptf(const char *s1, const char *s2);
 char	*ft_strncpy_ptf(char *dest, const char *src, size_t n);
 char	*ft_strnew_ptf(size_t size);
 void	arg_is_wchar(t_env *e, wchar_t w);
-void arg_is_wstr(t_env *e, wchar_t *w_str);
-int get_wchar_len(wchar_t c);
-
+void	arg_is_wstr(t_env *e, wchar_t *w_str);
+int		get_wchar_len(wchar_t c);
 
 #endif
