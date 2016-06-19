@@ -30,6 +30,7 @@ SRC_PRINTF =	ft_printf.o \
 				arg_is_int.o \
 				arg_is_u.o \
 				arg_is_c.o \
+				arg_is_wc.o \
 				arg_is_string.o \
 				arg_is_p.o \
 				ft_init.o \
@@ -63,7 +64,7 @@ $(SRC_PRINTF) : %.o : $(SRCDIR)%.c
 		@$(RESET)
 
 clean:
-	/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
+	/bin/rm -f $(addprefix $(ODIR), $(OBJ))
 
 fclean: clean
 	/bin/rm -rf $(NAME)
