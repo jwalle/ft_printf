@@ -6,13 +6,13 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/19 17:47:30 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/19 17:50:46 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 20:44:35 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
+int		format_hex(t_arg *arg, t_env *e, int signe)
 {
 	int temp;
 
@@ -28,6 +28,14 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 			temp++;
 		}
 	}
+	return (temp);
+}
+
+int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
+{
+	int temp;
+
+	temp = format_hex(arg, e, signe);
 	if (arg->precision > len)
 		len = arg->precision;
 	if (arg->flags->space || (arg->flags->plus && signe >= 0) || signe < 0)
