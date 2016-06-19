@@ -116,10 +116,16 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	temp = 0;
 	if (!arg->flags->minus)
 	{
-		while (arg->flags->zero && ((arg->width - len) > temp++))
+		while (arg->flags->zero && ((arg->width - len) > temp))
+		{
 			ft_putchar_ret(e, '0');
-		while (arg->precision  > (len + temp++))
+			temp++;
+		}
+		while (arg->precision  > (len + temp))
+		{
 			ft_putchar_ret(e, '0');
+			temp++;
+		}
 	}
 	return (temp);
 }
