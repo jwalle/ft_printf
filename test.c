@@ -31,8 +31,8 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-		printf("%#08x\n", 42);
-		printf("%#08x\n", 42);
+		ft_printf("ft->%#08x\n", 42);
+		printf("un->%#08x\n", 42);
 
 	//	ft_printf("ft->%4.1S<-\n", L"Jambon");
 	//	printf("un->%4.1S<-\n", L"Jambon");
