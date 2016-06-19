@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/19 00:32:43 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/19 04:38:46 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,23 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-
+		ft_printf("ft->%4.1S<-\n", L"Jambon");
+		printf("un->%4.1S<-\n", L"Jambon");
 		//ft_printf("ft-->%S<--\n", NULL);
-		//ft_printf("{%30S}\n", L"我是一只猫。");
-		//printf("{%30S}\n", L"我是一只猫。");
-		printf("un-->%#.3o<--\n", 1);
-		ft_printf("ft-->%#.3o<--\n", 1);
-		printf("un-->%#.5x<--\n", 1);
-		ft_printf("ft-->%#.5x<--\n", 1);
+		ft_printf("ft{%015.4S}\n", L"我是一只猫。");
+		printf("un{%015.4S}\n", L"我是一只猫。");
+	//	printf("un-->%#.3o<--\n", 1);
+		ft_printf("ft{%04.15S}\n", L"我是一只猫。");
+		printf("un{%04.15S}\n", L"我是一只猫。");
+	//	ft_printf("ft-->%#.3o<--\n", 1);
+	//	printf("un-->%4.s<--\n", "42");
+	ft_printf("ft-->%.4S<--\n", L"我是一只猫。");
+	printf("un-->%.4S<--\n", L"我是一只猫。");
+
+	ft_printf("ft{%-30S}\n", L"我是一只猫。");
+	printf("un{%-30S}\n", L"我是一只猫。");
+	//	printf("un-->%s<--\n", "");
+	//	ft_printf("ft-->%s<--\n", "");
 	//ft_printf("ft-->%s<--\n", 43);
 	//printf("un-->%C<--\n", 13040);
 

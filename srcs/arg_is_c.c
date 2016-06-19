@@ -69,7 +69,9 @@ int get_wchar_len(wchar_t c)
 	unsigned int e;
 
 	e = (unsigned int)c;
-	if (e < 0x07FF)
+	if (e > 0 && e < 255)
+		return (1);
+	else if (e < 0x07FF)
 		return (2);
 	else if (e < 0xFFFF)
 		return (3);
