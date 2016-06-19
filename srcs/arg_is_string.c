@@ -1,7 +1,16 @@
-/* == HEADER == */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg_is_string.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/19 18:06:55 by jwalle            #+#    #+#             */
+/*   Updated: 2016/06/19 18:14:00 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int		ft_wstrlen_ptf(wchar_t *w)
 {
@@ -23,21 +32,15 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 
 	temp = 0;
 	i = 0;
-	w_str ? (len = ft_wstrlen_ptf(w_str)) : (len = 6);
-	// printf("len_w = %d\n", get_wchar_len(w_str[0]));
+	w_str ? len = ft_wstrlen_ptf(w_str) : 6;
 	if ((arg->precision && (arg->precision < len)) || arg->precision_null)
 	{
 		len = 0;
-		while(len + get_wchar_len(w_str[i]) <= arg->precision)
+		while (len + get_wchar_len(w_str[i]) <= arg->precision)
 			len += get_wchar_len(w_str[i++]);
 	}
 	i = 0;
-/*	while (arg->precision > (len + temp) && len > temp)
-	{
-		ft_putchar_ret(e, '0');
-		temp++;
-	}*/
-	while (!arg->flags->minus && ((arg->width - temp) > len)) // 12 ici
+	while (!arg->flags->minus && ((arg->width - temp) > len))
 	{
 		if (arg->flags->zero)
 			ft_putchar_ret(e, '0');
@@ -50,7 +53,7 @@ void	print_wstr(t_env *e, wchar_t *w_str, t_arg *arg)
 	if (w_str && !arg->precision_null)
 	{
 		if (arg->precision && (arg->precision < ft_wstrlen_ptf(w_str)))
-		{											//
+		{
 			while (w_str[i] && arg->precision >= temp + get_wchar_len(w_str[i]))
 			{
 				arg_is_wchar(e, w_str[i]);
@@ -75,7 +78,7 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 
 	temp = 0;
 	i = 0;
-	(str) ? (len = ft_strlen_ptf(str)) : (len = 6);
+	str ? len = ft_strlen_ptf(str) : 6;
 	if (!str || arg->precision_null)
 		len = 0;
 	if (arg->precision && (len > arg->precision))
@@ -103,7 +106,7 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 		ft_putchar_ret(e, ' ');
 }
 
-void arg_is_wstr(t_env *e, wchar_t *w_str)
+void	arg_is_wstr(t_env *e, wchar_t *w_str)
 {
 	int i;
 
@@ -117,16 +120,11 @@ void arg_is_wstr(t_env *e, wchar_t *w_str)
 void	arg_is_string(t_env *e, t_arg *arg, va_list list)
 {
 	wchar_t *w_str;
-	char		*str;
+	char	*str;
 
 	if (arg->length->l || arg->specifier == 'S')
 	{
 		w_str = va_arg(list, wchar_t*);
-		/*if (w_str == NULL)
-		{
-			ft_putstr_ret(e, "(null)");
-			return ;
-		}*/
 		print_wstr(e, w_str, arg);
 	}
 	else

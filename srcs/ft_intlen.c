@@ -1,8 +1,18 @@
-/* == HEADER == */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/19 18:55:02 by jwalle            #+#    #+#             */
+/*   Updated: 2016/06/19 18:55:27 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_int_octal_len(unsigned long long n)
+int	ft_int_octal_len(unsigned long long n)
 {
 	int i;
 
@@ -15,7 +25,7 @@ int		ft_int_octal_len(unsigned long long n)
 	return (i);
 }
 
-int		ft_int_hex_len(unsigned long long n)
+int	ft_int_hex_len(unsigned long long n)
 {
 	int i;
 
@@ -28,7 +38,7 @@ int		ft_int_hex_len(unsigned long long n)
 	return (i);
 }
 
-int		ft_intlen(int n)
+int	ft_intlen(int n)
 {
 	int i;
 
@@ -41,8 +51,7 @@ int		ft_intlen(int n)
 	return (i);
 }
 
-
-int		ft_ll_intlen(unsigned long long n)
+int	ft_ll_intlen(unsigned long long n)
 {
 	int i;
 
@@ -55,7 +64,7 @@ int		ft_ll_intlen(unsigned long long n)
 	return (i);
 }
 
-int		ft_parse_len(unsigned long long n, char spe)
+int	ft_parse_len(unsigned long long n, char spe)
 {
 	if (n == 0)
 		return (1);

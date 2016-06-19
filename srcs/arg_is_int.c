@@ -1,8 +1,18 @@
-/* == HEADER == */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg_is_int.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/19 18:15:15 by jwalle            #+#    #+#             */
+/*   Updated: 2016/06/19 18:21:47 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long check_signed(long long n, t_length *length, t_arg *arg)
+long long	check_signed(long long n, t_length *length, t_arg *arg)
 {
 	if (length->hh)
 	{
@@ -29,15 +39,16 @@ long long check_signed(long long n, t_length *length, t_arg *arg)
 	return (n);
 }
 
-void	print_llint(t_env *e, t_arg *arg, va_list list)
+void		print_llint(t_env *e, t_arg *arg, va_list list)
 {
 	int					len;
 	int					signe;
 	long long int		n;
 	int					temp;
 
+	signe = 1;
 	n = check_signed(va_arg(list, long long int), arg->length, arg);
-	(n < 0) ? (signe = -1) : (signe = 1);
+	(n < 0) ? (signe *= -1) : (signe *= 1);
 	if (n == 0)
 		signe = 0;
 	(n < 0) ? (n *= -1) : (n *= 1);
@@ -54,7 +65,7 @@ void	print_llint(t_env *e, t_arg *arg, va_list list)
 		ft_putchar_ret(e, ' ');
 }
 
-void	arg_is_int(t_env *e, t_arg *arg, va_list list)
+void		arg_is_int(t_env *e, t_arg *arg, va_list list)
 {
 	print_llint(e, arg, list);
 }

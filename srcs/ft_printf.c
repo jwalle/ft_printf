@@ -1,10 +1,23 @@
-/* == HEADER == */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/19 19:30:02 by jwalle            #+#    #+#             */
+/*   Updated: 2016/06/19 19:48:30 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h> // PRINTF PLOPLPOPLPO
 
-void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
+void	parse_specifier(t_env *e, t_arg *arg, va_list list)
 {
+	char specifier;
+
+	specifier = arg->specifier;
 	if (specifier == 'd' || specifier == 'i' || specifier == 'D')
 		arg_is_int(e, arg, list);
 	else if (specifier == 'u' || specifier == 'U' || specifier == 'o'
@@ -12,19 +25,17 @@ void	parse_specifier(t_env *e, char specifier, t_arg *arg, va_list list)
 		arg_is_u(e, arg, list);
 	else if (specifier == 'c' || specifier == 'C')
 		arg_is_c(e, arg, list);
-	//else if (specifier == 'C')
-	//	arg_is_wchar(e, arg, list);
 	else if (specifier == 's' || specifier == 'S')
 		arg_is_string(e, arg, list);
 	else if (specifier == 'p')
 		arg_is_p(e, arg, list);
 	else if (specifier == '%')
 		print_char(e, arg, '%');
-		else
+	else
 		print_char(e, arg, specifier);
 }
 
-void		parse_number(t_env *e, long long number, char spe)
+void	parse_number(t_env *e, long long number, char spe)
 {
 	if (spe == 'o' || spe == 'O')
 	{
@@ -39,28 +50,11 @@ void		parse_number(t_env *e, long long number, char spe)
 	ft_putllunbr(e, number);
 }
 
-void	parse_args(t_env *e, t_arg *arg, va_list list)
+int		process_format(const char *format, t_arg *arg, va_list list, t_env *e)
 {
-	parse_specifier(e, arg->specifier, arg, list);
-}
+	int i;
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	list;
-	t_arg	*arg;
-	int 	i;
-	t_env	*e;
-
-
-    if (!format)
-        return (-1);
 	i = 0;
-	arg = (t_arg*)malloc(sizeof(t_arg));
-	e = (t_env*)malloc(sizeof(t_env));
-	e->ret = 0;
-	arg->flags = (t_flags*)malloc(sizeof(t_flags));
-	arg->length = (t_length*)malloc(sizeof(t_length));
-	va_start(list, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -69,20 +63,35 @@ int	ft_printf(const char *format, ...)
 				return (0);
 			init_arg(arg);
 			i += 1 + parse(&format[i] + 1, arg);
-				/*printf("flags = {minus : %d, plus : %d, zero : %d, htag : %d, space : %d}, width = %d, precision = %d, specifier = %c\n",
-			arg->flags->minus,
-			arg->flags->plus,
-			arg->flags->zero,
-			arg->flags->htag,
-			arg->flags->space,
-			arg->width,
-			arg->precision,
-			arg->specifier);*/
-			parse_args(e, arg, list);
+			parse_specifier(e, arg, list);
 		}
 		else
 			ft_putchar_ret(e, format[i++]);
 	}
+	return (1);
+}
+
+void	init_mem(t_env *e, t_arg *arg)
+{
+	e->ret = 0;
+	arg->flags = (t_flags*)malloc(sizeof(t_flags));
+	arg->length = (t_length*)malloc(sizeof(t_length));
+}
+
+int		ft_printf(const char *format, ...)
+{
+	va_list	list;
+	t_arg	*arg;
+	t_env	*e;
+
+	if (!format)
+		return (-1);
+	arg = (t_arg*)malloc(sizeof(t_arg));
+	e = (t_env*)malloc(sizeof(t_env));
+	init_mem(e, arg);
+	va_start(list, format);
+	if (!process_format(format, arg, list, e))
+		return (0);
 	va_end(list);
 	return (e->ret);
 }

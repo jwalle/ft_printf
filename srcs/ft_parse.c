@@ -1,4 +1,14 @@
-/* == HEADER == */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/19 18:55:50 by jwalle            #+#    #+#             */
+/*   Updated: 2016/06/19 19:02:59 by jwalle           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 
@@ -24,7 +34,7 @@ void	parse_length(t_arg *arg, char *len_parse)
 		arg->length->z = 1;
 }
 
-int	is_hex(char spe)
+int		is_hex(char spe)
 {
 	if (spe == 'o' || spe == 'O')
 		return (1);
@@ -33,9 +43,9 @@ int	is_hex(char spe)
 	return (0);
 }
 
-int parse_two(const char *format, t_arg *arg, int n)
+int		parse_two(const char *format, t_arg *arg, int n)
 {
-	int 	i;
+	int		i;
 	char	*len_parse;
 
 	i = 0;
@@ -54,28 +64,34 @@ int parse_two(const char *format, t_arg *arg, int n)
 	return (n);
 }
 
-int	parse(const char *format, t_arg *arg)
+int		parse_zero(const char *format, t_arg *arg)
+{
+	int	i;
+
+	i = 0;
+	while (ft_strchr_ptf(FLAGS, format[i]))
+	{
+		if (format[i] == '-')
+			arg->flags->minus = 1;
+		if (format[i] == '+')
+			arg->flags->plus = 1;
+		if (format[i] == '0')
+			arg->flags->zero = 1;
+		if (format[i] == '#')
+			arg->flags->htag = 1;
+		if (format[i] == ' ')
+			arg->flags->space = 1;
+		i++;
+	}
+	return (i);
+}
+
+int		parse(const char *format, t_arg *arg)
 {
 	int		i;
 	int		n;
 
-	i = 0;
-	n = 0;
-	while (ft_strchr_ptf(FLAGS, format[i + n]))
-	{
-		if (format[i + n] == '-')
-			arg->flags->minus = 1;
-		if (format[i + n] == '+')
-			arg->flags->plus = 1;
-		if (format[i + n] == '0')
-			arg->flags->zero = 1;
-		if (format[i + n] == '#')
-			arg->flags->htag = 1;
-		if (format[i + n] == ' ')
-			arg->flags->space = 1;
-		i++;
-	}
-	n += i;
+	n = parse_zero(format, arg);
 	i = 0;
 	while (ft_isdigit_ptf(format[i + n]))
 		i++;
