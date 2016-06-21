@@ -70,7 +70,7 @@ typedef	struct		s_env
 
 int		ft_printf(const char *format, ...);
 char	*ft_strndup(char *str, int i);
-int		parse(const char *format, t_arg *arg);
+int		parse(const char *format, t_arg *arg, va_list list);
 int		parse_two(const char *format, t_arg *arg, int n);
 void	ft_atoi_hex(void *ptr);
 void	arg_is_int(t_env *e, t_arg *arg, va_list list);

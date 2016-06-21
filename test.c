@@ -50,8 +50,8 @@ int main()
 //	ft_printf("ft{%-30S}\n", L"我是一只猫。");
 //	printf("un{%-30S}\n", L"我是一只猫。");
 //	printf("un-->%s<--\n", "");
-	//	ft_printf("ft-->%s<--\n", "");
-	//ft_printf("ft-->%s<--\n", 43);
+	ft_printf("ft-->%.*d<--\n", -5, 42);
+	printf("un-->%.*d<--\n", -5, 42);
 	//printf("un-->%C<--\n", 13040);
 
 	//printf("%C\n", 63743);

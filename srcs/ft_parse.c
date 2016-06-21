@@ -86,24 +86,60 @@ int		parse_zero(const char *format, t_arg *arg)
 	return (i);
 }
 
-int		parse(const char *format, t_arg *arg)
+int		parse(const char *format, t_arg *arg, va_list list)
 {
 	int		i;
 	int		n;
 
 	n = parse_zero(format, arg);
 	i = 0;
-	while (ft_isdigit_ptf(format[i + n]))
-		i++;
-	arg->width = ft_atoi_ptf((char *)format + n);
-	n += i;
-	i = 0;
+	if (format[n] == '*')
+	{
+		arg->width = va_arg(list, int);
+		if (arg->width < 0)
+		{
+			arg->width *= -1;
+			arg->flags->minus = 1;
+		}
+		n++;
+	}
+	else
+	{	
+		while (ft_isdigit_ptf(format[i + n]))
+			i++;
+		arg->width = ft_atoi_ptf((char *)format + n);
+		n += i;
+		i = 0;
+	}
+	if (format[n] == '*')
+	{
+		arg->width = va_arg(list, int);
+		if (arg->width < 0)
+		{
+			arg->width *= -1;
+			arg->flags->minus = 1;
+		}
+		n++;
+	}
 	if (format[i + n] == '.')
 	{
 		i++;
-		while (ft_isdigit_ptf(format[i + n]))
+		if (format[i + n] == '*')
+		{
+			arg->precision = va_arg(list, int);
 			i++;
-		arg->precision = ft_atoi_ptf((char *)format + n + 1);
+		}
+		else
+		{
+			while (ft_isdigit_ptf(format[i + n]))
+				i++;
+			arg->precision = ft_atoi_ptf((char *)format + n + 1);
+		}
+		if (format[i + n] == '*')
+		{
+			arg->precision = va_arg(list, int);
+			i++;
+		}
 		if (arg->precision == 0)
 			arg->precision_null = 1;
 	}

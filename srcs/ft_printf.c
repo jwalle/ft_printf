@@ -62,7 +62,7 @@ int		process_format(const char *format, t_arg *arg, va_list list, t_env *e)
 			if (!format[i + 1])
 				return (0);
 			init_arg(arg);
-			i += 1 + parse(&format[i] + 1, arg);
+			i += 1 + parse(&format[i] + 1, arg, list);
 			parse_specifier(e, arg, list);
 		}
 		else

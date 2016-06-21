@@ -32,6 +32,7 @@ SRC_PRINTF =	ft_printf.o \
 				arg_is_c.o \
 				arg_is_wc.o \
 				arg_is_string.o \
+				arg_is_wstring.o \
 				arg_is_p.o \
 				ft_init.o \
 				ft_intlen.o \
