@@ -31,8 +31,8 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-		ft_printf("ft->%#08x\n", 42);
-		printf("un->%#08x\n", 42);
+	//	ft_printf("ft->%#08x\n", 42);
+	//	printf("un->%#08x\n", 42);
 
 	//	ft_printf("ft->%4.1S<-\n", L"Jambon");
 	//	printf("un->%4.1S<-\n", L"Jambon");
@@ -50,9 +50,16 @@ int main()
 //	ft_printf("ft{%-30S}\n", L"我是一只猫。");
 //	printf("un{%-30S}\n", L"我是一只猫。");
 //	printf("un-->%s<--\n", "");
-	ft_printf("ft-->%.*d<--\n", -5, 42);
-	printf("un-->%.*d<--\n", -5, 42);
-	//printf("un-->%C<--\n", 13040);
+	
+    ft_printf("ft-->%3*d<--\n",10 ,42);
+	printf("un-->%3*d<--\n", 10, 42);
+	
+    ft_printf("ft-->%*3d<--\n", 10, 42);
+	printf("un-->%*3d<--\n", 10, 42);
+	//ft_printf("ft-->%.*d<--\n", -5, 42);
+	//printf("un-->%.*d<--\n", -5, 42);
+	
+    //printf("un-->%C<--\n", 13040);
 
 	//printf("%C\n", 63743);
 

@@ -93,7 +93,7 @@ int		parse(const char *format, t_arg *arg, va_list list)
 
 	n = parse_zero(format, arg);
 	i = 0;
-	if (format[n] == '*')
+	if (format[n] == '*') // TODO tout ca.
 	{
 		arg->width = va_arg(list, int);
 		if (arg->width < 0)
@@ -103,7 +103,7 @@ int		parse(const char *format, t_arg *arg, va_list list)
 		}
 		n++;
 	}
-	else
+	if (ft_isdigit_ptf(format[i + n]))
 	{	
 		while (ft_isdigit_ptf(format[i + n]))
 			i++;
@@ -139,6 +139,11 @@ int		parse(const char *format, t_arg *arg, va_list list)
 		{
 			arg->precision = va_arg(list, int);
 			i++;
+		}
+		if (arg->precision < 0)
+		{
+			arg->precision = 0;
+			return (parse_two(format, arg, n + i));
 		}
 		if (arg->precision == 0)
 			arg->precision_null = 1;
