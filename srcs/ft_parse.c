@@ -86,67 +86,68 @@ int		parse_zero(const char *format, t_arg *arg)
 	return (i);
 }
 
-int		parse(const char *format, t_arg *arg, va_list list)
+int parse_width(const char *format, t_arg *arg, va_list list, int n)
 {
-	int		i;
-	int		n;
+	int i;
 
-	n = parse_zero(format, arg);
 	i = 0;
-	if (format[n] == '*') // TODO tout ca.
+	while (ft_isdigit_ptf(format[i + n]) || format[i + n] == '*')
 	{
-		arg->width = va_arg(list, int);
-		if (arg->width < 0)
-		{
-			arg->width *= -1;
-			arg->flags->minus = 1;
-		}
-		n++;
-	}
-	if (ft_isdigit_ptf(format[i + n]))
-	{	
 		while (ft_isdigit_ptf(format[i + n]))
 			i++;
+		if (format[n + i] == '*')
+		{
+			arg->width = va_arg(list, int);
+			n += i + 1;
+			i = 0;
+		}
+	}
+	if (i)
 		arg->width = ft_atoi_ptf((char *)format + n);
-		n += i;
-		i = 0;
-	}
-	if (format[n] == '*')
+	if (arg->width < 0)
 	{
-		arg->width = va_arg(list, int);
-		if (arg->width < 0)
-		{
-			arg->width *= -1;
-			arg->flags->minus = 1;
-		}
-		n++;
+		arg->width *= -1;
+		arg->flags->minus = 1;
 	}
-	if (format[i + n] == '.')
+	return (n + i);
+}
+
+int parse_precision(const char *format, t_arg *arg, va_list list, int n)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isdigit_ptf(format[i + n]) || format[i + n] == '*')
 	{
-		i++;
-		if (format[i + n] == '*')
+		while (ft_isdigit_ptf(format[i + n]))
+			i++;
+		if (format[n + i] == '*')
 		{
 			arg->precision = va_arg(list, int);
-			i++;
+			n += i + 1;
+			i = 0;
 		}
-		else
-		{
-			while (ft_isdigit_ptf(format[i + n]))
-				i++;
-			arg->precision = ft_atoi_ptf((char *)format + n + 1);
-		}
-		if (format[i + n] == '*')
-		{
-			arg->precision = va_arg(list, int);
-			i++;
-		}
+	}
+	if (i)
+		arg->precision = ft_atoi_ptf((char *)format + n);
+	arg->precision == 0 ? arg->precision_null = 1 : 0;
+	return (n + i);
+}
+
+int		parse(const char *format, t_arg *arg, va_list list)
+{
+	int		n;
+
+	n = parse_zero(format, arg);	
+	n = parse_width(format, arg, list, n);
+	if (format[n] == '.')
+	{
+		n = parse_precision(format, arg, list, n + 1);
 		if (arg->precision < 0)
 		{
 			arg->precision = 0;
-			return (parse_two(format, arg, n + i));
+				return (parse_two(format, arg, n));
 		}
-		if (arg->precision == 0)
-			arg->precision_null = 1;
 	}
-	return (parse_two(format, arg, n + i));
+	return (parse_two(format, arg, n));
 }

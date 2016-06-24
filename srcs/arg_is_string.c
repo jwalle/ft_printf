@@ -42,7 +42,7 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 		len = 0;
 	if (arg->precision && (len > arg->precision))
 		len = arg->precision;
-	while (!arg->flags->minus && ((arg->width - temp++) > len))
+	while (!arg->flags->minus && ((arg->width - temp++) > len) && str)
 	{
 		(arg->flags->zero) ? ft_putchar_ret(e, '0') : ft_putchar_ret(e, ' ');
 	}

@@ -51,11 +51,19 @@ int main()
 //	printf("un{%-30S}\n", L"我是一只猫。");
 //	printf("un-->%s<--\n", "");
 	
-    ft_printf("ft-->%3*d<--\n",10 ,42);
-	printf("un-->%3*d<--\n", 10, 42);
+    //ft_printf("ft-->%3*d<--\n",10 ,42);
+	//printf("un-->%3*d<--\n", 10, 42);
+
+    ft_printf("ft-->%05s<--\n", 0);
+	printf("un-->%05s<--\n", 0);	
+    ft_printf("ft-->%*s<--\n", 5, 0);
+	printf("un-->%*s<--\n", 5, 0);
+	ft_printf("ft-->%05.s<--\n",0);
+	printf("un-->%05.s<--\n", 0);
+
+	ft_printf("ft-->%.4o<--\n", 42);
+	printf("un-->%.4o<--\n", 42);
 	
-    ft_printf("ft-->%*3d<--\n", 10, 42);
-	printf("un-->%*3d<--\n", 10, 42);
 	//ft_printf("ft-->%.*d<--\n", -5, 42);
 	//printf("un-->%.*d<--\n", -5, 42);
 	
