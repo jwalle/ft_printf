@@ -26,6 +26,7 @@ RESET = tput sgr 0
 
 SRC_PRINTF =	ft_printf.o \
 				ft_parse.o \
+				ft_parse_two.o \
 				ft_atoi_hex.o \
 				arg_is_int.o \
 				arg_is_u.o \
