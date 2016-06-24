@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/19 05:01:25 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/24 12:23:24 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,24 @@ int main()
     //ft_printf("ft-->%3*d<--\n",10 ,42);
 	//printf("un-->%3*d<--\n", 10, 42);
 
-    ft_printf("ft-->%05s<--\n", 0);
-	printf("un-->%05s<--\n", 0);	
+
+    ft_printf("ft-->%5s<--\n", 0);
+	printf("un-->%5s<--\n", 0);	
+    
     ft_printf("ft-->%*s<--\n", 5, 0);
 	printf("un-->%*s<--\n", 5, 0);
-	ft_printf("ft-->%05.s<--\n",0);
-	printf("un-->%05.s<--\n", 0);
+	
+	ft_printf("{%*s}\n", 5, 0);
+	printf("{%*s}\n", 5, 0);
+	
 
-	ft_printf("ft-->%.4o<--\n", 42);
-	printf("un-->%.4o<--\n", 42);
+ft_printf("|retour : %d|\n", ft_printf("{%ls}", L"\xF0\x9D\x84\x9E"));
+
+printf("|retour : %d|\n", printf("{%ls}", L"\xF0\x9D\x84\x9E"));
+	
+	//ft_printf("ft-->%05.s<--\n",0);
+	//printf("un-->%05.s<--\n", 0);
+
 	
 	//ft_printf("ft-->%.*d<--\n", -5, 42);
 	//printf("un-->%.*d<--\n", -5, 42);

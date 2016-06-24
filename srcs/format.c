@@ -119,8 +119,8 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 		temp += format_precision(e, arg, len, signe);
 	if (signe && arg->hex && arg->flags->htag)
 		print_hex(e, arg->specifier);
-	// if (arg->hex == 2 && arg->flags->htag) WHY
-		// temp = 0; WHY
+	 if (arg->hex == 2 && arg->flags->htag) //WHY
+		 temp = 0; //WHY
 	if (!arg->flags->minus)
 	{
 		while (arg->flags->zero && ((arg->width - len) > temp))

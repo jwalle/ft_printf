@@ -38,13 +38,15 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 
 	temp = 0;
 	str ? len = ft_strlen_ptf(str) : 6;
-	if (!str || arg->precision_null)
+	if (arg->precision_null)
 		len = 0;
 	if (arg->precision && (len > arg->precision))
 		len = arg->precision;
-	while (!arg->flags->minus && ((arg->width - temp++) > len) && str)
+	if (!arg->flags->minus)
 	{
-		(arg->flags->zero) ? ft_putchar_ret(e, '0') : ft_putchar_ret(e, ' ');
+		while ((arg->width - temp++) > len)
+			(arg->flags->zero) ? ft_putchar_ret(e, '0')
+				: ft_putchar_ret(e, ' ');
 	}
 	str_precision(str, arg, e);
 	while (arg->flags->minus && (arg->width >= (len + temp++)))
