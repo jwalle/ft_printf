@@ -1,1 +1,1 @@
-git add -A ; git commit -m "Norme parse" ; git push origin master
+git add -A ; git commit -m "Clean Makefile" ; git push origin master
