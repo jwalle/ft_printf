@@ -59,7 +59,9 @@ void				print_lluint(t_env *e, t_arg *arg, va_list list)
 	else
 		len = ft_parse_len(n, arg->specifier);
 	temp = format_output(e, len, signe, arg);
-	if (!n && arg->precision_null)
+	if (!format_hex(arg, e, (int)n) && arg->flags->htag)
+		ft_putchar_ret(e, '0');
+	else if (!n && arg->precision_null)
 		;
 	else
 		parse_number(e, n, arg->specifier);

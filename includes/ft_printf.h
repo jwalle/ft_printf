@@ -105,5 +105,6 @@ void			arg_is_wchar(t_env *e, wchar_t w);
 void			print_wstr(t_env *e, wchar_t *w_str, t_arg *arg);
 void			arg_is_wstr(t_env *e, wchar_t *w_str);
 int				get_wchar_len(wchar_t c);
+int				format_hex(t_arg *arg, t_env *e, int signe);
 
 #endif

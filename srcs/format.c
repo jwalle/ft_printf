@@ -14,21 +14,21 @@
 
 int		format_hex(t_arg *arg, t_env *e, int signe)
 {
-	int temp;
-
-	temp = 0;
 	if (arg->flags->htag)
 	{
 		if (arg->specifier == 'x' || arg->specifier == 'X')
-			temp = 2;
+			return (2);
 		else if (arg->specifier == 'o' || arg->specifier == 'O')
 		{
 			if (!signe && arg->precision_null)
-				ft_putchar_ret(e, '0');
-			temp++;
+			{
+				return (0);
+			}
+			return (1);
 		}
 	}
-	return (temp);
+	(void)e;
+	return (0);
 }
 
 int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
@@ -114,17 +114,20 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 	int temp;
 
 	temp = 0;
-	temp += format_left_width(e, arg, len, signe);
+	temp += format_left_width(e, arg, len, signe) + format_hex(arg, e, signe);
 	temp += format_signe(e, arg, signe);
 	if (arg->precision)
 		temp += format_precision(e, arg, len, signe);
+	// printf("len = %d\n", len);
 	if (signe && arg->hex && arg->flags->htag)
+	{
 		print_hex(e, arg->specifier);
-	if (arg->flags->htag) //WHY
-		temp = 0; //WHY
+		if (format_hex(arg, e, signe) == 2 && !arg->flags->zero)
+			len -= 2;
+	}
 	if (!arg->flags->minus)
 	{
-		while (arg->flags->zero && ((arg->width - len) > temp))
+		while (arg->flags->zero && (arg->width > (len + temp)))
 		{
 			ft_putchar_ret(e, '0');
 			temp++;
