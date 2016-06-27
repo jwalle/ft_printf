@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h> // PRINTF PLOPLPOPLPO
 
 void	parse_specifier(t_env *e, t_arg *arg, va_list list)
 {
@@ -69,23 +68,6 @@ int		process_format(const char *format, t_arg *arg, va_list list, t_env *e)
 			ft_putchar_ret(e, format[i++]);
 	}
 	return (1);
-}
-
-void	init_mem(t_env *e, t_arg *arg)
-{
-	e->ret = 0;
-	arg->flags = (t_flags*)malloc(sizeof(t_flags));
-	arg->length = (t_length*)malloc(sizeof(t_length));
-}
-
-void	destroy_mem(t_arg *arg, t_env *e)
-{
-	if (arg->flags)
-		free(arg->flags);
-	if (arg->length)
-		free(arg->length);
-	free(e);
-	free(arg);
 }
 
 int		ft_printf(const char *format, ...)

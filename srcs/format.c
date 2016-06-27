@@ -88,22 +88,25 @@ int		format_precision(t_env *e, t_arg *arg, int len, int signe)
 	int i;
 
 	i = 0;
-	if (signe < 0 && arg->precision > arg->width)
-		i--;
-	if (arg->flags->minus)
+	if (arg->precision)
 	{
-		while (arg->precision > len + i)
+		if (signe < 0 && arg->precision > arg->width)
+			i--;
+		if (arg->flags->minus)
 		{
-			ft_putchar_ret(e, '0');
-			i++;
+			while (arg->precision > len + i)
+			{
+				ft_putchar_ret(e, '0');
+				i++;
+			}
 		}
-	}
-	else if (!arg->flags->minus && arg->precision < arg->width)
-	{
-		while (arg->precision > len + i)
+		else if (!arg->flags->minus && arg->precision < arg->width)
 		{
-			ft_putchar_ret(e, '0');
-			i++;
+			while (arg->precision > len + i)
+			{
+				ft_putchar_ret(e, '0');
+				i++;
+			}
 		}
 	}
 	return (i);
@@ -113,12 +116,9 @@ int		format_output(t_env *e, int len, int signe, t_arg *arg)
 {
 	int temp;
 
-	temp = 0;
-	temp += format_left_width(e, arg, len, signe) + format_hex(arg, e, signe);
+	temp = format_left_width(e, arg, len, signe) + format_hex(arg, e, signe);
 	temp += format_signe(e, arg, signe);
-	if (arg->precision)
-		temp += format_precision(e, arg, len, signe);
-	// printf("len = %d\n", len);
+	temp += format_precision(e, arg, len, signe);
 	if (signe && arg->hex && arg->flags->htag)
 	{
 		print_hex(e, arg->specifier);
