@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/25 16:45:11 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/27 12:00:09 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,18 @@ int main()
 	//printf("un-->%3*d<--\n", 10, 42);
 
 
-    ft_printf("ft-->%5s<--\n", 0);
-	printf("un-->%5s<--\n", 0);	
+    //ft_printf("ft-->%5s<--\n", 0);
+	//printf("un-->%5s<--\n", 0);	
     
-    ft_printf("ft-->%*s<--\n", 5, 0);
-	printf("un-->%*s<--\n", 5, 0);
+  //  ft_printf("ft-->%*s<--\n", 5, 0);
+//	printf("un-->%*s<--\n", 5, 0);
 	
-	ft_printf("{%*s}\n", 5, 0);
-	printf("{%*s}\n", 5, 0);
-	
-	//ft_printf("ft-->%05.s<--\n",0);
-	//printf("un-->%05.s<--\n", 0);
+//	ft_printf("{%*s}\n", 5, 0);
+//	printf("{%*s}\n", 5, 0);
+
+
+	ft_printf("ft-->%ho, %hho<--\n",-42, -42);
+	printf("un-->%ho, %hho<--\n", -42, -42);
 
 	
 	//ft_printf("ft-->%.*d<--\n", -5, 42);

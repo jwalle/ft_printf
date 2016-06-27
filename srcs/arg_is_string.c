@@ -49,7 +49,7 @@ void	print_str(t_env *e, char *str, t_arg *arg)
 				: ft_putchar_ret(e, ' ');
 	}
 	str_precision(str, arg, e);
-	while (arg->flags->minus && (arg->width >= (len + temp++)))
+	while (arg->flags->minus && (arg->width > (len + temp++)))
 		ft_putchar_ret(e, ' ');
 }
 

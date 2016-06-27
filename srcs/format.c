@@ -35,7 +35,8 @@ int		format_left_width(t_env *e, t_arg *arg, int len, int signe)
 {
 	int temp;
 
-	temp = format_hex(arg, e, signe);
+	temp = 0;
+	len += format_hex(arg, e, signe);
 	if (arg->precision > len)
 		len = arg->precision;
 	if (arg->flags->space || (arg->flags->plus && signe >= 0) || signe < 0)

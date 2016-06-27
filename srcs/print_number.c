@@ -35,13 +35,13 @@ void	ft_putnbr_octal(t_env *e, unsigned long long number)
 	}
 	i = ft_int_octal_len(number);
 	octal = ft_strnew_ptf(i);
-	ft_bzero_ptf(octal, i + 1);
 	while (number)
 	{
 		octal[--i] = number % 8 + '0';
 		number = number / 8;
 	}
 	ft_putstr_ret(e, octal);
+	free(octal);
 }
 
 void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe)
@@ -61,11 +61,11 @@ void	ft_putnbr_hexa(t_env *e, unsigned long long number, char spe)
 		base = HEXA_MAJ;
 	i = ft_int_hex_len(number);
 	hex = ft_strnew_ptf(i);
-	ft_bzero_ptf(hex, i + 1);
 	while (number)
 	{
 		hex[--i] = base[number % 16];
 		number = number / 16;
 	}
 	ft_putstr_ret(e, hex);
+	free(hex);
 }

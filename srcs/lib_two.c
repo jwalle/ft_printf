@@ -79,5 +79,6 @@ char	*ft_strndup(char *str, int i)
 	if ((ret = (char *)malloc(sizeof(char) * i)) == NULL)
 		return (NULL);
 	ret = ft_strncpy_ptf(ret, str, i);
+	ret[i] = 0;
 	return (ret);
 }

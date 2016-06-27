@@ -78,11 +78,22 @@ void	init_mem(t_env *e, t_arg *arg)
 	arg->length = (t_length*)malloc(sizeof(t_length));
 }
 
+void	destroy_mem(t_arg *arg, t_env *e)
+{
+	if (arg->flags)
+		free(arg->flags);
+	if (arg->length)
+		free(arg->length);
+	free(e);
+	free(arg);
+}
+
 int		ft_printf(const char *format, ...)
 {
 	va_list	list;
 	t_arg	*arg;
 	t_env	*e;
+	int		ret;
 
 	if (!format)
 		return (-1);
@@ -93,5 +104,7 @@ int		ft_printf(const char *format, ...)
 	if (!process_format(format, arg, list, e))
 		return (0);
 	va_end(list);
-	return (e->ret);
+	ret = e->ret;
+	destroy_mem(arg, e);
+	return (ret);
 }
