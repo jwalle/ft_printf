@@ -32,12 +32,14 @@ int main()
 		printf("--> local set to = %s\n\n\n", l);
 
 	int i = 1;
-
+	int ret;
 	//while (i < 100000)
 	//{
-		i =57144; 
-		ft_printf("ft-->%C<-- | i = %d\n", i, i); 
-		printf("un-->%C<-- | i = %d\n", i, i); 
+		i =945; 
+		ret = ft_printf("{g}ft-->%c<-- | i = %d{eoc}\n", 42, i); 
+		printf("ret = %d\n", ret);
+		ret = printf("un-->%c<-- | i = %d\n", 42, i); 
+		printf("ret = %d\n", ret);
 	//	i++;
 	//}
 	return (0);
