@@ -36,7 +36,7 @@ int main()
 	//while (i < 100000)
 	//{
 		i =945; 
-		ret = ft_printf("{g}ft-->%c<-- | i = %d{eoc}\n", 42, i); 
+		ret = ft_printf("{cyan}ft-->%c<-- | i = %d{eoc}\n", 42, i); 
 		printf("ret = %d\n", ret);
 		ret = printf("un-->%c<-- | i = %d\n", 42, i); 
 		printf("ret = %d\n", ret);

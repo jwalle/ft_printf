@@ -108,5 +108,6 @@ int				get_wchar_len(wchar_t c);
 int				format_hex(t_arg *arg, t_env *e, int signe);
 void			destroy_mem(t_arg *arg, t_env *e);
 void			init_mem(t_env *e, t_arg *arg);
+int				process_color(t_env *e, const char *format);
 
 #endif

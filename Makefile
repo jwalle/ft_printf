@@ -39,6 +39,7 @@ SRC =			ft_printf.c \
 				print_number.c \
 				format.c \
 				misc.c \
+				bonus_color.c \
 				lib_one.c \
 				lib_two.c \
 
