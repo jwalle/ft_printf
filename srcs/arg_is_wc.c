@@ -27,22 +27,25 @@ void			ft_putwchar(t_env *e, unsigned char *str, int len)
 
 int				get_wchar_len(wchar_t c)
 {
-	unsigned int e;
-
-	e = (unsigned int)c;
-	if (e > 0 && e < 255)
+	if (c <= 0x7F)
 		return (1);
-	else if (e < 0x07FF)
+	else if (c >= 0xD800 && c < 0xF900)
+		return (-1);
+	else if (c <= 0x07FF)
 		return (2);
-	else if (e < 0xFFFF)
+	else if (c <= 0xFFFF)
 		return (3);
-	else
+	else if (c <= 0x10FFFF)
 		return (4);
+	else
+		return (-1);
 }
 
 unsigned char	*convert_wchar(unsigned char *str, wchar_t c, int len)
 {
-	if (len == 2)
+	if (len == 1)
+		str[0] = (char)c;
+	else if (len == 2)
 	{
 		str[0] = ((c >> 6) | 0xC0);
 		str[1] = ((c & 0x3F) | 0x80);
@@ -69,13 +72,13 @@ void			arg_is_wchar(t_env *e, wchar_t w)
 	unsigned char	str[5];
 	int				len;
 
-	if (w >= 0 && w <= 255)
-	{
-		ft_putchar_ret(e, w);
-		return ;
-	}
 	ft_bzero_ptf(str, 5);
 	len = get_wchar_len(w);
+	if (len < 0)
+	{
+		e->ret = -1;
+		return ;
+	}
 	convert_wchar(str, w, len);
 	ft_putwchar(e, str, len);
 }

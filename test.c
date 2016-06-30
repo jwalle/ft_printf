@@ -6,7 +6,7 @@
 /*   By: jwalle <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 22:01:26 by jwalle            #+#    #+#             */
-/*   Updated: 2016/06/27 15:14:08 by jwalle           ###   ########.fr       */
+/*   Updated: 2016/06/27 16:41:53 by jwalle           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,54 +31,14 @@ int main()
 	else
 		printf("--> local set to = %s\n\n\n", l);
 
-	//	ft_printf("ft->%#08x\n", 42);
-	//	printf("un->%#08x\n", 42);
+	int i = 1;
 
-	//	ft_printf("ft->%4.1S<-\n", L"Jambon");
-	//	printf("un->%4.1S<-\n", L"Jambon");
-		//ft_printf("ft-->%S<--\n", NULL);
-	//	ft_printf("ft{%015.4S}\n", L"我是一只猫。");
-	//	printf("un{%015.4S}\n", L"我是一只猫。");
-	//	printf("un-->%#.3o<--\n", 1);
-	//	ft_printf("ft{%04.15S}\n", L"我是一只猫。");
-	//	printf("un{%04.15S}\n", L"我是一只猫。");
-	//	ft_printf("ft-->%#.3o<--\n", 1);
-	//	printf("un-->%4.s<--\n", "42");
-//	ft_printf("ft-->%.4S<--\n", L"我是一只猫。");
-//	printf("un-->%.4S<--\n", L"我是一只猫。");
-
-//	ft_printf("ft{%-30S}\n", L"我是一只猫。");
-//	printf("un{%-30S}\n", L"我是一只猫。");
-//	printf("un-->%s<--\n", "");
-	
-    //ft_printf("ft-->%3*d<--\n",10 ,42);
-	//printf("un-->%3*d<--\n", 10, 42);
-
-
-    //ft_printf("ft-->%5s<--\n", 0);
-	//printf("un-->%5s<--\n", 0);	
-    
-  //  ft_printf("ft-->%*s<--\n", 5, 0);
-//	printf("un-->%*s<--\n", 5, 0);
-	
-//	ft_printf("{%*s}\n", 5, 0);
-//	printf("{%*s}\n", 5, 0);
-
-
-	ft_printf("ft-->%#.5x<--\n", 1);
-	printf("un-->%#.5x<--\n", 1);
-
-	
-	//ft_printf("ft-->%.*d<--\n", -5, 42);
-	//printf("un-->%.*d<--\n", -5, 42);
-	
-    //printf("un-->%C<--\n", 13040);
-
-	//printf("%C\n", 63743);
-
-	//ft_printf("ft-->%C<--\n", 130);
-	//printf("un-->%C<--\n", 130);
-
-	// precision of 0 >> nothing printed if value == 0.
+	//while (i < 100000)
+	//{
+		i =57144; 
+		ft_printf("ft-->%C<-- | i = %d\n", i, i); 
+		printf("un-->%C<-- | i = %d\n", i, i); 
+	//	i++;
+	//}
 	return (0);
 }
