@@ -1,1 +1,1 @@
-git add -A ; git commit -m "Bonus Color" ; git push origin master
+git add -A ; git commit -m "Travis test" ; git push origin master
